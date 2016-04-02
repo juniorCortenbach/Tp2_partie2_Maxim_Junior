@@ -23,14 +23,9 @@ namespace tp2_partie1
         #region ATTRIBUTS
 
         /// <summary>
-        /// L'identifiant du héro.
+        /// La classe du héro.
         /// </summary>
-        private string _identifiant;
-         
-        /// <summary>
-        /// Le nom du héro.
-        /// </summary>
-        private string _nom;
+        private string _classe;
 
         /// <summary>
         /// L'extension du héro.
@@ -38,40 +33,51 @@ namespace tp2_partie1
         private string _extension;
 
         /// <summary>
+        /// L'identifiant du héro.
+        /// </summary>
+        private string _id;
+         
+        /// <summary>
+        /// Le nom du héro.
+        /// </summary>
+        private string _nom;
+
+        /// <summary>
         /// La rareté du héro.
         /// </summary>
         private string _rarete;
 
         /// <summary>
-        /// La classe du héro.
+        /// wtf is this?
         /// </summary>
-        private string _classeHeros;
+        private byte _regexId;
 
         /// <summary>
         /// Les points de vie du héro.
         /// </summary>
-        private byte _ptsVie;
+        private byte _vie;
+
+        /// <summary>
+        /// Points de vie maximales d'un héro.
+        /// </summary>
+        private byte _vieMax;
+
+        /// <summary>
+        /// Points de vie minimales d'un héro.
+        /// </summary>
+        private byte _vieMin;
 
         #endregion
 
         #region PROPRIÉTÉS
-        
-        /// <summary>
-        /// L'identifiant du héro.
-        /// </summary>
-        public string Identifiant
-        {
-            get { return this._identifiant; }
-            set { this._identifiant = value; }
-        }
 
         /// <summary>
-        /// Le nom du unité.
+        /// La classe du héro.
         /// </summary>
-        public string Nom
+        public string Classe
         {
-            get { return this._nom; }
-            set { this._nom = value; }
+            get { return this._classe; }
+            set { this._classe = value; }
         }
 
         /// <summary>
@@ -84,6 +90,24 @@ namespace tp2_partie1
         }
 
         /// <summary>
+        /// L'identifiant du héro.
+        /// </summary>
+        public string Id
+        {
+            get { return this._id; }
+            set { this._id = value; }
+        }
+
+        /// <summary>
+        /// Le nom du unité.
+        /// </summary>
+        public string Nom
+        {
+            get { return this._nom; }
+            set { this._nom = value; }
+        }
+
+        /// <summary>
         /// La rareté du héro.
         /// </summary>
         public string Rarete
@@ -92,24 +116,31 @@ namespace tp2_partie1
             set { this._rarete = value; }
         }
 
-        /// <summary>
-        /// La classe du héro.
-        /// </summary>
-        public string Classe
+        public byte RegexId
         {
-            get { return this._classeHeros; }
-            set { this._classeHeros = value; }
+            get { return this._regexId; }
+            set { this._regexId = value; }
         }
-
         /// <summary>
         /// Les points de vie du héro.
         /// </summary>
-        public byte PtsVie
+        public byte Vie
         {
-            get { return this._ptsVie; }
-            set { this._ptsVie = value; }
+            get { return this._vie; }
+            set { this._vie = value; }
         }
 
+        public byte VieMax
+        {
+            get { return this._vieMax; }
+            set { this._vieMax = value; }
+        }
+
+        public byte VieMin
+        {
+            get { return this._vieMin; }
+            set { this._vieMin = value; }
+        }
         #endregion
 
         public JeuHearthstone JeuHearthstone
@@ -134,14 +165,18 @@ namespace tp2_partie1
         /// <param name="rarete">Rareté du héro.</param>
         /// <param name="classHero">Classe du héro.</param>
         /// <param name="ptsVie">Points de vie du héro.</param>
-        public Heros(string identifiant, string nom, string extension, string rarete, string classHero, byte ptsVie)
+        public Heros(string classe, string extension, string id, 
+            string nom, string rarete, byte regexId, byte vie, byte vieMax, byte vieMin)
         {
-            this._identifiant = identifiant;
-            this._nom = nom;
+            this._classe = classe;
             this._extension = extension;
+            this._id = id;
+            this._nom = nom;
             this._rarete = rarete;
-            this._classeHeros = classHero;
-            this._ptsVie = ptsVie;
+            this._regexId = regexId;
+            this._vie = vie;
+            this._vieMax = vieMax;
+            this._vieMin = vieMin;
         }
 
        #endregion

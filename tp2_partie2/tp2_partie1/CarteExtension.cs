@@ -3,17 +3,17 @@
     /// <summary>
     /// Énumération des configurations possibles.
     /// </summary>
-    public enum Set
+    public enum CarteExtension
     {
-        Brm,
-        Core, 
-        Expert1,
-        Gvc,
-        HeroSkins,
-        Loe,
+        Core,
         Naxx,
-        Promo,
+        Brm,
+        Low,
+        Gvg,
+        Tgt,
+        Expert1,
         Reward,
-        Tgt
+        Promo,
+        Heroskins
     }
 }

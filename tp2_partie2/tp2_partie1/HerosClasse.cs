@@ -3,12 +3,12 @@
     /// <summary>
     /// Énumération des classes possibles.
     /// </summary>
-    public enum PlayerClass
+    public enum HerosClasse
     {
+        Neutre,
         Druid,
         Hunter,
         Mage,
-        Neutre,
         Paladin,
         Priest,
         Rogue,

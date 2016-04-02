@@ -41,7 +41,7 @@ namespace tp2_partie1
         /// </summary>
         /// <param name="cheminFichier"></param>
         /// <returns></returns>
-        public static Cartes[] ChargerCartes(String cheminFichier)
+        public static Carte[] ChargerCartes(String cheminFichier)
         {
             return null;
         }

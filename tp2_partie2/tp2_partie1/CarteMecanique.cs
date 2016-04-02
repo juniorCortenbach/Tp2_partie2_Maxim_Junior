@@ -3,7 +3,7 @@
     /// <summary>
     /// Énumération des mécaniques possibles.
     /// </summary>
-    public enum Mecaniques
+    public enum CarteMecanique
     {
         AdjacentBuff,
         Aura,

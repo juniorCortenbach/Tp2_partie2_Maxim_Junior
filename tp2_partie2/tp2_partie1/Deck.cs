@@ -37,7 +37,7 @@ namespace tp2_partie1
         /// <summary>
         /// Tableau de cartes.
         /// </summary>
-        private Cartes[] _tabCartes;
+        private Carte[] _tabCartes;
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace tp2_partie1
             set { this._heros = value; }
         }
 
-        public Cartes[] TabCartes
+        public Carte[] TabCartes
         {
             get { return this._tabCartes; }
             set { this._tabCartes = value; }
@@ -127,7 +127,7 @@ namespace tp2_partie1
         /// c’est encore possible (nombre maximal de copies non atteint).
         /// </summary>
         /// <returns></returns>
-        public Cartes[] RechercheCartes()
+        public Carte[] RechercheCartes()
         {
             return null;
         }

@@ -3,9 +3,8 @@
     /// <summary>
     /// Énumération des types possibles.
     /// </summary>
-    public enum Type
+    public enum CarteType
     {
-        Hero,
         Minion,
         Spell,
         Weapon

@@ -3,9 +3,9 @@
     /// <summary>
     /// Énumération des races possibles.
     /// </summary>
-    public enum Race
+    public enum ServiteurRace
     {
-        Grace,
+        Aucune,
         Beast,
         Demon,
         Dragon,

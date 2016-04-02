@@ -3,12 +3,12 @@
     /// <summary>
     /// Énumération des raretés.
     /// </summary>
-    public enum Rarete
+    public enum CarteRarete
     {
-        Common,
-        Epic,
         Free,
-        Legendary,
-        Rare
+        Common,       
+        Rare,
+        Epic,
+        Legendary
     }
 }

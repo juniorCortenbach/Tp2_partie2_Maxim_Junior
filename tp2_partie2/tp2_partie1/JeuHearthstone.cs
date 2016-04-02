@@ -44,7 +44,7 @@ namespace tp2_partie1
         /// <summary>
         /// Tableau de cartes.
         /// </summary>
-        private Cartes[] _lesCartesDeReference;
+        private Carte[] _lesCartesDeReference;
 
         #endregion
 
@@ -71,7 +71,7 @@ namespace tp2_partie1
         /// <summary>
         /// Tableau de cartes.
         /// </summary>
-        public Cartes[] LesCartes
+        public Carte[] LesCartes
         {
             get { return this._lesCartesDeReference; }
             set { this._lesCartesDeReference = value; }
@@ -117,7 +117,7 @@ namespace tp2_partie1
         /// Au démarrage, les données sur les cartes de Hearthstone doivent être chargées dans des tableaux d’objets, et ce, à partir du fichier XML fourni.
         /// </summary>
         /// <returns></returns>
-        public Cartes[] ChargeXmlCartes()
+        public Carte[] ChargeXmlCartes()
         {
             return null;
         }
