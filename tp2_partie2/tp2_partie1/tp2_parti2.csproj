@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Carte.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="DeckEntree.cs" />
     <Compile Include="FrmGestionJeu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,8 +74,8 @@
     <Compile Include="FrmGestionDecks.Designer.cs">
       <DependentUpon>FrmGestionDecks.cs</DependentUpon>
     </Compile>
+    <Compile Include="HearthstoneData.cs" />
     <Compile Include="Heros.cs" />
-    <Compile Include="JeuHearthstone.cs" />
     <Compile Include="CarteMecanique.cs" />
     <Compile Include="HerosClasse.cs" />
     <Compile Include="Program.cs" />
@@ -115,9 +116,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cards-collectible.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Musique\keyPressed.wav" />
     <None Include="Musique\btnCliquer.wav" />
     <None Include="Images\FondDuFormulaire1.png" />
