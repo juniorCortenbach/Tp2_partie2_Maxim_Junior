@@ -36,7 +36,7 @@ namespace tp2_partie1
 
         #region PROPRIÉTÉS
         /// <summary>
-        /// Objet carte
+        /// Objet carte.
         /// </summary>
         public Carte Carte
         {
@@ -45,7 +45,7 @@ namespace tp2_partie1
         }
 
         /// <summary>
-        /// Quantité de carte
+        /// Quantité de cartes.
         /// </summary>
         public byte Qt
         {
@@ -54,9 +54,18 @@ namespace tp2_partie1
         }
         #endregion
 
-        #region MÉTHODE
+        #region CONSTRUCTEUR
 
-
+        /// <summary>
+        /// Constructeur paramétré qui accepte des cartes avec une quantité de cartes.
+        /// </summary>
+        /// <param name="carte"></param>
+        /// <param name="qt"></param>
+        public DeckEntree(Carte carte, byte qt )
+        {
+            this._carte = carte;
+            this._qt = qt;
+        }
 
         #endregion
 

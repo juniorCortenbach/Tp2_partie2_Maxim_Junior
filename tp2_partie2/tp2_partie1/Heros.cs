@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 #endregion
@@ -57,15 +58,13 @@ namespace tp2_partie1
         /// </summary>
         private byte _vie;
 
-        /// <summary>
-        /// Points de vie maximales d'un héro.
-        /// </summary>
-        private byte _vieMax;
+        #endregion
 
-        /// <summary>
-        /// Points de vie minimales d'un héro.
-        /// </summary>
-        private byte _vieMin;
+
+        #region CONSTANTES
+
+        const byte VieMax;
+        const byte VieMin;
 
         #endregion
 
@@ -130,43 +129,29 @@ namespace tp2_partie1
             set { this._vie = value; }
         }
 
-        public byte VieMax
-        {
-            get { return this._vieMax; }
-            set { this._vieMax = value; }
-        }
-
-        public byte VieMin
-        {
-            get { return this._vieMin; }
-            set { this._vieMin = value; }
-        }
         #endregion
 
-        public JeuHearthstone JeuHearthstone
+        public HearthstoneData JeuHearthstone
         {
             get
             {
                 throw new System.NotImplementedException();
-            }
-            set
-            {
             }
         }
 
         #region CONSTRUCTEUR
 
         /// <summary>
-        /// Constructeur paramétré qui accepte les 6 arguments d'un héro.
+        /// Constructeur paramétré.
         /// </summary>
-        /// <param name="identifiant">Identifiant du héro.</param>
-        /// <param name="nom">Nom du héro.</param>
-        /// <param name="extension">Extension du héro.</param>
-        /// <param name="rarete">Rareté du héro.</param>
-        /// <param name="classHero">Classe du héro.</param>
-        /// <param name="ptsVie">Points de vie du héro.</param>
-        public Heros(string classe, string extension, string id, 
-            string nom, string rarete, byte regexId, byte vie, byte vieMax, byte vieMin)
+        /// <param name="classe"></param>
+        /// <param name="extension"></param>
+        /// <param name="id"></param>
+        /// <param name="nom"></param>
+        /// <param name="rarete"></param>
+        /// <param name="regexId"></param>
+        /// <param name="vie"></param>
+        public Heros(string classe, string extension, string id, string nom, string rarete, byte regexId, byte vie)
         {
             this._classe = classe;
             this._extension = extension;
@@ -175,9 +160,8 @@ namespace tp2_partie1
             this._rarete = rarete;
             this._regexId = regexId;
             this._vie = vie;
-            this._vieMax = vieMax;
-            this._vieMin = vieMin;
         }
+        
 
        #endregion
 

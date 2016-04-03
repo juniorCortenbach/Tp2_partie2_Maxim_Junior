@@ -85,6 +85,7 @@ namespace tp2_partie1
         /// Contient du texte décrivant la carte.
         /// </summary>
         private string _texte;
+
         /// <summary>
         /// Le type de créature.
         /// </summary>
@@ -94,26 +95,6 @@ namespace tp2_partie1
         /// Le nombre de points de vie de la carte.
         /// </summary>
         private byte _vie;
-
-        /// <summary>
-        /// Nombre de points maximale d'une.
-        /// </summary>
-        private byte _attaqueMax;
-
-        /// <summary>
-        /// Le coût maximale d'une carte.
-        /// </summary>
-        private ushort _coutMax;
-
-        /// <summary>
-        /// La durabilité maximale d'une carte.
-        /// </summary>
-        private byte _durabiliteMax;
-
-        /// <summary>
-        /// Les points de vie maximal d'une carte.6
-        /// </summary>
-        private byte _vieMax;
 
         #endregion
 
@@ -194,7 +175,7 @@ namespace tp2_partie1
         /// <summary>
         /// Race du serviteur.
         /// </summary>
-        public ServiteurRace _race
+        public ServiteurRace Race
         {
             get { return this._race; }
             set { this._race = value; }
@@ -246,45 +227,9 @@ namespace tp2_partie1
             set { this._vie = value; }
         }
 
-        /// <summary>
-        /// Nombre de points maximale d'une.
-        /// </summary>
-        public byte AttaqueMax
-        {
-            get { return this._attaqueMax; }
-            set { this._attaqueMax = value; }
-        }
-
-        /// <summary>
-        /// Le coût maximale d'une carte.
-        /// </summary>
-        public ushort CoutMax
-        {
-            get { return this._coutMax; }
-            set { this._coutMax = value; }
-        }
-
-        /// <summary>
-        /// La durabilité maximale d'une carte.
-        /// </summary>
-        public byte DurabiliteMax
-        {
-            get { return this._durabiliteMax; }
-            set { this._durabiliteMax = value; }
-        }
-
-        /// <summary>
-        /// Les points de vie maximal d'une carte.
-        /// </summary>
-        public byte VieMax
-        {
-            get { return this._vieMax; }
-            set { this._vieMax = value; }
-        }
-
         #endregion
 
-        public JeuHearthstone JeuHearthstone
+        public HearthstoneData JeuHearthstone
         {
             get
             {
@@ -300,8 +245,7 @@ namespace tp2_partie1
 
         public Carte(byte attaque, HerosClasse classe, ushort cout, byte durabilite,
             string extension, string id, string[] lstMeca, string nom, ServiteurRace race,
-            string rarete, string regexId, string texte, Type type, byte vie, byte attaqueMax,
-            ushort coutMax, byte durabiliteMax, byte vieMax)
+            string rarete, string regexId, string texte, Type type, byte vie)
         {
             this._attaque = attaque;
             this._classe = classe;
@@ -317,29 +261,25 @@ namespace tp2_partie1
             this._texte = texte;
             this._type = type;
             this._vie = vie;
-            this._attaqueMax = attaqueMax;
-            this._coutMax = coutMax;
-            this._durabiliteMax = durabiliteMax;
-            this._vieMax = vieMax;
-
         }
 
        #endregion
 
         #region MÉTHODES
 
-        //I GUESS?
+        //?
         public CarteMecanique AjouterMecanique()
         {
             return null;
         }
 
+        //?
         public Carte Carte()
         {
             return null;
         }
 
-        //JE SAIS PAS.
+        //?
         public Carte CompareTo()
         {
             return null;

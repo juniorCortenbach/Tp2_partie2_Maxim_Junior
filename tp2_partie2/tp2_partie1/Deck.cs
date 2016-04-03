@@ -24,11 +24,6 @@ namespace tp2_partie1
         #region ATTRIBUTS
 
         /// <summary>
-        /// Nom du deck.
-        /// </summary>
-        private string _nomDeck;
-
-        /// <summary>
         /// Héro (avec toutes informations du héro contenus dans 
         /// la classe Heros).
         /// </summary>
@@ -37,33 +32,37 @@ namespace tp2_partie1
         /// <summary>
         /// Tableau de cartes.
         /// </summary>
-        private Carte[] _tabCartes;
+        private Carte[] _lstCartesAvecQt;
+
+        /// <summary>
+        /// Nom du deck.
+        /// </summary>
+        private string _nom;
 
         #endregion
 
         #region PROPRIÉTÉS
 
-        public string NomDeck
+        /// <summary>
+        /// Tableau de cartes.
+        /// </summary>
+        public Carte[] NbtTotalCartes
         {
-            get { return this._nomDeck; }
-            set { this._nomDeck = value; }
-        }
-
-        public Heros Heros
-        {
-            get { return this._heros; }
-            set { this._heros = value; }
-        }
-
-        public Carte[] TabCartes
-        {
-            get { return this._tabCartes; }
-            set { this._tabCartes = value; }
+            get { return this._lstCartesAvecQt; }
+            set { this._lstCartesAvecQt = value; }
         }
 
         #endregion
 
-        public JeuHearthstone JeuHearthstone
+        #region CONSTANTES
+
+        const byte NbMaxCartesDansDeck;
+        const byte QtMaxCarteLegendaire;
+        const byte QtMaxCarteNonLegendaire;
+
+        #endregion
+
+        public HearthstoneData JeuHearthstone
         {
             get
             {
@@ -74,64 +73,39 @@ namespace tp2_partie1
             }
         }
 
+        #region CONSTRUCTEUR
+
+        /// <summary>
+        /// Constructeur paramétré qui accepte les trois attributs d'un deck.
+        /// </summary>
+        /// <param name="heros"></param>
+        /// <param name="lstCartesAvecQt"></param>
+        /// <param name="nom"></param>
+        public Deck(Heros heros, Carte[] lstCartesAvecQt, string nom)
+        {
+            this._heros = heros;
+            this._lstCartesAvecQt = lstCartesAvecQt;
+            this._nom = nom;
+        }
+
+        #endregion 
 
         #region MÉTHODES
 
-        /// <summary>
-        /// Enregistrer un deck dans le fichier au format XML.
-        /// </summary>
-        public void EnregistrerDeck()
+        public void AjouterCartes()
         {
-
+            
         }
 
-        /// <summary>
-        /// Modification du nom du deck dans le fichier .xml.
-        /// </summary>
-        public void ModifierNom()
+        public void ObtenirQtCarte()
         {
-
+            
         }
 
-        /// <summary>
-        /// Ajout d'une carte supplémentaire dans le deck du joueur.
-        /// En considérant le nombre maximal de copies d'une même carte permise.
-        /// </summary>
-        public void AjouterNouvelleCarte()
+        public void RetirerCarte()
         {
-
+            
         }
-
-        /// <summary>
-        /// Suppression d'une carte, peu importe son nombre de copies.
-        /// </summary>
-        public void SupprimerToutesLesCopies()
-        {
-            ModifierQuantiteCarte(0);
-        }
-
-        /// <summary>
-        /// Ajout ou soustraction de la quantité d'une carte dans le deck.
-        /// </summary>
-        /// <param name="nbCartes"></param>
-        public void ModifierQuantiteCarte(int nbCartes)
-        {
-
-        }
-
-
-        /// <summary>
-        /// Faire une recherche de cartes en limitant automatiquement
-        /// celle-ci aux cartes pouvant être incluses dans le deck et, à partir du 
-        /// résultat de la recherche, permettre l’ajout d’une carte dans le deck si 
-        /// c’est encore possible (nombre maximal de copies non atteint).
-        /// </summary>
-        /// <returns></returns>
-        public Carte[] RechercheCartes()
-        {
-            return null;
-        }
-
 
         #endregion
 

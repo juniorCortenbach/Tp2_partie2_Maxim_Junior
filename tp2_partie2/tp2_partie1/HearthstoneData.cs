@@ -21,7 +21,7 @@ namespace tp2_partie1
     public class HearthstoneData
     {
 
-        #region CONSTANTES
+        #region CONSTANTE
        
         /// <summary>
         /// Constante qui contient le chemin qui contient le fichier xml qui contient les données. 
@@ -38,14 +38,15 @@ namespace tp2_partie1
         private Carte[] _lesCartes;
         
         /// <summary>
-        /// Tableaux de héros
+        /// Tableaux de héros.
         /// </summary>
         private Heros[] _lesHeros;
+
         #endregion 
 
         #region PROPRIÉTÉS
         /// <summary>
-        /// Tableaux de héros
+        /// Tableaux de héros.
         /// </summary>
         public Heros[] LesHeros
         {
@@ -64,8 +65,21 @@ namespace tp2_partie1
 
         #endregion
 
-        #region MÉTHODE
+        #region CONSTRUCTEUR
 
+        /// <summary>
+        /// Constructeur paramétré qui accepte les attributs de cartes et de de héros.
+        /// </summary>
+        /// <param name="lesCartes"></param>
+        /// <param name="lesHeros"></param>
+        public HearthstoneData(Carte[] lesCartes, Heros[] lesHeros)
+        {
+            this._lesCartes = lesCartes;
+            this._lesHeros = lesHeros;
+        }
+        #endregion
+
+        #region MÉTHODES
 
         /// <summary>
         /// Prend en paramètre tous les critères de recherche (vous référez à la section « Critères pour la recherche de cartes » plus haut
@@ -74,7 +88,10 @@ namespace tp2_partie1
         /// insensible à la casse et aux accents).
         /// </summary>
         /// <param name="?"></param>
-        public Carte RechercherCartes(CarteType type, String nomPartiel, List<CarteExtension> extensions, CarteRarete rarete, sbyte coutMin,sbyte coutMax, string textePartiel,HerosClasse classe, List<CarteMecanique> mecaniques, sbyte attaqueMin, sbyte attaqueMax, sbyte vieMin, sbyte vieMax,ServiteurRace race, sbyte durabiliteMin, sbyte durabiliteMax)
+        public Carte RechercherCartes(CarteType type, String nomPartiel, List<CarteExtension> extensions, CarteRarete rarete,
+            sbyte coutMin,sbyte coutMax, string textePartiel,HerosClasse classe, List<CarteMecanique> mecaniques, 
+            sbyte attaqueMin, sbyte attaqueMax, sbyte vieMin, sbyte vieMax,ServiteurRace race, sbyte durabiliteMin,
+            sbyte durabiliteMax)
         {
 
         }
