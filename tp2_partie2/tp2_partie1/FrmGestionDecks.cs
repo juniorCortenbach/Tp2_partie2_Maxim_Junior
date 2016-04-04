@@ -50,28 +50,6 @@ namespace tp2_partie1
 
         }
 
-        public Utilitaire Utilitaire
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public FrmGestionJeu FrmGestionJeu
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
 
         private void Form2_Load(object sender, EventArgs e)
         {

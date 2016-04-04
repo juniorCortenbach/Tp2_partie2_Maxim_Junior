@@ -237,6 +237,7 @@
             this.Controls.Add(this.cmbHéros);
             this.Controls.Add(this.lblHerosDeck);
             this.Controls.Add(this.lblDeck);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmGestionDecks";
             this.Text = "Jeu HeartStone";
             this.Load += new System.EventHandler(this.Form2_Load);

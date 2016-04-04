@@ -47,6 +47,7 @@
             // 
             // tblCarte
             // 
+            this.tblCarte.AllowUserToResizeColumns = false;
             this.tblCarte.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tblCarte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblCarte.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -171,6 +172,7 @@
             this.Controls.Add(this.lblAffichage);
             this.Controls.Add(this.btnImages);
             this.Controls.Add(this.tblCarte);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmGestionJeu";
             this.Text = "Jeu HearStone";
             this.Load += new System.EventHandler(this.Form1_Load);

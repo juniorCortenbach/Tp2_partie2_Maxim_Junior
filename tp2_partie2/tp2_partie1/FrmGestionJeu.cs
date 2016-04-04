@@ -61,16 +61,7 @@ namespace tp2_partie1
 
         #endregion
 
-        public FrmGestionDecks FrmGestionDecks
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+
 
         #region MÉTHODES
 
@@ -78,7 +69,7 @@ namespace tp2_partie1
         {
             InitializeComponent();
             ///Chargement du son lors de la sélection d'un bouton.
-           // this._joueurDeSons = new SoundPlayer("btnCliquer.wav");
+            this._joueurDeSons = new SoundPlayer("btnCliquer.wav");
         }
 
 
@@ -113,7 +104,7 @@ namespace tp2_partie1
             //Retrait du tableau de cartes du formulaire.
             this.tblCarte.Hide();
             //Joue du son.
-           // this._s.Play();  
+            this._s.Play();  
         }
 
         private void btnModifier_Click(object sender, EventArgs e)
@@ -125,7 +116,7 @@ namespace tp2_partie1
             //retrait du tableau de cartes du formulaire.
             this.tblCarte.Hide();
             //Joue du son.
-           // this._s.Play(); 
+            this._s.Play(); 
             //Création du nouveau formulaire.
             FrmGestionDecks f2 = new FrmGestionDecks(this);
             //Affichage du nouveau formulaire.

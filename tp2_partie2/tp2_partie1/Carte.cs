@@ -29,7 +29,7 @@ namespace tp2_partie1
         /// <summary>
         /// Le nombre de points d'attaque de la carte.
         /// </summary>
-        private byte _attaque;
+        private sbyte _attaque;
 
         /// <summary>
         /// La classe du héros.
@@ -44,7 +44,7 @@ namespace tp2_partie1
         /// <summary>
         /// Les points de la durabilité de la carte.
         /// </summary>
-        private byte _durabilite;
+        private sbyte _durabilite;
 
         /// <summary>
         /// L'extension de la carte.
@@ -94,7 +94,7 @@ namespace tp2_partie1
         /// <summary>
         /// Le nombre de points de vie de la carte.
         /// </summary>
-        private byte _vie;
+        private sbyte _vie;
 
         #endregion
 
@@ -103,7 +103,7 @@ namespace tp2_partie1
         /// <summary>
         /// Le nombre de points d'attaque de la carte.
         /// </summary>
-        public byte Attaque
+        public sbyte Attaque
         {
             get { return this._attaque; }
             set { this._attaque = value; }
@@ -130,7 +130,7 @@ namespace tp2_partie1
         /// <summary>
         /// Les points de durabilite de la carte.
         /// </summary>
-        public byte Durabilite
+        public sbyte Durabilite
         {
             get { return this._durabilite; }
             set { this._durabilite = value; }
@@ -221,7 +221,7 @@ namespace tp2_partie1
         /// <summary>
         /// Le nombre de points de vie de la carte.
         /// </summary>
-        public byte Vie
+        public sbyte Vie
         {
             get { return this._vie; }
             set { this._vie = value; }
@@ -243,9 +243,9 @@ namespace tp2_partie1
 
         #region CONSTRUCTEUR
 
-        public Carte(byte attaque, HerosClasse classe, ushort cout, byte durabilite,
+        public Carte(sbyte attaque, HerosClasse classe, ushort cout, sbyte durabilite,
             string extension, string id, string[] lstMeca, string nom, ServiteurRace race,
-            string rarete, string regexId, string texte, Type type, byte vie)
+            string rarete, string regexId, string texte, Type type, sbyte vie)
         {
             this._attaque = attaque;
             this._classe = classe;
