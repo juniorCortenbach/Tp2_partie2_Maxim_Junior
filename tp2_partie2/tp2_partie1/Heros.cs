@@ -63,8 +63,8 @@ namespace tp2_partie1
 
         #region CONSTANTES
 
-        const byte VieMax;
-        const byte VieMin;
+        const byte VieMax=0;
+        const byte VieMin=0;
 
         #endregion
 

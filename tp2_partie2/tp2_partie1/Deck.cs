@@ -56,9 +56,9 @@ namespace tp2_partie1
 
         #region CONSTANTES
 
-        const byte NbMaxCartesDansDeck;
-        const byte QtMaxCarteLegendaire;
-        const byte QtMaxCarteNonLegendaire;
+        const byte NbMaxCartesDansDeck=0;
+        const byte QtMaxCarteLegendaire=30;
+        const byte QtMaxCarteNonLegendaire=0;
 
         #endregion
 

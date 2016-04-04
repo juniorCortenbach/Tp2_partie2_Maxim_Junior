@@ -93,7 +93,7 @@ namespace tp2_partie1
             sbyte attaqueMin, sbyte attaqueMax, sbyte vieMin, sbyte vieMax,ServiteurRace race, sbyte durabiliteMin,
             sbyte durabiliteMax)
         {
-
+            return null;
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace tp2_partie1
         /// <returns></returns>
         public Carte[] RechercherCarteParId()
         {
-            return "A construire";
+            return null;
         }
         
         /// <summary>
@@ -113,7 +113,7 @@ namespace tp2_partie1
         /// <returns></returns>
         public Heros RechercherHeroParId()
         {
-            return "A construire";
+            return null;
         }
 
         #endregion

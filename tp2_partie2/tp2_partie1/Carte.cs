@@ -268,13 +268,13 @@ namespace tp2_partie1
         #region MÉTHODES
 
         //?
-        public CarteMecanique AjouterMecanique()
-        {
-            return null;
-        }
+        //public CarteMecanique AjouterMecanique()
+        //{
+          
+        //}
 
         //?
-        public Carte Carte()
+        public Carte Cartes()
         {
             return null;
         }
