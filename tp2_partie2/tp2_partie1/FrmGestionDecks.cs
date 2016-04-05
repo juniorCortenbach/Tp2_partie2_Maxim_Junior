@@ -28,6 +28,11 @@ namespace tp2_partie1
     /// </summary>
     public partial class FrmGestionDecks : Form
     {
+#region CONSTANTE
+
+
+#endregion
+
         #region ATTRIBUTS
 
         /// <summary>
@@ -53,6 +58,7 @@ namespace tp2_partie1
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            Utilitaire.ChargerCartes();
             //Retrait de l'image et du tableau du deck du formulaire.
             this.imgDeck.Hide();
             this.tblDeck.Hide();

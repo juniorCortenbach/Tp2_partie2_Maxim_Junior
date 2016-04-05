@@ -49,7 +49,7 @@ namespace tp2_partie1
             // Variables utilitaires pour la création d'un objet "Carte".
             sbyte attaque=-1;
             sbyte durabilite = -1;
-            sbyte vie=0;
+            sbyte vie=-1;
             ushort cout=0;
             String extension = "";
             String id = "";
@@ -96,7 +96,6 @@ namespace tp2_partie1
                     type = (CarteType)Enum.Parse(typeof(CarteType), elemCarte.GetElementsByTagName("type")[0].InnerText);
                 if (elemCarte.GetElementsByTagName("health")[0].InnerText.Length != 0)
                     vie = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
-                    vie = (sbyte) -1;
                 if (elemCarte.GetElementsByTagName("attack")[0].InnerText.Length != 0)
                     lstMeca = new[] { elemCarte.GetElementsByTagName("mechanics")[0].InnerText };
                     else
