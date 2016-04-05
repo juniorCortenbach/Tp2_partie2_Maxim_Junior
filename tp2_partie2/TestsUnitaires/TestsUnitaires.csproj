@@ -55,9 +55,9 @@
     <Compile Include="TestsUtilitaire.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\tp2_partie1\tp2_parti2.csproj">
+    <ProjectReference Include="..\tp2_partie1\tp2_partie2.csproj">
       <Project>{c5022a73-c09a-4b4b-bc5b-af02faef3874}</Project>
-      <Name>tp2_parti2</Name>
+      <Name>tp2_partie2</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

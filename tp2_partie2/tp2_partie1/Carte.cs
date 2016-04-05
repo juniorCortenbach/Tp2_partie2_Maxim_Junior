@@ -23,7 +23,7 @@ namespace tp2_partie1
     /// <summary>
     /// Classe contenant toutes les informations relatives aux cartes.
     /// </summary>
-    public class Carte : IComparable<Carte>
+    public class Carte //: IComparable<Carte>
     {
         #region ATTRIBUTS
 
@@ -257,14 +257,14 @@ namespace tp2_partie1
 
         #region MÉTHODES
 
-
+    
         /// <summary>
-        /// 
+        /// Permet de comparer deux cartes.
         /// </summary>
         /// <returns></returns>
-        public Carte CompareTo()
+        public int CompareTo()
         {
-            return null;
+            return 0;
         }
 
         #endregion
