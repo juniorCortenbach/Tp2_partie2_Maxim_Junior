@@ -56,22 +56,11 @@ namespace tp2_partie1
 
         #region CONSTANTES
 
-        const byte NbMaxCartesDansDeck=0;
-        const byte QtMaxCarteLegendaire=30;
-        const byte QtMaxCarteNonLegendaire=0;
+        const byte NbMaxCartesDansDeck=30;
+        const byte QtMaxCarteLegendaire=1;
+        const byte QtMaxCarteNonLegendaire=2;
 
         #endregion
-
-        public HearthstoneData JeuHearthstone
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
 
         #region CONSTRUCTEUR
 
