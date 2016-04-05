@@ -47,14 +47,20 @@ namespace tp2_partie1
             Carte[] tabCartes = new Carte[listeElemCarte.Count];
 
             // Variables utilitaires pour la création d'un objet "Carte".
-            sbyte attaque=0;
-            sbyte durabilite, vie;
-            ushort cout;
-            String extension, id, nom, regexId, texte, rarete;
+            sbyte attaque=-1;
+            sbyte durabilite = -1;
+            sbyte vie=0;
+            ushort cout=0;
+            String extension = "";
+            String id = "";
+            String nom = "";
+            String regexId = "";
+            String texte = "";
+            String rarete = "";
             string[] lstMeca = new string[] {};
-            HerosClasse classe;
-            ServiteurRace race;
-            Type type;
+            HerosClasse classe = HerosClasse.Neutre;
+            ServiteurRace race = ServiteurRace.Aucune;
+            CarteType type = CarteType.Minion;
             XmlElement elemCarte;
 
             //Traitement de chaque élément "personne".
@@ -66,12 +72,8 @@ namespace tp2_partie1
                 //mecanique, de la rareté, de la _class, de la  race, du type.
                 if (elemCarte.GetElementsByTagName("attack")[0].InnerText.Length != 0)
                     attaque = Convert.ToSByte(elemCarte.GetElementsByTagName("attack")[0].InnerText);
-                else
-                    attaque = -1;
                 if (elemCarte.GetElementsByTagName("durability")[0].InnerText.Length != 0)
                     durabilite = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("durability")[0].InnerText);
-                else
-                    durabilite = (sbyte) -1;
                 if (elemCarte.GetElementsByTagName("set")[0].InnerText.Length != 0)
                     extension = elemCarte.GetElementsByTagName("set")[0].InnerText;
                 if (elemCarte.GetElementsByTagName("id")[0].InnerText.Length != 0)
@@ -80,22 +82,18 @@ namespace tp2_partie1
                     race =
                         (ServiteurRace)
                             Enum.Parse(typeof (ServiteurRace), elemCarte.GetElementsByTagName("race")[0].InnerText);
-                else
-                    race = ServiteurRace.Aucune;
                 if (elemCarte.GetElementsByTagName("cost")[0].InnerText.Length != 0)
                     cout = Convert.ToUInt16(elemCarte.GetElementsByTagName("cost")[0].InnerText);
                 if (elemCarte.GetElementsByTagName("name")[0].InnerText.Length != 0)
                     nom = elemCarte.GetElementsByTagName("name")[0].InnerText;
                 if (elemCarte.GetElementsByTagName("text")[0].InnerText.Length != 0)
                     texte = elemCarte.GetElementsByTagName("text")[0].InnerText;
-                else
-                    texte = null;
                 if (elemCarte.GetElementsByTagName("rarety")[0].InnerText.Length != 0)
                     rarete = elemCarte.GetElementsByTagName("rarity")[0].InnerText;
                 if (elemCarte.GetElementsByTagName("id")[0].InnerText.Length != 0)
                      regexId = elemCarte.GetElementsByTagName("id")[0].InnerText;
                 if (elemCarte.GetElementsByTagName("type")[0].InnerText.Length != 0)
-                    type = (Type)Enum.Parse(typeof(Type), elemCarte.GetElementsByTagName("type")[0].InnerText);
+                    type = (CarteType)Enum.Parse(typeof(CarteType), elemCarte.GetElementsByTagName("type")[0].InnerText);
                 if (elemCarte.GetElementsByTagName("health")[0].InnerText.Length != 0)
                     vie = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
                     vie = (sbyte) -1;
@@ -105,7 +103,7 @@ namespace tp2_partie1
                         lstMeca[0] = " ";
 
                 // Création de l'objet "Personne" dans le tableau.
-                //tabCartes[i] = new Carte(attaque, classe, cout, durabilite,extension,id,lstMeca,nom,race,rarete,regexId,texte,type,vie);
+                tabCartes[i] = new Carte(attaque, classe, cout, durabilite,extension,id,lstMeca,nom,race,rarete,regexId,texte,type,vie);
             }
 
             // On retourne le tableau de cartes créé.

@@ -89,7 +89,7 @@ namespace tp2_partie1
         /// <summary>
         /// Le type de créature.
         /// </summary>
-        private Type _type;
+        private CarteType _type;
 
         /// <summary>
         /// Le nombre de points de vie de la carte.
@@ -212,7 +212,7 @@ namespace tp2_partie1
         /// <summary>
         /// Le type de créature.
         /// </summary>
-        public Type Type
+        public CarteType Type
         {
             get { return this._type; }
             set { this._type = value; }
@@ -245,7 +245,7 @@ namespace tp2_partie1
 
         public Carte(sbyte attaque, HerosClasse classe, ushort cout, sbyte durabilite,
             string extension, string id, string[] lstMeca, string nom, ServiteurRace race,
-            string rarete, string regexId, string texte, Type type, sbyte vie)
+            string rarete, string regexId, string texte, CarteType type, sbyte vie)
         {
             this._attaque = attaque;
             this._classe = classe;
