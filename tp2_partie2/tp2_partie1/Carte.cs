@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 #endregion
 
@@ -22,7 +23,7 @@ namespace tp2_partie1
     /// <summary>
     /// Classe contenant toutes les informations relatives aux cartes.
     /// </summary>
-    public class Carte
+    public class Carte : IComparable<Carte>
     {
         #region ATTRIBUTS
 
@@ -229,17 +230,6 @@ namespace tp2_partie1
 
         #endregion
 
-        public HearthstoneData JeuHearthstone
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
 
         #region CONSTRUCTEUR
 
@@ -267,19 +257,11 @@ namespace tp2_partie1
 
         #region MÉTHODES
 
-        //?
-        //public CarteMecanique AjouterMecanique()
-        //{
-          
-        //}
 
-        //?
-        public Carte Cartes()
-        {
-            return null;
-        }
-
-        //?
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Carte CompareTo()
         {
             return null;

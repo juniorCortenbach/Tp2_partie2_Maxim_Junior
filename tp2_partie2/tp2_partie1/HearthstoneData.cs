@@ -70,12 +70,10 @@ namespace tp2_partie1
         /// <summary>
         /// Constructeur paramétré qui accepte les attributs de cartes et de de héros.
         /// </summary>
-        /// <param name="lesCartes"></param>
-        /// <param name="lesHeros"></param>
-        public HearthstoneData(Carte[] lesCartes, Heros[] lesHeros)
+        public HearthstoneData()
         {
-            this._lesCartes = lesCartes;
-            this._lesHeros = lesHeros;
+            this.LesCartes = Utilitaire.ChargerCartes(HearthstoneData.CheminFichierCarte);
+         //   this.LesHeros = Utilitaire.Charger(HearthstoneData.CheminFichierCarte);
         }
         #endregion
 

@@ -46,6 +46,11 @@ namespace tp2_partie1
         /// permet de savoir quelle bouton a été cliquer. 
         /// </summary>
         private byte _affichageSelectionner;
+
+        private HearthstoneData _gestion;
+
+        private Carte[] _lesCartes;
+
         #endregion
 
         #region PROPRIÉTÉS
@@ -57,6 +62,12 @@ namespace tp2_partie1
         {
             get { return this._affichageSelectionner; }
             set { this._affichageSelectionner = value; }
+        }
+
+        public Carte[] LesCartes
+        {
+            get { return this._lesCartes; }
+            set { this._lesCartes = value; }
         }
 
         #endregion
@@ -76,6 +87,15 @@ namespace tp2_partie1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+            HearthstoneData data = new HearthstoneData();
+            this._gestion = new HearthstoneData();
+
+            for (int i = 0; i < 100; i++)
+            {
+                this.lstPourTest.Items.Add(Utilitaire.ChargerCartes(HearthstoneData.CheminFichierCarte));
+            }
+            
            //Retrait des images des cartes et du tableau de cartes du formulaire.
            this.imgCartes.Hide();
             this.tblCarte.Hide();
@@ -136,5 +156,10 @@ namespace tp2_partie1
         }
 
 #endregion
+
+        private void lstPourTest_SelectedIndexChanged(object sender, EventArgs e)
+        {
+   
+        }
     }
 }

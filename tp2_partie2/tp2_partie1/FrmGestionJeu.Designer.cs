@@ -41,6 +41,7 @@
             this.lblGestionDecks = new System.Windows.Forms.Label();
             this.btnModifier = new System.Windows.Forms.Button();
             this.lblTitreJeu = new System.Windows.Forms.Label();
+            this.lstPourTest = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.tblCarte)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCartes)).BeginInit();
             this.SuspendLayout();
@@ -157,12 +158,22 @@
             this.lblTitreJeu.TabIndex = 8;
             this.lblTitreJeu.Text = "Jeu HeartStone";
             // 
+            // lstPourTest
+            // 
+            this.lstPourTest.FormattingEnabled = true;
+            this.lstPourTest.Location = new System.Drawing.Point(323, 71);
+            this.lstPourTest.Name = "lstPourTest";
+            this.lstPourTest.Size = new System.Drawing.Size(450, 342);
+            this.lstPourTest.TabIndex = 9;
+            this.lstPourTest.SelectedIndexChanged += new System.EventHandler(this.lstPourTest_SelectedIndexChanged);
+            // 
             // FrmGestionJeu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(974, 532);
+            this.Controls.Add(this.lstPourTest);
             this.Controls.Add(this.lblTitreJeu);
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.lblGestionDecks);
@@ -197,6 +208,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Etc;
+        private System.Windows.Forms.ListBox lstPourTest;
     }
 }
 
