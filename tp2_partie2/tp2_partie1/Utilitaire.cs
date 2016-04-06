@@ -61,7 +61,7 @@ namespace tp2_partie1
             String regexId = "";
             String texte = "";
             String rarete = "";
-            string[] lstMeca = {};
+            List<string> lstMeca;
             HerosClasse classe = HerosClasse.Neutre;
             ServiteurRace race = ServiteurRace.Aucune;
             CarteType type = CarteType.Minion;
@@ -109,14 +109,13 @@ namespace tp2_partie1
 
                     do
                     {
-                        compteurMecaniques++;
-                        lstMeca = new string[compteurMecaniques];
-                        lstMeca[compteurMecaniques] = (elemCarte.GetElementsByTagName("mechanics")[0].InnerText);
+
+                        lstMeca = new List<string> {(elemCarte.GetElementsByTagName("mechanics")[0].InnerText)};
 
                     } while (elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length != 0);
 
                     if (elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length == 0)
-                    lstMeca[0] = "";
+                    lstMeca = new List<string> {""};
 
                     // Création de l'objet "Carte" dans le tableau.
                     tabCartes[i] = new Carte(attaque, classe, cout, durabilite, extension, id, lstMeca, nom, race,
@@ -160,7 +159,7 @@ namespace tp2_partie1
             String regexId = "";
             String texte = "";
             String rarete = "";
-            string[] lstMeca = new string[] { };
+            List<string> lstMeca;
             HerosClasse classe = HerosClasse.Neutre;
             ServiteurRace race = ServiteurRace.Aucune;
             CarteType type = CarteType.Minion;
