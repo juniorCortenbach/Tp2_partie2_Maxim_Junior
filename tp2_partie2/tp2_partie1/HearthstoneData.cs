@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -99,48 +100,36 @@ namespace tp2_partie1
         /// l’identifiant est invalide.
         /// </summary>
         /// <returns></returns>
-        public Carte RechercherCarteParId(ushort carteRecherchee)
+        public Carte RechercherCarteParId(string carteRecherchee)
         {
-            //Création de tableau d'id convertit en chiffre.
-            ushort[] idCartes = new ushort[this.LesCartes.Length];
+            string idTrouver;
 
-            //Création d'un byte d'id.
-            ushort idTrouvee = 0;
-      
             try
             {
-                //Enlève les 3 premières lettre et l'autre caractère bizarre.
-                for (int i = 0; i < this.LesCartes.Length; i++)
+                idTrouver = carteRecherchee.Split('_').Last();
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                Console.WriteLine("Le fichier n'existe pas.");
+                Console.WriteLine("Message système : {0}", fnfe.Message);
+            }
+        
+
+
+            for (int i = 0; i < this.LesCartes.Length; i++)
+            {
+                if (idTrouver.ToString() == this.LesCartes[i].Id.ToString())
                 {
-                    idCartes[i] = ushort.Parse(this.LesCartes[i].Id.Split('_').Last());
-                }
-
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Veillez entrez un chiffre.");
-            }
-            catch (Exception j)
-            {
-                Console.WriteLine("Désoler malheureusement : {0} ne correspond pas à une donnée du système.", "Une exception s'est produite.");
-                Console.WriteLine("Message système : {0}", j.Message);
-            }
-
-
-            //Retourne idTrouvée s'il trouve la carte mais nul s'il ne trouve rien.
-            for (int j = 0; j < this.LesCartes.Length; j++)
-            {
-                if (idCartes[j] == carteRecherchee)
-                {
-                    idTrouvee = idCartes[j];
+                    return this.LesCartes[i];
                 }
                 else
                 {
                     return null;
                 }
             }
-            //Retourne la carte trouvée.
-            return this.LesCartes[idTrouvee];
+            return null;
+
+
         }
         
         /// <summary>
@@ -148,47 +137,9 @@ namespace tp2_partie1
         /// l’identifiant est invalide.
         /// </summary>
         /// <returns></returns>
-        public Heros RechercherHeroParId(ushort heroRechercher)
+        public Heros RechercherHeroParId(string heroRechercher)
         {
-            //Création de tableau d'id converti en chiffre
-            ushort[] idHero = new ushort[this.LesHeros.Length];
-            //Création d'un byte d'id
-            ushort idTrouver = 0;
-
-            try
-            {
-                //Enlève les 3 premières lettre et l'autre caractère bizarre
-                for (int i = 0; i < this.LesHeros.Length; i++)
-                {
-                    idHero[i] = ushort.Parse(this.LesHeros[i].Id.Split('_').Last());
-                }
-
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Veillez entrez un chiffre entre 0 à 65535");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Désoler malheureusement : {0}", "Une exception s'est produite.");
-                Console.WriteLine("Message système : {0}", e.Message);
-            }
-
-
-            //Retourne idTrouver s'il trouve la carte mais nul s'il ne trouve rien
-            for (int j = 0; j < this.LesHeros.Length; j++)
-            {
-                if (idHero[j] == heroRechercher)
-                {
-                    idTrouver = idHero[j];
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            //Retourne la carte trouver
-            return this.LesHeros[idTrouver];
+            return null;
         }
 
         #endregion
