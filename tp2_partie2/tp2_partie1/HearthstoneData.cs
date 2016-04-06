@@ -118,14 +118,14 @@ namespace tp2_partie1
 
             for (int i = 0; i < this.LesCartes.Length; i++)
             {
-                if (idTrouver.ToString() == this.LesCartes[i].Id.ToString())
-                {
-                    return this.LesCartes[i];
-                }
-                else
-                {
-                    return null;
-                }
+                //if (idTrouver.ToString() == this.LesCartes[i].Id.ToString())
+                //{
+                //    return this.LesCartes[i];
+                //}
+                //else
+                //{
+                //    return null;
+                //}
             }
             return null;
 

@@ -41,8 +41,19 @@ namespace tp2_partie1
         public static Carte[] ChargerCartes(String cheminFichier)
         {
             // Création d'un document XML (un objet .NET) à partir du fichier au format XML (désérialisation).
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(cheminFichier);
+            XmlDocument xmlDoc;
+            try
+            {
+                xmlDoc
+                    = new XmlDocument();
+
+                xmlDoc.Load(cheminFichier);
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                throw new ArgumentException();
+            }
+
 
             // Récupération de tous les éléments "Cartes".
             XmlNodeList listeElemCarte = xmlDoc.GetElementsByTagName("Card");
@@ -121,8 +132,17 @@ namespace tp2_partie1
         /// <param name="tabCartes">tableau d’objets de type "arrte" à sérialiser dans le fichier. </param>
         private static void EnregistrerDonneesDeck(String cheminFichier, Carte[] tabCartes)
         {
-            // Création d'un document XML vide (un objet .NET)
-            XmlDocument xmlDoc = new XmlDocument();
+            XmlDocument xmlDoc;
+            try
+            {
+                // Création d'un document XML vide (un objet .NET)
+                xmlDoc = new XmlDocument();
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                   throw new ArgumentException();
+            }
+
 
             // Ajout de la déclaration xml.
             XmlDeclaration xmlDec1 = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", null);
