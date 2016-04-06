@@ -45,6 +45,8 @@ namespace tp2_partie1
         /// </summary>
         private readonly FrmGestionJeu _gameForm1;
 
+        private HearthstoneData _gestion;
+
          #endregion
 
         public FrmGestionDecks(FrmGestionJeu gameForm1)
@@ -57,6 +59,14 @@ namespace tp2_partie1
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            this._gestion = new HearthstoneData();
+
+
+            //Boucle qui affiche les cartes
+            for (int z = 0; z < this._gestion.LesCartes.Length; z++)
+            {
+                this.cmbCartes.Items.Add(this._gestion.LesCartes[z]);
+            }
 
             //Retrait de l'image et du tableau du deck du formulaire.
             this.imgDeck.Hide();

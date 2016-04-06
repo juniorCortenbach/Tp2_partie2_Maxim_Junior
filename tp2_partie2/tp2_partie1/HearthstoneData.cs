@@ -99,9 +99,47 @@ namespace tp2_partie1
         /// l’identifiant est invalide.
         /// </summary>
         /// <returns></returns>
-        public Carte[] RechercherCarteParId()
+        public Carte RechercherCarteParId(ushort carteRechercher)
         {
-            return null;
+                       //Création de tableau d'id converti en chiffre
+            ushort[] idCarte = new ushort[this.LesCartes.Length];
+            //Création d'un byte d'id
+            ushort idTrouver = 0;
+      
+            try
+            {
+                //Enlève les 3 premières lettre et l'autre caractère bizarre
+                for (int i = 0; i < this.LesCartes.Length; i++)
+                {
+                    idCarte[i] = ushort.Parse(this.LesCartes[i].Id.Split('_').Last());
+                }
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Veillez entrez un chiffre");
+            }
+            catch (Exception j)
+            {
+                Console.WriteLine("Désoler malheureusement : {0}", "Une exception s'est produite.");
+                Console.WriteLine("Message système : {0}", j.Message);
+            }
+
+
+            //Retourne idTrouver s'il trouve la carte mais nul s'il ne trouve rien
+            for (int j = 0; j < this.LesCartes.Length; j++)
+            {
+                if (idCarte[j] == carteRechercher)
+                {
+                    idTrouver = idCarte[j];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            //Retourne la carte trouver
+            return this.LesCartes[idTrouver];
         }
         
         /// <summary>
@@ -109,9 +147,47 @@ namespace tp2_partie1
         /// l’identifiant est invalide.
         /// </summary>
         /// <returns></returns>
-        public Heros RechercherHeroParId()
+        public Heros RechercherHeroParId(ushort heroRechercher)
         {
-            return null;
+            //Création de tableau d'id converti en chiffre
+            ushort[] idHero = new ushort[this.LesHeros.Length];
+            //Création d'un byte d'id
+            ushort idTrouver = 0;
+
+            try
+            {
+                //Enlève les 3 premières lettre et l'autre caractère bizarre
+                for (int i = 0; i < this.LesHeros.Length; i++)
+                {
+                    idHero[i] = ushort.Parse(this.LesHeros[i].Id.Split('_').Last());
+                }
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Veillez entrez un chiffre entre 0 à 65535");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Désoler malheureusement : {0}", "Une exception s'est produite.");
+                Console.WriteLine("Message système : {0}", e.Message);
+            }
+
+
+            //Retourne idTrouver s'il trouve la carte mais nul s'il ne trouve rien
+            for (int j = 0; j < this.LesHeros.Length; j++)
+            {
+                if (idHero[j] == heroRechercher)
+                {
+                    idTrouver = idHero[j];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            //Retourne la carte trouver
+            return this.LesHeros[idTrouver];
         }
 
         #endregion
