@@ -114,8 +114,6 @@ namespace tp2_partie1
             // On retourne le tableau de cartes créé.
             return tabCartes;
         }
-
-
         /// <summary>
         /// Permet d'enregistrer les données dans un fichier au format XML à partir d'un tableau d'objets de type "Carte" (sérialisation).
         /// </summary>
@@ -137,26 +135,15 @@ namespace tp2_partie1
             xmlDoc.AppendChild(elemListeCartes);
 
             //Variables utilitaires pour la création des éléments "Carte" et de ses sous-éléments.
-            sbyte attaque = -1;
-            sbyte durabilite = -1;
-            sbyte vie = -1;
-            ushort cout = 0;
-            String extension = "";
-            String id = "";
-            String nom = "";
-            String regexId = "";
-            String texte = "";
-            String rarete = "";
-            List<string> lstMeca;
-            HerosClasse classe = HerosClasse.Neutre;
-            ServiteurRace race = ServiteurRace.Aucune;
-            CarteType type = CarteType.Minion;
-            XmlElement elemCarte;
+            XmlElement elemAttaque, elemDurabilite, elemVie, elemCout, elemExtension, id, nom, regexId, TaskExtensions, rarete,
+                lstMeca, classe, race, Type, elemCarte;
 
             //Traitement de chaque objet "Carte" du tableau.
             for (int i = 0; i < tabCartes.Length; i++)
             {
-                //Création de l'élément "Carte" (ainsi que de son contenu) pour le deck
+                //Création de l'élément "Carte" (ainsi que de son contenu) pour le deck.
+                elemCarte = xmlDoc.CreateElement("Carte");
+
             }
         }
 
