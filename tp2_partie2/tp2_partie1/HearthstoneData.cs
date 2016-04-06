@@ -99,47 +99,48 @@ namespace tp2_partie1
         /// l’identifiant est invalide.
         /// </summary>
         /// <returns></returns>
-        public Carte RechercherCarteParId(ushort carteRechercher)
+        public Carte RechercherCarteParId(ushort carteRecherchee)
         {
-                       //Création de tableau d'id converti en chiffre
-            ushort[] idCarte = new ushort[this.LesCartes.Length];
-            //Création d'un byte d'id
-            ushort idTrouver = 0;
+            //Création de tableau d'id convertit en chiffre.
+            ushort[] idCartes = new ushort[this.LesCartes.Length];
+
+            //Création d'un byte d'id.
+            ushort idTrouvee = 0;
       
             try
             {
-                //Enlève les 3 premières lettre et l'autre caractère bizarre
+                //Enlève les 3 premières lettre et l'autre caractère bizarre.
                 for (int i = 0; i < this.LesCartes.Length; i++)
                 {
-                    idCarte[i] = ushort.Parse(this.LesCartes[i].Id.Split('_').Last());
+                    idCartes[i] = ushort.Parse(this.LesCartes[i].Id.Split('_').Last());
                 }
 
             }
             catch (FormatException)
             {
-                Console.WriteLine("Veillez entrez un chiffre");
+                Console.WriteLine("Veillez entrez un chiffre.");
             }
             catch (Exception j)
             {
-                Console.WriteLine("Désoler malheureusement : {0}", "Une exception s'est produite.");
+                Console.WriteLine("Désoler malheureusement : {0} ne correspond pas à une donnée du système.", "Une exception s'est produite.");
                 Console.WriteLine("Message système : {0}", j.Message);
             }
 
 
-            //Retourne idTrouver s'il trouve la carte mais nul s'il ne trouve rien
+            //Retourne idTrouvée s'il trouve la carte mais nul s'il ne trouve rien.
             for (int j = 0; j < this.LesCartes.Length; j++)
             {
-                if (idCarte[j] == carteRechercher)
+                if (idCartes[j] == carteRecherchee)
                 {
-                    idTrouver = idCarte[j];
+                    idTrouvee = idCartes[j];
                 }
                 else
                 {
                     return null;
                 }
             }
-            //Retourne la carte trouver
-            return this.LesCartes[idTrouver];
+            //Retourne la carte trouvée.
+            return this.LesCartes[idTrouvee];
         }
         
         /// <summary>

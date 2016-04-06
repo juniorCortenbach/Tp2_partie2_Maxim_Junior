@@ -61,15 +61,16 @@ namespace tp2_partie1
             String regexId = "";
             String texte = "";
             String rarete = "";
-            string[] lstMeca = new string[] {};
+            string[] lstMeca = {};
             HerosClasse classe = HerosClasse.Neutre;
             ServiteurRace race = ServiteurRace.Aucune;
             CarteType type = CarteType.Minion;
-            XmlElement elemCarte;
+            XmlElement elemCarte = null;
 
             for(int i=0; i< tabCartes.Length; i++)
             {
-                
+                byte compteurMecaniques=0;
+
                 if (elemCarte.GetElementsByTagName("type")[0].InnerText != "Hero")
                 {
                     // Récupération du noeud "Carte" à traiter.
@@ -103,13 +104,19 @@ namespace tp2_partie1
                         rarete = elemCarte.GetElementsByTagName("rarity")[0].InnerText;
                     if (elemCarte.GetElementsByTagName("id")[0].InnerText.Length != 0)
                         regexId = elemCarte.GetElementsByTagName("id")[0].InnerText;
-
                     if (elemCarte.GetElementsByTagName("health")[0].InnerText.Length != 0)
                         vie = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
-                    if (elemCarte.GetElementsByTagName("attack")[0].InnerText.Length != 0)
-                        lstMeca = new[] {elemCarte.GetElementsByTagName("mechanics")[0].InnerText};
-                    else
-                        lstMeca[0] = " ";
+
+                    do
+                    {
+                        compteurMecaniques++;
+                        lstMeca = new string[compteurMecaniques];
+                        lstMeca[compteurMecaniques] = (elemCarte.GetElementsByTagName("mechanics")[0].InnerText);
+
+                    } while (elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length != 0);
+
+                    if (elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length == 0)
+                    lstMeca[0] = "";
 
                     // Création de l'objet "Carte" dans le tableau.
                     tabCartes[i] = new Carte(attaque, classe, cout, durabilite, extension, id, lstMeca, nom, race,
