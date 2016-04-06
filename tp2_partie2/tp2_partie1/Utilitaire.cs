@@ -61,7 +61,7 @@ namespace tp2_partie1
             String regexId = "";
             String texte = "";
             String rarete = "";
-            List<string> lstMeca;
+            List<string> lstMeca = null;
             HerosClasse classe = HerosClasse.Neutre;
             ServiteurRace race = ServiteurRace.Aucune;
             CarteType type = CarteType.Minion;
@@ -69,19 +69,16 @@ namespace tp2_partie1
 
             for(int i=0; i< tabCartes.Length; i++)
             {
-                byte compteurMecaniques=0;
-
                 if (elemCarte.GetElementsByTagName("type")[0].InnerText != "Hero")
                 {
                     // Récupération du noeud "Carte" à traiter.
                     elemCarte = (XmlElement) listeElemCarte[i];
-                    // Récupération de l'attaque, de la durabilité, de la vie, du coût, de l'extension, de l'id, du nom, de regxId, du texte, du tableau de 
-                    //mecanique, de la rareté, de la _class, de la  race, du type.
+                    // Récupération du type, de l'attaque, de la durabilité, de la vie, du coût, de l'extension, de l'id, du nom, de regxId, du texte, du tableau de 
+                    //mecanique, de la rareté, de la classe et de la race.
                     if (elemCarte.GetElementsByTagName("type")[0].InnerText.Length != 0)
                         type =
                             (CarteType)
                                 Enum.Parse(typeof (CarteType), elemCarte.GetElementsByTagName("type")[0].InnerText);
-
                         if (elemCarte.GetElementsByTagName("attack")[0].InnerText.Length != 0)
                             attaque = Convert.ToSByte(elemCarte.GetElementsByTagName("attack")[0].InnerText);
                     if (elemCarte.GetElementsByTagName("durability")[0].InnerText.Length != 0)
@@ -106,17 +103,8 @@ namespace tp2_partie1
                         regexId = elemCarte.GetElementsByTagName("id")[0].InnerText;
                     if (elemCarte.GetElementsByTagName("health")[0].InnerText.Length != 0)
                         vie = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
-
-                    do
-                    {
-
-                        lstMeca = new List<string> {(elemCarte.GetElementsByTagName("mechanics")[0].InnerText)};
-
-                    } while (elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length != 0);
-
-                    if (elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length == 0)
-                    lstMeca = new List<string> {""};
-
+                    if (elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length != 0)
+                        lstMeca.Add(elemCarte.GetElementsByTagName("mechanics")[0].InnerText);
                     // Création de l'objet "Carte" dans le tableau.
                     tabCartes[i] = new Carte(attaque, classe, cout, durabilite, extension, id, lstMeca, nom, race,
                         rarete, regexId, texte, type, vie);
