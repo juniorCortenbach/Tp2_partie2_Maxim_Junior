@@ -155,8 +155,9 @@ namespace tp2_partie1
             xmlDoc.AppendChild(elemListeCartes);
 
             //Variables utilitaires pour la création des éléments "Carte" et de ses sous-éléments.
-            XmlElement elemAttaque, elemDurabilite, elemVie, elemCout, elemExtension, id, nom, regexId, TaskExtensions, rarete,
-                lstMeca, classe, race, Type, elemCarte;
+            XmlElement elemAttaque, elemDurabilite, elemVie, elemCout, elemExtension, elemId,
+                elemNom, elemRegexId, elemTexte, elemRarete, elemLstMeca, 
+                elemClasse, elemRace, elemType, elemCarte;
 
             //Traitement de chaque objet "Carte" du tableau.
             for (int i = 0; i < tabCartes.Length; i++)
@@ -164,7 +165,70 @@ namespace tp2_partie1
                 //Création de l'élément "Carte" (ainsi que de son contenu) pour le deck.
                 elemCarte = xmlDoc.CreateElement("Carte");
 
+                elemAttaque = xmlDoc.CreateElement("Attaque");
+                elemAttaque.InnerText = tabCartes[i].Attaque + "";
+
+                elemDurabilite = xmlDoc.CreateElement("Durabilite");
+                elemDurabilite.InnerText = tabCartes[i].Durabilite + "";
+
+                elemVie = xmlDoc.CreateElement("Vie");
+                elemVie.InnerText = tabCartes[i].Vie + "";
+
+                elemCout = xmlDoc.CreateElement("Cout");
+                elemVie.InnerText = tabCartes[i].Vie + "";
+
+                elemExtension = xmlDoc.CreateElement("Extension");
+                elemExtension.InnerText = tabCartes[i].Extension;
+
+                elemId = xmlDoc.CreateElement("Id");
+                elemId.InnerText = tabCartes[i].Id;
+
+                elemNom = xmlDoc.CreateElement("Nom");
+                elemNom.InnerText = tabCartes[i].Nom;
+
+                elemRegexId = xmlDoc.CreateElement("RegexId");
+                elemRegexId.InnerText = tabCartes[i].RegexId;
+
+                elemTexte = xmlDoc.CreateElement("Texte");
+                elemTexte.InnerText = tabCartes[i].Texte;
+
+                elemRarete = xmlDoc.CreateElement("Rarete");
+                elemRarete.InnerText = tabCartes[i].Rarete;
+
+                elemLstMeca = xmlDoc.CreateElement("LstMeca");
+                elemLstMeca.InnerText = tabCartes[i].LstMeca + "";
+
+                elemClasse = xmlDoc.CreateElement("Classe");
+                elemClasse.InnerText = tabCartes[i].Classe + "";
+
+                elemRace = xmlDoc.CreateElement("Race");
+                elemRace.InnerText = tabCartes[i].Race + "";
+
+                elemType = xmlDoc.CreateElement("Type");
+                elemType.InnerText = tabCartes[i].Type + "";
+
+                //Ajout des sous-éléments à l'élément "Carte".
+                elemCarte.AppendChild(elemAttaque);
+                elemCarte.AppendChild(elemDurabilite);
+                elemCarte.AppendChild(elemVie);
+                elemCarte.AppendChild(elemCout);
+                elemCarte.AppendChild(elemExtension);
+                elemCarte.AppendChild(elemId);
+                elemCarte.AppendChild(elemNom);
+                elemCarte.AppendChild(elemRegexId);
+                elemCarte.AppendChild(elemTexte);
+                elemCarte.AppendChild(elemRarete);
+                elemCarte.AppendChild(elemLstMeca);
+                elemCarte.AppendChild(elemClasse);
+                elemCarte.AppendChild(elemRace);
+                elemCarte.AppendChild(elemType);
+
+                //Ajout de l'élément "Carte" à l'élément "listeCartes".
+                elemListeCartes.AppendChild(elemCarte);
             }
+
+            //Enregistrement du document XML dans un fichier par sérialisation.
+            xmlDoc.Save(cheminFichier);
         }
 
 
