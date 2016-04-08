@@ -161,9 +161,13 @@ namespace tp2_partie1
             this._regexId = regexId;
             this._vie = vie;
         }
-        
 
-       #endregion
+        public Heros(string classe, string garroshHellscream, CarteExtension core, CarteRarete free, HerosClasse warrior, int regexId)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
 
     }
 }

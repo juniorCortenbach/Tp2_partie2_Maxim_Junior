@@ -27,11 +27,16 @@ namespace tp2_partie1
     {
         #region CONSTANTE
 
-        private const string nomFichierCartes = "Cartes.xml";
+        private const string nomFichierCartes = "cards-collectible.xml";
 
         #endregion
 
         #region MÉTHODES
+
+        public static Heros[] ChargerHeros(String cheminFichier)
+        {
+            return null;
+        }
 
         /// <summary>
         /// Charge les carte du fichier .xml
@@ -40,23 +45,38 @@ namespace tp2_partie1
         /// <returns></returns>
         public static Carte[] ChargerCartes(String cheminFichier)
         {
+
             // Création d'un document XML (un objet .NET) à partir du fichier au format XML (désérialisation).
-            XmlDocument xmlDoc;
+            XmlDocument xmlDoc=null;
+            if (cheminFichier == null)
+                cheminFichier = "cards-collectible.xml";
+
+
             try
             {
                 xmlDoc
                     = new XmlDocument();
 
                 xmlDoc.Load(cheminFichier);
+
             }
             catch (FileNotFoundException fnfe)
+            {
+                return null;
+            }
+            catch (OverflowException oe)
+            {
+                Console.WriteLine("chemin trop long");
+            }
+            catch (Exception e)
             {
                 throw new ArgumentException();
             }
 
 
+
             // Récupération de tous les éléments "Cartes".
-            XmlNodeList listeElemCarte = xmlDoc.GetElementsByTagName("Card");
+            XmlNodeList listeElemCarte = xmlDoc.GetElementsByTagName("card");
 
             // Création du tableau de cartes; la taille est déterminée par le nombre d'éléments "Carte".
             Carte[] tabCartes = new Carte[listeElemCarte.Count];
@@ -78,7 +98,8 @@ namespace tp2_partie1
             CarteType type = CarteType.Minion;
             XmlElement elemCarte = null;
 
-            for(int i=0; i< tabCartes.Length; i++)
+
+            for (int i = 0; i < listeElemCarte.Count; i++)
             {
                 if (elemCarte.GetElementsByTagName("type")[0].InnerText != "Hero")
                 {
@@ -132,16 +153,32 @@ namespace tp2_partie1
         /// <param name="tabCartes">tableau d’objets de type "arrte" à sérialiser dans le fichier. </param>
         private static void EnregistrerDonneesDeck(String cheminFichier, Carte[] tabCartes)
         {
-            XmlDocument xmlDoc;
+            if (cheminFichier == null)
+                return;
+
+
+            if (cheminFichier.Length >= 300)
+                throw new ArgumentException("Le nom du fichier est trop long"); 
+            XmlDocument xmlDoc = null;
             try
             {
                 // Création d'un document XML vide (un objet .NET)
                 xmlDoc = new XmlDocument();
+
             }
             catch (FileNotFoundException fnfe)
             {
                    throw new ArgumentException();
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Une exception s'est produite.");
+                Console.WriteLine("Type d'exception : " + e.GetType());
+                Console.WriteLine("Message d'erreur : " + e.Message);
+            }
+
+
+
 
 
             // Ajout de la déclaration xml.
@@ -155,9 +192,9 @@ namespace tp2_partie1
             xmlDoc.AppendChild(elemListeCartes);
 
             //Variables utilitaires pour la création des éléments "Carte" et de ses sous-éléments.
-            XmlElement elemAttaque, elemDurabilite, elemVie, elemCout, elemExtension, elemId,
+            XmlElement elemAttaque, elemClasse, elemCout, elemDurabilite,elemExtension, elemVie,  elemId,
                 elemNom, elemRegexId, elemTexte, elemRarete, elemLstMeca, 
-                elemClasse, elemRace, elemType, elemCarte;
+                 elemRace, elemType, elemCarte;
 
             //Traitement de chaque objet "Carte" du tableau.
             for (int i = 0; i < tabCartes.Length; i++)
@@ -222,6 +259,10 @@ namespace tp2_partie1
                 elemCarte.AppendChild(elemClasse);
                 elemCarte.AppendChild(elemRace);
                 elemCarte.AppendChild(elemType);
+                
+
+
+
 
                 //Ajout de l'élément "Carte" à l'élément "listeCartes".
                 elemListeCartes.AppendChild(elemCarte);
