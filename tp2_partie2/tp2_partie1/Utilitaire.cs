@@ -230,8 +230,6 @@ namespace tp2_partie1
             //Enregistrement du document XML dans un fichier par sérialisation.
             xmlDoc.Save(cheminFichier);
         }
-
-
         #endregion
 
     }

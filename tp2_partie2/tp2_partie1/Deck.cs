@@ -24,7 +24,7 @@ namespace tp2_partie1
         #region ATTRIBUTS
 
         /// <summary>
-        /// Héro (avec toutes informations du héro contenus dans 
+        /// Héro (avec toutes informations du héro contenues dans 
         /// la classe Heros).
         /// </summary>
         private Heros _heros;
@@ -39,17 +39,51 @@ namespace tp2_partie1
         /// </summary>
         private string _nom;
 
+        /// <summary>
+        /// Le nombre de cartes présentes dans le deck.
+        /// </summary>
+        private byte _nbTotalCartes;
+
         #endregion
 
         #region PROPRIÉTÉS
 
         /// <summary>
+        /// Héro (avec toutes informations du héro
+        /// contenues dans la classe Heros).
+        /// </summary>
+        public Heros Heroes
+        {
+            get { return this._heros; }
+            set { this._heros = value; }
+        }
+
+
+        /// <summary>
         /// Tableau de cartes.
         /// </summary>
-        public Carte[] NbtTotalCartes
+        public Carte[] LstCartesAvecQt
         {
             get { return this._lstCartesAvecQt; }
             set { this._lstCartesAvecQt = value; }
+        }
+
+        /// <summary>
+        /// Nom du deck.
+        /// </summary>
+        public string Nom
+        {
+            get { return this._nom; }
+            set { this._nom = value; }
+        }
+
+        /// <summary>
+        /// Le nombre de cartes présentes dans le deck.
+        /// </summary>
+        public byte NbTotalCartes
+        {
+            get { return this._nbTotalCartes; }
+            set { this._nbTotalCartes = value; }
         }
 
         #endregion
@@ -70,20 +104,36 @@ namespace tp2_partie1
         /// <param name="heros"></param>
         /// <param name="lstCartesAvecQt"></param>
         /// <param name="nom"></param>
-        public Deck(Heros heros, Carte[] lstCartesAvecQt, string nom)
+        public Deck(Heros heros, Carte[] lstCartesAvecQt, string nom, byte nbtotalCartes)
         {
             this._heros = heros;
             this._lstCartesAvecQt = lstCartesAvecQt;
             this._nom = nom;
+            this._nbTotalCartes = nbtotalCartes;
         }
 
         #endregion 
 
         #region MÉTHODES
 
-        public void AjouterCartes()
+        public void AjouterCartes(Carte carteAjoutee, byte nbCopies)
         {
-            
+            //Restrictions:
+            // nbCopies en cas de carte légendaire ne peut pas être > ou < que 1.
+            // Une carte ne peut être ajouté si le nombre de cartes déjà présent est 30.
+
+            Carte nouvelleCarte = new Carte(carteAjoutee.Attaque, carteAjoutee.Classe, carteAjoutee.Cout, carteAjoutee.Durabilite, carteAjoutee.Extension,
+                carteAjoutee.Id, carteAjoutee.LstMeca, carteAjoutee.Nom, carteAjoutee.Race, carteAjoutee.Rarete, carteAjoutee.RegexId, carteAjoutee.Texte, carteAjoutee.Type,
+                carteAjoutee.Vie);
+
+            if (nbCopies > 1)
+            {
+                Carte secondeNouvelleCarte = new Carte(carteAjoutee.Attaque, carteAjoutee.Classe, carteAjoutee.Cout,
+                    carteAjoutee.Durabilite, carteAjoutee.Extension,
+                    carteAjoutee.Id, carteAjoutee.LstMeca, carteAjoutee.Nom, carteAjoutee.Race, carteAjoutee.Rarete,
+                    carteAjoutee.RegexId, carteAjoutee.Texte, carteAjoutee.Type,
+                    carteAjoutee.Vie);
+            }
         }
 
         public void ObtenirQtCarte()
