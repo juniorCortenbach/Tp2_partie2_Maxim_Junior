@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 #endregion
 
@@ -107,7 +108,26 @@ namespace tp2_partie1
         public sbyte Attaque
         {
             get { return this._attaque; }
-            set { this._attaque = value; }
+            set
+            {
+                // Validation de l'attaque doit être compris entre 0 et 12 et être de type serviteur ou arme.
+                // ==========================================================================================
+                if (((this.Type == CarteType.Weapon) || (this.Type == CarteType.Minion)) &&
+                    ((value < 0) || (value > 12)))
+                {
+                    throw new ArgumentOutOfRangeException(null,
+                        "L'attaque doit être entre 0 et 12, inclusivement. et le type doit être serviteur ou arme");
+                }
+                // Validation de l'attaque doit être -1 et le type doit être sort
+                // ======================================================
+                if ((this.Type == CarteType.Spell) && (this.Attaque == -1))
+                {
+                    throw new ArgumentOutOfRangeException(null,
+                        "L'attaque doit être -1. et le type doit sort");
+                }
+                // L'attaque prévue est valide; on la conserve dans l'attribut. 
+                this._attaque = value;
+            }
         }
 
         /// <summary>
@@ -125,7 +145,16 @@ namespace tp2_partie1
         public ushort Cout
         {
             get { return this._cout; }
-            set { this._cout = value; }
+            set
+            {
+                // Validation du cout d'une carte
+                // ==============================
+                if (value > 20)
+                    throw new ArgumentOutOfRangeException(null,
+                        "Le cout de la carte est de 0 et 20, inclusivement.");
+                // Le cout prévue est valide; on la conserve dans l'attribut.
+                this._cout = value;
+            }
         }
 
         /// <summary>
@@ -134,7 +163,25 @@ namespace tp2_partie1
         public sbyte Durabilite
         {
             get { return this._durabilite; }
-            set { this._durabilite = value; }
+            set
+            {
+                // Validation de la durabilité entre 1 et 8 inclusivement pour les carte arme.
+                // ===========================================================================
+                if ((this.Type == CarteType.Weapon) && ((value < 1) || (value > 8)))
+                {
+                    throw new ArgumentOutOfRangeException(null,
+                        "La durabilité doit être entre 1 et 8, inclusivement. et le type doit être arme");
+                }
+                // Validation de la durabilité doit être -1 et le type doit être serviteur et sort.
+                // ================================================================================
+                if ((this.Type == CarteType.Spell) && (this.Durabilite == -1))
+                {
+                    throw new ArgumentOutOfRangeException(null,
+                        "La durabilité doit être -1. et le type doit sort");
+                }
+                // La durabilité prévue est valide; on la conserve dans l'attribut. 
+                this._durabilite = value;
+            }
         }
 
         /// <summary>
@@ -152,7 +199,19 @@ namespace tp2_partie1
         public string Id
         {
             get { return this._id; }
-            set { this._id = value; }
+            set
+            {
+                //Regex qui valide l'id de la carte
+                Regex idCarteRegex = new Regex("[A-Za-z0-9]{6}_[1-9]{3}");
+                //Valide que la carte 
+                if (idCarteRegex.ToString().Trim() != this.Id.Trim().ToString())
+                {
+                    throw new ArgumentOutOfRangeException(null,
+                        "L'id doit contenir entre 2 et 6 caractères parmi les lettres minuscules et majuscules et les chiffres de (0 à 9) suivit du caractère de soulignement, _ entre 1 et 3 chiffres de (0 à 9)");
+                }
+                // L'id prévue est valide; on la conserve dans l'attribut.
+                this._id = value;
+            }
         }
 
         /// <summary>
@@ -161,7 +220,11 @@ namespace tp2_partie1
         public List<string> LstMeca
         {
             get { return this._lstMeca; }
-            set { this._lstMeca = value; }
+            set
+            {
+                //A faire
+                this._lstMeca = value;
+            }
         }
 
         /// <summary>
@@ -170,7 +233,21 @@ namespace tp2_partie1
         public string Nom
         {
             get { return this._nom; }
-            set { this._nom = value; }
+            set
+            {
+                // Validation du nom
+                // ===================
+                // Le nom ne doit pas être nul.
+                if (value == null)
+                    throw new ArgumentNullException(null, "Le nom ne doit pas être nul.");
+                // Retrait des espaces superflus (seulement si le titre n'est pas nul, autrement ça va lever l'exception NullReferenceExcpetion).
+                String nomTrime = value.Trim();
+                // Le nom doit contenir au moins 3 caractères.
+                if (nomTrime.Length < 3)
+                    throw new ArgumentException("Le nom doit contenir au moins 3 caractères.");
+                // Le titre est valide; on le conserve dans l'attribut.
+                this._nom = nomTrime;
+            }
         }
 
         /// <summary>
@@ -179,7 +256,11 @@ namespace tp2_partie1
         public ServiteurRace Race
         {
             get { return this._race; }
-            set { this._race = value; }
+            set
+            {
+                //A faire
+                this._race = value;
+            }
         }
 
 
@@ -207,7 +288,11 @@ namespace tp2_partie1
         public string Texte
         {
             get { return this._texte; }
-            set { this._texte = value; }
+            set
+            {
+                string texteTrime = value.Trim();
+                this._texte = texteTrime;
+            }
         }
 
         /// <summary>
@@ -225,7 +310,25 @@ namespace tp2_partie1
         public sbyte Vie
         {
             get { return this._vie; }
-            set { this._vie = value; }
+            set
+            {
+                // Validation de la vie 
+                // ==========================================================================================
+                if ((this.Type == CarteType.Minion)  && ((value < 0) || (value > 15)))
+                {
+                    throw new ArgumentOutOfRangeException(null,
+                        "La vie doit être entre 0 et 15, inclusivement. et le type doit être un serviteur");
+                }
+                // Validation de la vie, doit être -1 et le type doit être sort et arme
+                // ======================================================
+                if ((this.Type == CarteType.Spell)||((this.Type == CarteType.Weapon) && (this.Vie == -1)))
+                {
+                    throw new ArgumentOutOfRangeException(null,
+                        "La vie doit être -1. et le type doit être sort ou arme");
+                }
+                // La vie prévue est valide; on la conserve dans l'attribut. 
+                this._vie = value;
+            }
         }
 
         #endregion
