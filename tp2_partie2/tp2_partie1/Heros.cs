@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 #endregion
 
@@ -76,7 +77,16 @@ namespace tp2_partie1
         public string Classe
         {
             get { return this._classe; }
-            set { this._classe = value; }
+            set
+            {
+                //La class ne doit pas être neutre.
+                if (this.Classe.Contains((char) HerosClasse.Neutre))
+                {
+                    throw new ArgumentException(null, "La class ne doit pas être neutre.");
+                }
+                // La class est valide; on le conserve dans l'attribut.
+                this._classe = value;
+            }
         }
 
         /// <summary>
@@ -94,7 +104,19 @@ namespace tp2_partie1
         public string Id
         {
             get { return this._id; }
-            set { this._id = value; }
+            set
+            {
+                //Regex qui valide l'id de l'héros 
+                Regex idHerosRegex = new Regex("HERO_[0-9]{2}");
+                //Valide qu'il y a HERO_ suivit de deux chiffre entre 0-9 
+                if (idHerosRegex.ToString().Trim() != this.Id.Trim().ToString())
+                {
+                    throw new ArgumentOutOfRangeException(null,
+                        "L'id doit être HERO_ suivit de 2 chiffres.");
+                }
+                // L'id prévue est valide; on la conserve dans l'attribut.
+             this._id = value;
+            }
         }
 
         /// <summary>
@@ -103,7 +125,20 @@ namespace tp2_partie1
         public string Nom
         {
             get { return this._nom; }
-            set { this._nom = value; }
+            set
+            {
+                // Validation de la longueur du nom
+                // ===================
+                // Le nom ne doit pas est être null
+                if (value == null)
+                    throw new ArgumentNullException(null, "Le nom ne doit pas être nul.");
+                String nomTrime = value.Trim();
+                // Le nom doit contenir au moins 3 caractères.
+                if (nomTrime.Length < 3)
+                    throw new ArgumentException("Le nom doit contenir au moins 3 caractères.");
+                // Le nom est valide; on le conserve dans l'attribut.
+                this._nom = value;
+            }
         }
 
         /// <summary>
@@ -126,18 +161,20 @@ namespace tp2_partie1
         public byte Vie
         {
             get { return this._vie; }
-            set { this._vie = value; }
+            set
+            {
+                // Validation de la vie qui doit être entre 10 et 100
+                // ==================================================
+                if ((value < 10) || (value > 100))
+                    throw new ArgumentOutOfRangeException(null,
+                        "La vie du héros doit être entre 10 et 100, inclusivement.");
+                // La vie est valide; on la conserve dans l'attribut.
+                this._vie = value;
+            }
         }
 
         #endregion
 
-        public HearthstoneData JeuHearthstone
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-        }
 
         #region CONSTRUCTEUR
 
@@ -161,9 +198,16 @@ namespace tp2_partie1
             this._regexId = regexId;
             this._vie = vie;
         }
-        
 
-       #endregion
+
+        /*
+        //PEUT SUPRIMMER?????????????
+        //public Heros(string classe, string garroshHellscream, CarteExtension core, CarteRarete free, HerosClasse warrior, int regexId)
+        //{
+        //    throw new NotImplementedException();
+        //} */
+
+        #endregion
 
     }
 }

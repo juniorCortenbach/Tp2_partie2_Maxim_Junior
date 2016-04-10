@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tp2_partie2", "tp2_partie1\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8326A982-2A4F-4C8D-895C-7F72110B8D51}"
 	ProjectSection(SolutionItems) = preProject
-		tp2_partie1\bin\Debug\cartes.xml = tp2_partie1\bin\Debug\cartes.xml
+		tp2_partie1\bin\Debug\cards-collectible.xml = tp2_partie1\bin\Debug\cards-collectible.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsUnitaires", "TestsUnitaires\TestsUnitaires.csproj", "{1754DB0A-431F-466E-8CA8-D6EC5DE4A803}"

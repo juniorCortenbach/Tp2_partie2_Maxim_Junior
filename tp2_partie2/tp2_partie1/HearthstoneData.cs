@@ -27,7 +27,7 @@ namespace tp2_partie1
         /// <summary>
         /// Constante qui contient le chemin qui contient le fichier xml qui contient les données. 
         /// </summary>
-        public const String CheminFichierCarte= "cartes.xml";  
+        public const String CheminFichierCarte= "cards-collectible.xml";  
 
         #endregion
 
@@ -74,7 +74,7 @@ namespace tp2_partie1
         public HearthstoneData()
         {
             this.LesCartes = Utilitaire.ChargerCartes(HearthstoneData.CheminFichierCarte);
-         //   this.LesHeros = Utilitaire.Charger(HearthstoneData.CheminFichierCarte);
+            this.LesHeros = Utilitaire.ChargerHeros(HearthstoneData.CheminFichierCarte);
         }
         #endregion
 

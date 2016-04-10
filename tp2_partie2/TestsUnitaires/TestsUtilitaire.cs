@@ -134,8 +134,10 @@ namespace TestsUnitaires
         {
             Carte[] cartes = Utilitaire.ChargerCartes("cards-collectible.xml");
 
+            
+        
             Assert.AreEqual(743, cartes.Length);
-
+            
             // Test : Première carte.
             Assert.AreEqual(CarteType.Minion, cartes[0].Type);
             Assert.AreEqual("LOE_061", cartes[0].Id);
@@ -217,6 +219,7 @@ namespace TestsUnitaires
             Assert.AreEqual(4, cartes[24].Vie);
             Assert.AreEqual(ServiteurRace.Demon, cartes[24].Race);
             Assert.AreEqual(-1, cartes[24].Durabilite);
+          
         }
 
         /// <summary>
@@ -270,7 +273,7 @@ namespace TestsUnitaires
         [ExpectedException(typeof(ArgumentException), "Impossible d'ouvrir le fichier XML.")]
         public void TestChargerCartesExceptionDossierInvalide()
         {
-            Utilitaire.ChargerCartes("dossier_invalide/cards-collectible.xml");
+           Utilitaire.ChargerCartes("dossier_invalide/cards-collectible.xml");
         }
 
         /// <summary>
@@ -284,8 +287,8 @@ namespace TestsUnitaires
             String chemin = new string('x', 300) + ".xml";
             Utilitaire.ChargerCartes(chemin);
         }
-
-        /*// EnregisterDeck
+        /*
+        // EnregisterDeck
         // ==============
 
         /// <summary>
@@ -305,7 +308,7 @@ namespace TestsUnitaires
             // du dossier du projet pour les tests.
             // De plus, exécutez le test de chargement qui lui est associé, soit "TestChargerDeck1".
         }
-
+        
         /// <summary>
         /// Tests unitaires pour la méthode "EnregisterDeck".
         /// </summary>
