@@ -118,9 +118,31 @@ namespace tp2_partie1
 
         public void AjouterCartes(Carte carteAjoutee, byte nbCopies)
         {
+            byte nbCartesLegendaires=0;
             //Restrictions:
             // nbCopies en cas de carte légendaire ne peut pas être > ou < que 1.
             // Une carte ne peut être ajouté si le nombre de cartes déjà présent est 30.
+
+            //Prévoir que la carte ajoutée peut déjà être présente dans le deck et ne pourra
+            //être ajoutée qu'une seule fois, si elle ne s'y retrouve qu'une seule fois.
+
+            //Comment j'fais pour déterminer le nombre de cartes légendaires si
+            //j'peux pas détermienr la rareté des cartes contenues dans le deck?
+            for (int i = 0; i < this.NbTotalCartes; i++)
+            {
+                if (this.LstCartesAvecQt[i].Rareté = "legendary");
+                nbCartesLegendaires++;
+            }
+
+            if(nbCartesLegendaires > Deck.QtMaxCarteLegendaire)
+                throw new ArgumentException("Le nombre de cartes légendaire ne peut dépasser 1.");
+
+            if(this.NbTotalCartes == Deck.NbMaxCartesDansDeck)
+                throw new ArgumentException("La quantité de cartes présentes dans le deck ne peut pas dépasser 30.");
+
+            
+            if(nbCopies > Deck.QtMaxCarteNonLegendaire && carteAjoutee.Rarete == "LEGENDARY")
+                throw new ArgumentException("Le nombre de copies d'une même carte ne peut être supérieur à 2.");
 
             Carte nouvelleCarte = new Carte(carteAjoutee.Attaque, carteAjoutee.Classe, carteAjoutee.Cout, carteAjoutee.Durabilite, carteAjoutee.Extension,
                 carteAjoutee.Id, carteAjoutee.LstMeca, carteAjoutee.Nom, carteAjoutee.Race, carteAjoutee.Rarete, carteAjoutee.RegexId, carteAjoutee.Texte, carteAjoutee.Type,
@@ -134,6 +156,8 @@ namespace tp2_partie1
                     carteAjoutee.RegexId, carteAjoutee.Texte, carteAjoutee.Type,
                     carteAjoutee.Vie);
             }
+
+
         }
 
         public void ObtenirQtCarte()
@@ -143,7 +167,7 @@ namespace tp2_partie1
 
         public void RetirerCarte()
         {
-            
+            Array.Resize(ref this._lstCartesAvecQt, this.LstCartesAvecQt.Length -1);
         }
 
         #endregion
