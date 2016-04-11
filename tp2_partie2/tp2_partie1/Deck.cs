@@ -101,14 +101,10 @@ namespace tp2_partie1
         /// <summary>
         /// Constructeur paramétré qui accepte les trois attributs d'un deck.
         /// </summary>
-        public Deck(string id, string nomCarte, string extensionCarte, 
-                                string rareteCarte, string classeHeros)
+        public Deck(string nom, Heros heros)
         {
-            this.Heros.Id = id;
-            this._nom = nomCarte;
-            this.Heros.Extension = extensionCarte;
-            this.Heros.Rarete = rareteCarte;
-            this._nbTotalCartes = nbtotalCartes;
+            this._nom = nom;
+            this._heros = heros;
         }
 
         #endregion 
@@ -129,7 +125,7 @@ namespace tp2_partie1
             //j'peux pas détermienr la rareté des cartes contenues dans le deck?
             for (int i = 0; i < this.NbTotalCartes; i++)
             {
-                if (this.LstCartesAvecQt[i].Rarete == "legendary");
+                if (this.LstCartesAvecQt[i].Rarete == CarteRarete.Legendary);
                 nbCartesLegendaires++;
             }
 
@@ -140,20 +136,19 @@ namespace tp2_partie1
                 throw new ArgumentException("La quantité de cartes présentes dans le deck ne peut pas dépasser 30.");
 
             
-            if(nbCopies > Deck.QtMaxCarteNonLegendaire && carteAjoutee.Rarete == "LEGENDARY")
+            if(nbCopies > Deck.QtMaxCarteNonLegendaire && carteAjoutee.Rarete == CarteRarete.Legendary)
+
                 throw new ArgumentException("Le nombre de copies d'une même carte ne peut être supérieur à 2.");
 
-            Carte nouvelleCarte = new Carte(carteAjoutee.Attaque, carteAjoutee.Classe, carteAjoutee.Cout, carteAjoutee.Durabilite, carteAjoutee.Extension,
-                carteAjoutee.Id, carteAjoutee.LstMeca, carteAjoutee.Nom, carteAjoutee.Race, carteAjoutee.Rarete, carteAjoutee.RegexId, carteAjoutee.Texte, carteAjoutee.Type,
-                carteAjoutee.Vie);
+            Carte nouvelleCarte = new Carte(carteAjoutee.Type, carteAjoutee.Id, carteAjoutee.Nom, carteAjoutee.Extension,
+                carteAjoutee.Rarete, carteAjoutee.Attaque, carteAjoutee.Texte, carteAjoutee.Classe, carteAjoutee.Cout,
+                carteAjoutee.Durabilite, carteAjoutee.LstMeca, carteAjoutee.Vie);
 
             if (nbCopies > 1)
             {
-                Carte secondeNouvelleCarte = new Carte(carteAjoutee.Attaque, carteAjoutee.Classe, carteAjoutee.Cout,
-                    carteAjoutee.Durabilite, carteAjoutee.Extension,
-                    carteAjoutee.Id, carteAjoutee.LstMeca, carteAjoutee.Nom, carteAjoutee.Race, carteAjoutee.Rarete,
-                    carteAjoutee.RegexId, carteAjoutee.Texte, carteAjoutee.Type,
-                    carteAjoutee.Vie);
+                Carte secondeNouvelleCarte = new Carte(carteAjoutee.Type, carteAjoutee.Id, carteAjoutee.Nom, carteAjoutee.Extension,
+                carteAjoutee.Rarete, carteAjoutee.Attaque, carteAjoutee.Texte, carteAjoutee.Classe, carteAjoutee.Cout,
+                carteAjoutee.Durabilite, carteAjoutee.LstMeca, carteAjoutee.Vie);
             }
 
 

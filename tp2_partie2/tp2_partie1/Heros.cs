@@ -27,12 +27,12 @@ namespace tp2_partie1
         /// <summary>
         /// La classe du héro.
         /// </summary>
-        private string _classe;
+        private HerosClasse _classe;
 
         /// <summary>
         /// L'extension du héro.
         /// </summary>
-        private string _extension;
+        private CarteExtension _extension;
 
         /// <summary>
         /// L'identifiant du héro.
@@ -47,7 +47,7 @@ namespace tp2_partie1
         /// <summary>
         /// La rareté du héro.
         /// </summary>
-        private string _rarete;
+        private CarteRarete _rarete;
 
         /// <summary>
         /// wtf is this?
@@ -74,7 +74,7 @@ namespace tp2_partie1
         /// <summary>
         /// La classe du héro.
         /// </summary>
-        public string Classe
+        public HerosClasse Classe
         {
             get { return this._classe; }
             set
@@ -92,7 +92,7 @@ namespace tp2_partie1
         /// <summary>
         /// L'extension du héro.
         /// </summary>
-        public string Extension
+        public CarteExtension Extension
         {
             get { return this._extension; }
             set { this._extension = value; }
@@ -144,7 +144,7 @@ namespace tp2_partie1
         /// <summary>
         /// La rareté du héro.
         /// </summary>
-        public string Rarete
+        public CarteRarete Rarete
         {
             get { return this._rarete; }
             set { this._rarete = value; }
@@ -188,14 +188,13 @@ namespace tp2_partie1
         /// <param name="rarete"></param>
         /// <param name="regexId"></param>
         /// <param name="vie"></param>
-        public Heros(string classe, string extension, string id, string nom, string rarete, byte regexId, byte vie)
+        public Heros(string id, string nom, CarteExtension extension, CarteRarete rarete, HerosClasse classe, byte vie)
         {
             this._classe = classe;
             this._extension = extension;
             this._id = id;
             this._nom = nom;
             this._rarete = rarete;
-            this._regexId = regexId;
             this._vie = vie;
         }
 

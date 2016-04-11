@@ -389,7 +389,7 @@ namespace TestsUnitaires
                 deckWarrior.AjouterCartes(carte, 1);
             }
         }
-
+        /*
         /// <summary>
         /// Tests unitaires pour la méthode "ObtenirQtCarte".
         /// </summary>
@@ -438,7 +438,7 @@ namespace TestsUnitaires
 
             deckWarrior.ObtenirQtCarte(null);
         }
-
+        
         /// <summary>
         /// Tests unitaires pour la méthode "RetirerCarte".
         /// </summary>
@@ -625,8 +625,10 @@ namespace TestsUnitaires
 
             deckWarrior.RetirerCarte(carte, true);
             deckWarrior.RetirerCarte(carte, true);
-        }
+        }     */
 
         #endregion
+
     }
-}
+
+}        
