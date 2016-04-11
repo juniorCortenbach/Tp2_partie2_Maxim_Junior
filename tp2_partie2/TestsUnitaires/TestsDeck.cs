@@ -424,7 +424,7 @@ namespace TestsUnitaires
             deckWarrior.AjouterCartes(carteLegendaire, 1);
             Assert.AreEqual(1, deckWarrior.ObtenirQtCarte(carteLegendaire));
         }
-
+         /*
         /// <summary>
         /// Tests unitaires pour la méthode "ObtenirQtCarte".
         /// </summary>
@@ -625,7 +625,7 @@ namespace TestsUnitaires
 
             deckWarrior.RetirerCarte(carte, true);
             deckWarrior.RetirerCarte(carte, true);
-        }
+        } */
 
         #endregion
     }
