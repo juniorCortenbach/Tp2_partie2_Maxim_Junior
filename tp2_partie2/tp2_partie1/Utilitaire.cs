@@ -121,13 +121,18 @@ namespace tp2_partie1
                     //mecanique, de la rareté, de la classe et de la race.
                     if (elemCarte.GetElementsByTagName("type")[0].InnerText.Length != 0)
                     {
-                        type =
-                            (CarteType)
-                                Enum.Parse(typeof (CarteType), elemCarte.GetElementsByTagName("type")[0].InnerText);
+                        string typeLu = elemCarte.GetElementsByTagName("type")[0].InnerText; //MINION
+
+                        string typeChaine = typeLu.ToString().Substring(0, 1).ToUpper() + typeLu.ToString().Substring(1).ToLower(); //Minion
+                        
+                        //Minion ==    MINION 
+                        if (typeChaine.Contains((char)CarteType.Minion) || typeChaine.Contains((char)CarteType.Spell))
+                        type = (CarteType)Enum.Parse(typeof (CarteType), elemCarte.GetElementsByTagName("type")[0].InnerText);
+                        
                     }
                     else
                     {
-                        type = (CarteType)CarteType.Minion;
+                        type = CarteType.Minion;
                     }
                     if (elemCarte.GetElementsByTagName("attack")[0].InnerText.Length != 0)
                     {

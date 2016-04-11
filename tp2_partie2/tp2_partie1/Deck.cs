@@ -43,7 +43,6 @@ namespace tp2_partie1
         /// Le nombre de cartes présentes dans le deck.
         /// </summary>
         private byte _nbTotalCartes;
-
         #endregion
 
         #region PROPRIÉTÉS
@@ -52,7 +51,7 @@ namespace tp2_partie1
         /// Héro (avec toutes informations du héro
         /// contenues dans la classe Heros).
         /// </summary>
-        public Heros Heroes
+        public Heros Heros
         {
             get { return this._heros; }
             set { this._heros = value; }
@@ -90,10 +89,11 @@ namespace tp2_partie1
 
         #region CONSTANTES
 
-        const byte NbMaxCartesDansDeck=30;
-        const byte QtMaxCarteLegendaire=1;
-        const byte QtMaxCarteNonLegendaire=2;
 
+        public const byte NbMaxCartesDansDeck=30;
+        public const byte QtMaxCarteLegendaire=1;
+        public const byte QtMaxCarteNonLegendaire=2;
+    
         #endregion
 
         #region CONSTRUCTEUR
@@ -101,14 +101,13 @@ namespace tp2_partie1
         /// <summary>
         /// Constructeur paramétré qui accepte les trois attributs d'un deck.
         /// </summary>
-        /// <param name="heros"></param>
-        /// <param name="lstCartesAvecQt"></param>
-        /// <param name="nom"></param>
-        public Deck(Heros heros, Carte[] lstCartesAvecQt, string nom, byte nbtotalCartes)
+        public Deck(string id, string nomCarte, string extensionCarte, 
+                                string rareteCarte, string classeHeros)
         {
-            this._heros = heros;
-            this._lstCartesAvecQt = lstCartesAvecQt;
-            this._nom = nom;
+            this.Heros.Id = id;
+            this._nom = nomCarte;
+            this.Heros.Extension = extensionCarte;
+            this.Heros.Rarete = rareteCarte;
             this._nbTotalCartes = nbtotalCartes;
         }
 
