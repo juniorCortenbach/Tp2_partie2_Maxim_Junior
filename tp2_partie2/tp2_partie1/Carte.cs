@@ -61,7 +61,7 @@ namespace tp2_partie1
         /// <summary>
         /// Les mécaniques de la carte.
         /// </summary>
-        private List<string> _lstMeca;
+        private List<CarteMecanique> _lstMeca;
 
         /// <summary>
         /// Le nom de la carte.
@@ -217,7 +217,7 @@ namespace tp2_partie1
         /// <summary>
         /// Les mécaniques de la carte.
         /// </summary>
-        public List<string> LstMeca
+        public List<CarteMecanique> LstMeca
         {
             get { return this._lstMeca; }
             set
@@ -337,7 +337,7 @@ namespace tp2_partie1
         #region CONSTRUCTEUR
 
         public Carte(sbyte attaque, HerosClasse classe, ushort cout, sbyte durabilite,
-            string extension, string id, List<string> lstMeca, string nom, ServiteurRace race,
+            string extension, string id, List<CarteMecanique> lstMeca, string nom, ServiteurRace race,
             string rarete, string regexId, string texte, CarteType type, sbyte vie)
         {
             this._attaque = attaque;
@@ -368,6 +368,15 @@ namespace tp2_partie1
         public int CompareTo(Carte autreCarte)
         {
             return 0;
+        }
+
+        /// <summary>
+        /// Permet d'ajouter une mécaniques
+        /// </summary>
+        /// <returns></returns>
+        public void AjouterMecanique(CarteMecanique mecanique)
+        {
+            this.LstMeca.Add(mecanique);
         }
 
         #endregion

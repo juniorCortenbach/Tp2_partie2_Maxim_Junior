@@ -48,8 +48,16 @@ namespace tp2_partie1
 
             // Création d'un document XML (un objet .NET) à partir du fichier au format XML (désérialisation).
             XmlDocument xmlDoc=null;
-            if (cheminFichier == null)
+            try
+            {
                 cheminFichier = "cards-collectible.xml";
+            }                
+            catch (FileNotFoundException fnfe2)
+            {
+                return null;
+            }
+            
+        
 
 
             try
@@ -70,78 +78,162 @@ namespace tp2_partie1
             }
             catch (Exception e)
             {
-                throw new ArgumentException();
+                throw new ArgumentException(null,"erreur inconnue");
             }
 
 
 
             // Récupération de tous les éléments "Cartes".
-            XmlNodeList listeElemCarte = xmlDoc.GetElementsByTagName("card");
+            XmlNodeList listeElemCarte = xmlDoc.SelectNodes("/cards/card[type!='HERO']");
 
             // Création du tableau de cartes; la taille est déterminée par le nombre d'éléments "Carte".
             Carte[] tabCartes = new Carte[listeElemCarte.Count];
 
             // Variables utilitaires pour la création d'un objet "Carte".
-            sbyte attaque=-1;
-            sbyte durabilite = -1;
-            sbyte vie=-1;
-            ushort cout=0;
-            String extension = "";
-            String id = "";
-            String nom = "";
+            sbyte attaque;
+            sbyte durabilite;
+            sbyte vie;
+            ushort cout;
+            String extension;
+            String id;
+            String nom;
             String regexId = "";
-            String texte = "";
-            String rarete = "";
-            List<string> lstMeca = null;
+            String texte;
+            String rarete;
+            List<CarteMecanique> lstMeca = null;
             HerosClasse classe = HerosClasse.Neutre;
-            ServiteurRace race = ServiteurRace.Aucune;
-            CarteType type = CarteType.Minion;
+            ServiteurRace race;
+            CarteType type;
             XmlElement elemCarte = null;
-
+            int compteurMechanics;
 
             for (int i = 0; i < listeElemCarte.Count; i++)
             {
-                if (elemCarte.GetElementsByTagName("type")[0].InnerText != "Hero")
-                {
+                // Récupération du noeud "carte" à traiter.
+                elemCarte = (XmlElement)listeElemCarte[i];
+
+                    compteurMechanics = elemCarte.GetElementsByTagName("mechanics").Count;
                     // Récupération du noeud "Carte" à traiter.
                     elemCarte = (XmlElement) listeElemCarte[i];
                     // Récupération du type, de l'attaque, de la durabilité, de la vie, du coût, de l'extension, de l'id, du nom, de regxId, du texte, du tableau de 
                     //mecanique, de la rareté, de la classe et de la race.
                     if (elemCarte.GetElementsByTagName("type")[0].InnerText.Length != 0)
+                    {
                         type =
                             (CarteType)
                                 Enum.Parse(typeof (CarteType), elemCarte.GetElementsByTagName("type")[0].InnerText);
-                        if (elemCarte.GetElementsByTagName("attack")[0].InnerText.Length != 0)
-                            attaque = Convert.ToSByte(elemCarte.GetElementsByTagName("attack")[0].InnerText);
+                    }
+                    else
+                    {
+                        type = (CarteType)CarteType.Minion;
+                    }
+                    if (elemCarte.GetElementsByTagName("attack")[0].InnerText.Length != 0)
+                    {
+                        attaque = Convert.ToSByte(elemCarte.GetElementsByTagName("attack")[0].InnerText);
+                    }
+                    else
+                    {
+                        attaque = -1;
+                    }
                     if (elemCarte.GetElementsByTagName("durability")[0].InnerText.Length != 0)
+                    {
                         durabilite = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("durability")[0].InnerText);
+                    }
+                    else
+                    {
+                        durabilite = -1;
+                    }
                     if (elemCarte.GetElementsByTagName("set")[0].InnerText.Length != 0)
+                    {
                         extension = elemCarte.GetElementsByTagName("set")[0].InnerText;
+                    }
+                    else
+                    {
+                        extension = "";
+                    }
                     if (elemCarte.GetElementsByTagName("id")[0].InnerText.Length != 0)
+                    { 
                         id = Convert.ToString(elemCarte.GetElementsByTagName("id")[0].InnerText);
+                    }
+                    else
+                    {
+                        id = "";
+                    }
                     if (elemCarte.GetElementsByTagName("race")[0].InnerText.Length != 0)
+                    {
                         race =
                             (ServiteurRace)
                                 Enum.Parse(typeof (ServiteurRace), elemCarte.GetElementsByTagName("race")[0].InnerText);
+                    }
+                    else
+                    {
+                        race = ServiteurRace.Aucune;
+                    }
                     if (elemCarte.GetElementsByTagName("cost")[0].InnerText.Length != 0)
+                    {
                         cout = Convert.ToUInt16(elemCarte.GetElementsByTagName("cost")[0].InnerText);
+                    }
+                    else
+                    {
+                        cout = 0;
+                    }
                     if (elemCarte.GetElementsByTagName("name")[0].InnerText.Length != 0)
+                    {
                         nom = elemCarte.GetElementsByTagName("name")[0].InnerText;
+                    }
+                    else
+                    {
+                        nom = "";
+                    }
                     if (elemCarte.GetElementsByTagName("text")[0].InnerText.Length != 0)
+                    {
                         texte = elemCarte.GetElementsByTagName("text")[0].InnerText;
+                    }
+                    else
+                    {
+                        texte = "";
+                    }
                     if (elemCarte.GetElementsByTagName("rarety")[0].InnerText.Length != 0)
+                    { 
                         rarete = elemCarte.GetElementsByTagName("rarity")[0].InnerText;
+                    }
+                    else
+                    {
+                        rarete = "";
+                    }
                     if (elemCarte.GetElementsByTagName("id")[0].InnerText.Length != 0)
+                    { 
                         regexId = elemCarte.GetElementsByTagName("id")[0].InnerText;
+                    }
+                    else
+                    {
+                        id = "";
+                    }
                     if (elemCarte.GetElementsByTagName("health")[0].InnerText.Length != 0)
+                    { 
                         vie = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
-                    if (elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length != 0)
-                        lstMeca.Add(elemCarte.GetElementsByTagName("mechanics")[0].InnerText);
+                    }
+                    else
+                    {
+                        vie = -1;
+                    }
                     // Création de l'objet "Carte" dans le tableau.
                     tabCartes[i] = new Carte(attaque, classe, cout, durabilite, extension, id, lstMeca, nom, race,
                         rarete, regexId, texte, type, vie);
+
+                    for (int j = 0; j < compteurMechanics; j++)
+                    {
+                        if (elemCarte.GetElementsByTagName("mechanics")[j].InnerText.Length != 0)
+                        {
+                            lstMeca =
+                          (List<CarteMecanique>) Enum.Parse(typeof(CarteMecanique), elemCarte.GetElementsByTagName("mechanics")[j].InnerText);
+ 
+                            tabCartes[i].AjouterMecanique(lstMeca[j]);
+                        }
+                    }
+
                 }
-            } 
+            
 
             // On retourne le tableau de cartes créé.
             return tabCartes;

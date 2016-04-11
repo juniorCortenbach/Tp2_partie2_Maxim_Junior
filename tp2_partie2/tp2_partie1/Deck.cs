@@ -130,7 +130,7 @@ namespace tp2_partie1
             //j'peux pas détermienr la rareté des cartes contenues dans le deck?
             for (int i = 0; i < this.NbTotalCartes; i++)
             {
-                if (this.LstCartesAvecQt[i].Rareté = "legendary");
+                if (this.LstCartesAvecQt[i].Rarete == "legendary");
                 nbCartesLegendaires++;
             }
 

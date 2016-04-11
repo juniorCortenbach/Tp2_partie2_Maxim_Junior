@@ -132,6 +132,7 @@ namespace TestsUnitaires
         [TestMethod]
         public void TestChargerCartes()
         {
+
             Carte[] cartes = Utilitaire.ChargerCartes("cards-collectible.xml");
 
             
