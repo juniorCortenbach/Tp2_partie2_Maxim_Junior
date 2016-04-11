@@ -20,11 +20,8 @@ namespace tp2_partie1
     /// </summary>
     public enum CarteType
     {
-        [Description("Serviteur")]
-        Minion,
-        [Description("Sort")]
-        Spell,
-        [Description("Arme")]
-        Weapon,
+        [Description("Serviteur")] Minion,
+        [Description("Sort")] Spell,
+        [Description("Arme")] Weapon,
     }
 }

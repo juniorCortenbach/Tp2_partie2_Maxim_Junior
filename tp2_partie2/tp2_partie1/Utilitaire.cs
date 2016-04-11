@@ -119,9 +119,7 @@ namespace tp2_partie1
                     //mecanique, de la rareté, de la classe et de la race.
                     if (elemCarte.GetElementsByTagName("type")[0].InnerText.Length != 0)
                     {
-                        type =
-                            (CarteType)
-                                Enum.Parse(typeof (CarteType), elemCarte.GetElementsByTagName("type")[0].InnerText);
+                        type = (CarteType)Enum.Parse(typeof (CarteType), elemCarte.GetElementsByTagName("type")[0].InnerText);
                     }
                     else
                     {
