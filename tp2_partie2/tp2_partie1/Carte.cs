@@ -51,7 +51,7 @@ namespace tp2_partie1
         /// <summary>
         /// L'extension de la carte.
         /// </summary>
-        private string _extension;
+        private CarteExtension _extension;
 
         /// <summary>
         /// L'ID de la carte.
@@ -76,7 +76,7 @@ namespace tp2_partie1
         /// <summary>
         /// La rareté de la carte.
         /// </summary>
-        private string _rarete;
+        private CarteRarete _rarete;
 
         /// <summary>
         /// 
@@ -187,7 +187,7 @@ namespace tp2_partie1
         /// <summary>
         /// L'extension de la carte.
         /// </summary>
-        public string Extension
+        public CarteExtension Extension
         {
             get { return this._extension; }
             set { this._extension = value; }
@@ -267,7 +267,7 @@ namespace tp2_partie1
         /// <summary>
         /// La rareté de la carte.
         /// </summary>
-        public string Rarete
+        public CarteRarete Rarete
         {
             get { return this._rarete; }
             set { this._rarete = value; }
@@ -336,9 +336,9 @@ namespace tp2_partie1
 
         #region CONSTRUCTEUR
 
-        public Carte(sbyte attaque, HerosClasse classe, ushort cout, sbyte durabilite,
-            string extension, string id, List<CarteMecanique> lstMeca, string nom, ServiteurRace race,
-            string rarete, string regexId, string texte, CarteType type, sbyte vie)
+        public Carte(CarteType type, string id, string nom, CarteExtension extension,
+            CarteRarete rarete, sbyte attaque, string texte, HerosClasse classe, ushort cout, sbyte durabilite,
+             List<CarteMecanique> lstMeca, sbyte vie)
         {
             this._attaque = attaque;
             this._classe = classe;
@@ -348,9 +348,7 @@ namespace tp2_partie1
             this._id = id;
             this._lstMeca = lstMeca;
             this._nom = nom;
-            this._race = race;
             this._rarete = rarete;
-            this._regexId = regexId;
             this._texte = texte;
             this._type = type;
             this._vie = vie;

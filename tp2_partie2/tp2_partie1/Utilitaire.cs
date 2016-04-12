@@ -15,7 +15,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-
+using System.Globalization;
 #endregion
 
 namespace tp2_partie1
@@ -121,14 +121,18 @@ namespace tp2_partie1
                     //mecanique, de la rareté, de la classe et de la race.
                     if (elemCarte.GetElementsByTagName("type")[0].InnerText.Length != 0)
                     {
-                        string typeLu = elemCarte.GetElementsByTagName("type")[0].InnerText; //MINION
 
-                        string typeChaine = typeLu.ToString().Substring(0, 1).ToUpper() + typeLu.ToString().Substring(1).ToLower(); //Minion
-                        
-                        //Minion ==    MINION 
-                        if (typeChaine.Contains((char)CarteType.Minion) || typeChaine.Contains((char)CarteType.Spell))
-                        type = (CarteType)Enum.Parse(typeof (CarteType), elemCarte.GetElementsByTagName("type")[0].InnerText);
-                        
+                        int longeurChaine = elemCarte.GetElementsByTagName("type")[0].InnerText.Length;
+
+                        string ChaineUn = elemCarte.GetElementsByTagName("type")[0].InnerText.Remove(1);
+
+                        string ChaineDeux = elemCarte.GetElementsByTagName("type")[0].InnerText.ToLower();
+                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+
+                        type = (CarteType)
+                   Enum.Parse(typeof(CarteType), ChaineFinale);
+
+                       
                     }
                     else
                     {
@@ -142,7 +146,7 @@ namespace tp2_partie1
                     {
                         attaque = -1;
                     }
-                    if (elemCarte.GetElementsByTagName("durability")[0].InnerText.Length != 0)
+                    if (elemCarte.GetElementsByTagName("durability").Count != 0)
                     {
                         durabilite = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("durability")[0].InnerText);
                     }
@@ -166,7 +170,7 @@ namespace tp2_partie1
                     {
                         id = "";
                     }
-                    if (elemCarte.GetElementsByTagName("race")[0].InnerText.Length != 0)
+                    if (elemCarte.GetElementsByTagName("race").Count != 0)
                     {
                         race =
                             (ServiteurRace)
@@ -200,7 +204,7 @@ namespace tp2_partie1
                     {
                         texte = "";
                     }
-                    if (elemCarte.GetElementsByTagName("rarety")[0].InnerText.Length != 0)
+                    if (elemCarte.GetElementsByTagName("rarity")[0].InnerText.Length != 0)
                     { 
                         rarete = elemCarte.GetElementsByTagName("rarity")[0].InnerText;
                     }
@@ -232,8 +236,15 @@ namespace tp2_partie1
                     {
                         if (elemCarte.GetElementsByTagName("mechanics")[j].InnerText.Length != 0)
                         {
+                            int longeurChaine = elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length;
+
+                            string chaineUn = elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Remove(1);
+
+                            string chaineDeux = elemCarte.GetElementsByTagName("mechanics")[0].InnerText.ToLower();
+                            string chaineFinale = chaineUn + chaineDeux.Remove(0, 1);
+
                             lstMeca =
-                          (List<CarteMecanique>) Enum.Parse(typeof(CarteMecanique), elemCarte.GetElementsByTagName("mechanics")[j].InnerText);
+                          (List<CarteMecanique>) Enum.Parse(typeof(CarteMecanique), chaineFinale);
  
                             tabCartes[i].AjouterMecanique(lstMeca[j]);
                         }
@@ -314,7 +325,7 @@ namespace tp2_partie1
                 elemVie.InnerText = tabCartes[i].Vie + "";
 
                 elemExtension = xmlDoc.CreateElement("Extension");
-                elemExtension.InnerText = tabCartes[i].Extension;
+                elemExtension.InnerText = tabCartes[i].Extension.ToString();
 
                 elemId = xmlDoc.CreateElement("Id");
                 elemId.InnerText = tabCartes[i].Id;
@@ -329,7 +340,7 @@ namespace tp2_partie1
                 elemTexte.InnerText = tabCartes[i].Texte;
 
                 elemRarete = xmlDoc.CreateElement("Rarete");
-                elemRarete.InnerText = tabCartes[i].Rarete;
+                elemRarete.InnerText = tabCartes[i].Rarete.ToString();
 
                 elemLstMeca = xmlDoc.CreateElement("LstMeca");
                 elemLstMeca.InnerText = tabCartes[i].LstMeca + "";
