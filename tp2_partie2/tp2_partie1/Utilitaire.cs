@@ -96,14 +96,14 @@ namespace tp2_partie1
             sbyte durabilite;
             sbyte vie;
             ushort cout;
-            String extension;
             String id;
             String nom;
             String regexId = "";
             String texte;
-            String rarete;
+            CarteRarete rarete;
             List<CarteMecanique> lstMeca = null;
-            HerosClasse classe = HerosClasse.Neutre;
+            HerosClasse classe;
+            CarteExtension extension;
             ServiteurRace race;
             CarteType type;
             XmlElement elemCarte = null;
@@ -117,8 +117,10 @@ namespace tp2_partie1
                     compteurMechanics = elemCarte.GetElementsByTagName("mechanics").Count;
                     // Récupération du noeud "Carte" à traiter.
                     elemCarte = (XmlElement) listeElemCarte[i];
-                    // Récupération du type, de l'attaque, de la durabilité, de la vie, du coût, de l'extension, de l'id, du nom, de regxId, du texte, du tableau de 
-                    //mecanique, de la rareté, de la classe et de la race.
+                    
+                
+                    // Récupération du type de la carte
+                    //=================================
                     if (elemCarte.GetElementsByTagName("type")[0].InnerText.Length != 0)
                     {
 
@@ -130,14 +132,14 @@ namespace tp2_partie1
                         string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
 
                         type = (CarteType)
-                   Enum.Parse(typeof(CarteType), ChaineFinale);
-
-                       
+                        Enum.Parse(typeof(CarteType), ChaineFinale);   
                     }
                     else
                     {
                         type = CarteType.Minion;
                     }
+                    // Récupération de l'attaque de la carte
+                    //======================================================
                     if (elemCarte.GetElementsByTagName("attack")[0].InnerText.Length != 0)
                     {
                         attaque = Convert.ToSByte(elemCarte.GetElementsByTagName("attack")[0].InnerText);
@@ -146,6 +148,8 @@ namespace tp2_partie1
                     {
                         attaque = -1;
                     }
+                    // Récupération de la durabilité de la carte.
+                    //===========================================
                     if (elemCarte.GetElementsByTagName("durability").Count != 0)
                     {
                         durabilite = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("durability")[0].InnerText);
@@ -154,14 +158,39 @@ namespace tp2_partie1
                     {
                         durabilite = -1;
                     }
+                    // Récupération de l'extension de la carte.
+                    //=========================================
                     if (elemCarte.GetElementsByTagName("set")[0].InnerText.Length != 0)
                     {
-                        extension = elemCarte.GetElementsByTagName("set")[0].InnerText;
+                        int longeurChaine = elemCarte.GetElementsByTagName("set")[0].InnerText.Length;
+
+                        string ChaineUn = elemCarte.GetElementsByTagName("set")[0].InnerText.Remove(1);
+
+                        string ChaineDeux = elemCarte.GetElementsByTagName("set")[0].InnerText.ToLower();
+                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+                        
+                        
+                        extension = (CarteExtension) Enum.Parse(typeof(CarteExtension), (ChaineFinale));
                     }
                     else
                     {
-                        extension = "";
+                        extension = CarteExtension.Promo;
+                    }                
+                        // Récupération de la class de la carte.
+                        //======================================
+                    if (elemCarte.GetElementsByTagName("playerClass").Count != 0)
+                    {
+                        classe =
+                            (HerosClasse)
+                                Enum.Parse(typeof (HerosClasse),
+                                    elemCarte.GetElementsByTagName("playerClass")[0].InnerText);
                     }
+                    else
+                    {
+                        classe = HerosClasse.Druid;
+                    }
+                     // Récupération de l'id de la carte
+                    //=================================
                     if (elemCarte.GetElementsByTagName("id")[0].InnerText.Length != 0)
                     { 
                         id = Convert.ToString(elemCarte.GetElementsByTagName("id")[0].InnerText);
@@ -170,6 +199,8 @@ namespace tp2_partie1
                     {
                         id = "";
                     }
+                    // Récupération de la race de la carte.
+                    //=====================================
                     if (elemCarte.GetElementsByTagName("race").Count != 0)
                     {
                         race =
@@ -180,6 +211,9 @@ namespace tp2_partie1
                     {
                         race = ServiteurRace.Aucune;
                     }
+
+                    // Récupération du cout de la carte.
+                    //==================================
                     if (elemCarte.GetElementsByTagName("cost")[0].InnerText.Length != 0)
                     {
                         cout = Convert.ToUInt16(elemCarte.GetElementsByTagName("cost")[0].InnerText);
@@ -188,6 +222,8 @@ namespace tp2_partie1
                     {
                         cout = 0;
                     }
+                    // Récupération du nom de la carte.
+                    //=================================
                     if (elemCarte.GetElementsByTagName("name")[0].InnerText.Length != 0)
                     {
                         nom = elemCarte.GetElementsByTagName("name")[0].InnerText;
@@ -196,6 +232,8 @@ namespace tp2_partie1
                     {
                         nom = "";
                     }
+                    // Récupération du texte de la carte.
+                    //===================================
                     if (elemCarte.GetElementsByTagName("text")[0].InnerText.Length != 0)
                     {
                         texte = elemCarte.GetElementsByTagName("text")[0].InnerText;
@@ -204,22 +242,38 @@ namespace tp2_partie1
                     {
                         texte = "";
                     }
+
+                    // Récupération de la rareté de la carte.
+                    //========================================
                     if (elemCarte.GetElementsByTagName("rarity")[0].InnerText.Length != 0)
-                    { 
-                        rarete = elemCarte.GetElementsByTagName("rarity")[0].InnerText;
+                    {
+                        int longeurChaine = elemCarte.GetElementsByTagName("rarity")[0].InnerText.Length;
+
+                        string ChaineUn = elemCarte.GetElementsByTagName("rarity")[0].InnerText.Remove(1);
+
+                        string ChaineDeux = elemCarte.GetElementsByTagName("rarity")[0].InnerText.ToLower();
+                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+
+
+                        rarete = (CarteRarete) Enum.Parse(typeof(CarteRarete), (ChaineFinale));
                     }
                     else
                     {
-                        rarete = "";
+                        rarete = CarteRarete.Rare;
                     }
+
+                    // Récupération de l'id de la carte
+                    //=================================
                     if (elemCarte.GetElementsByTagName("id")[0].InnerText.Length != 0)
                     { 
-                        regexId = elemCarte.GetElementsByTagName("id")[0].InnerText;
+                        id = elemCarte.GetElementsByTagName("id")[0].InnerText;
                     }
                     else
                     {
                         id = "";
                     }
+                    // Récupération de la vie de la carte
+                    //===================================
                     if (elemCarte.GetElementsByTagName("health")[0].InnerText.Length != 0)
                     { 
                         vie = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
@@ -229,8 +283,7 @@ namespace tp2_partie1
                         vie = -1;
                     }
                     // Création de l'objet "Carte" dans le tableau.
-                    tabCartes[i] = new Carte(attaque, classe, cout, durabilite, extension, id, lstMeca, nom, race,
-                        rarete, regexId, texte, type, vie);
+                    tabCartes[i] = new Carte(type,id,nom,extension,rarete,cout,texte,classe,attaque,vie,race,durabilite);
 
                     for (int j = 0; j < compteurMechanics; j++)
                     {
@@ -243,8 +296,8 @@ namespace tp2_partie1
                             string chaineDeux = elemCarte.GetElementsByTagName("mechanics")[0].InnerText.ToLower();
                             string chaineFinale = chaineUn + chaineDeux.Remove(0, 1);
 
-                            lstMeca =
-                          (List<CarteMecanique>) Enum.Parse(typeof(CarteMecanique), chaineFinale);
+                            lstMeca.Add(
+                          (CarteMecanique) Enum.Parse(typeof(CarteMecanique), chaineFinale));
  
                             tabCartes[i].AjouterMecanique(lstMeca[j]);
                         }
@@ -380,7 +433,7 @@ namespace tp2_partie1
 
             //Enregistrement du document XML dans un fichier par sérialisation.
             xmlDoc.Save(cheminFichier);
-        }
+        } 
         #endregion
 
     }

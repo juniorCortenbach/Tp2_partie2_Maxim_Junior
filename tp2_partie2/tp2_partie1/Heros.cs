@@ -64,8 +64,8 @@ namespace tp2_partie1
 
         #region CONSTANTES
 
-        const byte VieMax=0;
-        const byte VieMin=0;
+        public const byte VieMax=100;
+        public const byte VieMin=10;
 
         #endregion
 
@@ -111,7 +111,7 @@ namespace tp2_partie1
                 //Valide qu'il y a HERO_ suivit de deux chiffre entre 0-9 
                 if (idHerosRegex.ToString().Trim() != this.Id.Trim().ToString())
                 {
-                    throw new ArgumentOutOfRangeException(null,
+                    throw new ArgumentNullException(null,
                         "L'id doit être HERO_ suivit de 2 chiffres.");
                 }
                 // L'id prévue est valide; on la conserve dans l'attribut.

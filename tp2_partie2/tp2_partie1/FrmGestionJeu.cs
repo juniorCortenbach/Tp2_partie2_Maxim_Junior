@@ -88,6 +88,7 @@ namespace tp2_partie1
         private void Form1_Load(object sender, EventArgs e)
         {
             
+
             HearthstoneData data = new HearthstoneData();
             this._gestion = new HearthstoneData();
 
@@ -124,7 +125,8 @@ namespace tp2_partie1
             //Retrait du tableau de cartes du formulaire.
             this.tblCarte.Hide();
             //Joue du son.
-            this._s.Play();  
+            this._s.Play();
+
         }
 
         private void btnModifier_Click(object sender, EventArgs e)
@@ -157,9 +159,6 @@ namespace tp2_partie1
 
 #endregion
 
-        private void lstPourTest_SelectedIndexChanged(object sender, EventArgs e)
-        {
-   
-        }
+
     }
 }

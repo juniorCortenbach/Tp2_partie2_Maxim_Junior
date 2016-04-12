@@ -26,6 +26,16 @@ namespace tp2_partie1
     /// </summary>
     public class Carte : IComparable<Carte>
     {
+
+        #region CONSTANTE
+
+        public const byte CoutMax = 20;
+        public const byte AttaqueMax = 12;
+        public const byte VieMax = 15;
+        public const byte DurabiliteMax = 8;
+
+        #endregion
+
         #region ATTRIBUTS
 
         /// <summary>
@@ -337,21 +347,21 @@ namespace tp2_partie1
         #region CONSTRUCTEUR
 
         public Carte(CarteType type, string id, string nom, CarteExtension extension,
-            CarteRarete rarete, sbyte attaque, string texte, HerosClasse classe, ushort cout, sbyte durabilite,
-             List<CarteMecanique> lstMeca, sbyte vie)
+            CarteRarete rarete, ushort cout, string texte, HerosClasse classe,  sbyte attaque, sbyte vie,
+             ServiteurRace race, sbyte durabilite)
         {
-            this._attaque = attaque;
-            this._classe = classe;
-            this._cout = cout;
-            this._durabilite = durabilite;
-            this._extension = extension;
-            this._id = id;
-            this._lstMeca = lstMeca;
-            this._nom = nom;
-            this._rarete = rarete;
-            this._texte = texte;
             this._type = type;
+            this._id = id;
+            this._nom = nom;
+            this._extension = extension;
+            this._rarete = rarete;
+            this._cout = cout;
+            this._texte = texte;
+            this._classe = classe;
+            this._attaque = attaque;
             this._vie = vie;
+            this.Race = race;
+            this._durabilite = durabilite;
         }
 
        #endregion

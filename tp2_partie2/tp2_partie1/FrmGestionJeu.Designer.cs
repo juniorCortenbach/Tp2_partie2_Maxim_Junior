@@ -165,7 +165,7 @@
             this.lstPourTest.Name = "lstPourTest";
             this.lstPourTest.Size = new System.Drawing.Size(450, 342);
             this.lstPourTest.TabIndex = 9;
-            this.lstPourTest.SelectedIndexChanged += new System.EventHandler(this.lstPourTest_SelectedIndexChanged);
+
             // 
             // FrmGestionJeu
             // 

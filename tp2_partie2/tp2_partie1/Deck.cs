@@ -111,6 +111,7 @@ namespace tp2_partie1
 
         #region MÉTHODES
 
+        /*
         public void AjouterCartes(Carte carteAjoutee, byte nbCopies)
         {
             byte nbCartesLegendaires=0;
@@ -150,9 +151,9 @@ namespace tp2_partie1
                 carteAjoutee.Rarete, carteAjoutee.Attaque, carteAjoutee.Texte, carteAjoutee.Classe, carteAjoutee.Cout,
                 carteAjoutee.Durabilite, carteAjoutee.LstMeca, carteAjoutee.Vie);
             }
+            
 
-
-        }
+        }*/
 
         public void ObtenirQtCarte()
         {
