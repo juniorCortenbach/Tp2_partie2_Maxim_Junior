@@ -10,10 +10,8 @@
 #region USING
 
 using System;
-using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using tp2_partie1;
-
 
 #endregion
 
@@ -50,7 +48,7 @@ namespace TestsUnitaires
 
             Assert.AreEqual("Mischievous Wizards", deck.Nom);
             Assert.AreSame(heroMage, deck.Heros);
-            Assert.AreEqual(0, ((ICollection) deck.LstCartesAvecQt).Count);
+            Assert.AreEqual(0, deck.LstCartesAvecQt.Count);
             // Test de la propriété qui permet d'obtenir le nombre total de cartes dans le deck.
             Assert.AreEqual(0, deck.NbTotalCartes);
         }

@@ -91,10 +91,10 @@ namespace tp2_partie1
             HearthstoneData data = new HearthstoneData();
             this._gestion = new HearthstoneData();
 
-            for (int i = 0; i < 100; i++)
-            {
-                this.lstPourTest.Items.Add(Utilitaire.ChargerCartes(HearthstoneData.CheminFichierCarte));
-            }
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    this.lstPourTest.Items.Add(Utilitaire.ChargerCartes(HearthstoneData.CheminFichierCarte));
+            //}
             
            //Retrait des images des cartes et du tableau de cartes du formulaire.
            this.imgCartes.Hide();
