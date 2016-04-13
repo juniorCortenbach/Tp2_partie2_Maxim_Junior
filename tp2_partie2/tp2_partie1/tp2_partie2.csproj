@@ -59,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Carte.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="DeckEntree.cs" />
     <Compile Include="FrmGestionJeu.cs">
