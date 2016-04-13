@@ -123,8 +123,7 @@ namespace tp2_partie1
                 if (((this.Type == CarteType.Weapon) || (this.Type == CarteType.Minion)) &&
                     ((value < 0) || (value > 12)))
                 {
-                    throw new ArgumentOutOfRangeException(null,
-                        "L'attaque doit être entre 0 et 12, inclusivement. et le type doit être serviteur ou arme");
+                    throw new ArgumentOutOfRangeException("L'attaque doit être entre 0 et 12, inclusivement. et le type doit être serviteur ou arme");
                 }
                 // Validation de l'attaque doit être -1 et le type doit être sort
                 // ======================================================
@@ -210,9 +209,10 @@ namespace tp2_partie1
             set
             {
                 //Regex qui valide l'id de la carte
-                Regex idCarteRegex = new Regex("[A-Za-z0-9]{6}_[1-9]{3}");
+                Regex idCarteRegex = new Regex("[a-zA-Z0-9]{2,3}_[0-9]{3}");
+            
                 //Valide que la carte 
-                if (idCarteRegex.ToString().Trim() != this.Id.Trim().ToString())
+                if (!idCarteRegex.IsMatch(value))
                 {
                     throw new ArgumentOutOfRangeException(null,
                         "L'id doit contenir entre 2 et 6 caractères parmi les lettres minuscules et majuscules et les chiffres de (0 à 9) suivit du caractère de soulignement, _ entre 1 et 3 chiffres de (0 à 9)");
@@ -348,18 +348,19 @@ namespace tp2_partie1
             CarteRarete rarete, ushort cout, string texte, HerosClasse classe, sbyte attaque, sbyte durabilite,
              ServiteurRace raceServiteur, sbyte vie)
         {
-            this._attaque = attaque;
-            this._classe = classe;
-            this._cout = cout;
-            this._durabilite = durabilite;
-            this._extension = extension;
-            this._id = id;
-            this._race = raceServiteur;
-            this._nom = nom;
-            this._rarete = rarete;
-            this._texte = texte;
-            this._type = type;
-            this._vie = vie;
+            this.Type = type;
+            this.Id = id;
+            this.Nom = nom;
+            this.Extension = extension;
+            this.Rarete = rarete;
+            this.Cout = cout;
+            this.Texte = texte;
+            this.Classe = classe;
+            this.Attaque = attaque;
+            this.Durabilite = durabilite;
+            this.Race = raceServiteur;
+            this.LstMeca = new List<CarteMecanique>();
+            this.Vie = vie;
         }
 
        #endregion

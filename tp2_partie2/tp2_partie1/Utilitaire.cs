@@ -121,9 +121,6 @@ namespace tp2_partie1
                     //mecanique, de la rareté, de la classe et de la race.
                     if (elemCarte.GetElementsByTagName("type")[0].InnerText.Length != 0)
                     {
-
-                        int longeurChaine = elemCarte.GetElementsByTagName("type")[0].InnerText.Length;
-
                         string ChaineUn = elemCarte.GetElementsByTagName("type")[0].InnerText.Remove(1);
 
                         string ChaineDeux = elemCarte.GetElementsByTagName("type")[0].InnerText.ToLower();
@@ -138,7 +135,7 @@ namespace tp2_partie1
                     {
                         type = CarteType.Minion;
                     }
-                    if (elemCarte.GetElementsByTagName("attack")[0].InnerText.Length != 0)
+                    if (elemCarte.GetElementsByTagName("attack").Count != 0)
                     {
                         attaque = Convert.ToSByte(elemCarte.GetElementsByTagName("attack")[0].InnerText);
                     }
@@ -232,7 +229,7 @@ namespace tp2_partie1
                     {
                         id = "";
                     }
-                    if (elemCarte.GetElementsByTagName("health")[0].InnerText.Length != 0)
+                    if (elemCarte.GetElementsByTagName("health").Count != 0)
                     { 
                         vie = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
                     }
@@ -255,10 +252,8 @@ namespace tp2_partie1
                             string chaineDeux = elemCarte.GetElementsByTagName("mechanics")[0].InnerText.ToLower();
                             string chaineFinale = chaineUn + chaineDeux.Remove(0, 1);
 
-                            lstMeca =
-                          (List<CarteMecanique>) Enum.Parse(typeof(CarteMecanique), chaineFinale);
- 
-                            tabCartes[i].AjouterMecanique(lstMeca[j]);
+
+                            tabCartes[i].AjouterMecanique((CarteMecanique)Enum.Parse(typeof(CarteMecanique), chaineFinale));
                         }
                     }
 
