@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 #endregion
 
@@ -32,7 +33,7 @@ namespace tp2_partie1
         /// <summary>
         /// Tableau de cartes.
         /// </summary>
-        private Carte[] _lstCartesAvecQt;
+        private List <Carte> _lstCartesAvecQt;
 
         /// <summary>
         /// Nom du deck.
@@ -61,7 +62,7 @@ namespace tp2_partie1
         /// <summary>
         /// Tableau de cartes.
         /// </summary>
-        public Carte[] LstCartesAvecQt
+        public List<Carte> LstCartesAvecQt
         {
             get { return this._lstCartesAvecQt; }
             set { this._lstCartesAvecQt = value; }
@@ -158,24 +159,34 @@ namespace tp2_partie1
         {
             byte quantitéCarte = 0;
 
-            for (int i = 0; i < this.LstCartesAvecQt.Length; i++)
+            try
             {
-                if (this.LstCartesAvecQt[i] == carteLue)
-                    quantitéCarte++;
-            }
+                for (int i = 0; i < this.LstCartesAvecQt.Count; i++)
+                {
+                    if (this.LstCartesAvecQt[i] == carteLue)
+                        quantitéCarte++;
+                }
 
+            }
+            catch (Exception e)
+            {  
+               MessageBox.Show("erreur" {0});
+            }
+          
             return quantitéCarte;
         }
 
-        public void RetirerCarte(Carte carteRetiree, bool toutesCopiesRetirees)
+        public int RetirerCarte(Carte carteRetiree, bool toutesCopiesRetirees)
         {
+            int nbCopiesRetirees = ObtenirQtCarte(carteRetiree);
+
             if (toutesCopiesRetirees)
-                for (int i = 0; i < ObtenirQtCarte(carteRetiree); i++)
-                {
-                    Array.Resize(ref this._lstCartesAvecQt, this.LstCartesAvecQt.Length - 1);
-                }
+                this.LstCartesAvecQt = null;
             else
-                Array.Resize(ref this._lstCartesAvecQt, this.LstCartesAvecQt.Length -1);
+              this.LstCartesAvecQt.Remove(carteRetiree);
+                nbCopiesRetirees = 1;
+
+            return nbCopiesRetirees;
         }
 
         #endregion
