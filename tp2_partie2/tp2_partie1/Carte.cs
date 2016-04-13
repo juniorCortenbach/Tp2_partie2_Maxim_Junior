@@ -26,6 +26,14 @@ namespace tp2_partie1
     /// </summary>
     public class Carte : IComparable<Carte>
     {
+        #region CONSTANTE
+
+        public const byte CoutMax = 20;
+        public const byte AttaqueMax = 12;
+        public const byte VieMax = 15;
+        public const byte DurabiliteMax = 8;
+
+        #endregion
         #region ATTRIBUTS
 
         /// <summary>

@@ -156,7 +156,14 @@ namespace tp2_partie1
                     }
                     if (elemCarte.GetElementsByTagName("set")[0].InnerText.Length != 0)
                     {
-                        extension = (CarteExtension) Enum.Parse(typeof (CarteExtension), elemCarte.GetElementsByTagName("set")[0].InnerText);
+                        int longeurChaine = elemCarte.GetElementsByTagName("set")[0].InnerText.Length;
+
+                        string ChaineUn = elemCarte.GetElementsByTagName("set")[0].InnerText.Remove(1);
+
+                        string ChaineDeux = elemCarte.GetElementsByTagName("set")[0].InnerText.ToLower();
+                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+
+                        extension = (CarteExtension) Enum.Parse(typeof (CarteExtension), ChaineFinale);
                     }
                     else
                     {
@@ -203,8 +210,15 @@ namespace tp2_partie1
                         texte = "";
                     }
                     if (elemCarte.GetElementsByTagName("rarity")[0].InnerText.Length != 0)
-                    { 
-                        rarete = (CarteRarete) Enum.Parse(typeof (CarteRarete), elemCarte.GetElementsByTagName("rarity")[0].InnerText);
+                    {
+                        int longeurChaine = elemCarte.GetElementsByTagName("rarity")[0].InnerText.Length;
+
+                        string ChaineUn = elemCarte.GetElementsByTagName("rarity")[0].InnerText.Remove(1);
+
+                        string ChaineDeux = elemCarte.GetElementsByTagName("rarity")[0].InnerText.ToLower();
+                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+
+                        rarete = (CarteRarete) Enum.Parse(typeof (CarteRarete), ChaineFinale);
                     }
                     else
                     {
