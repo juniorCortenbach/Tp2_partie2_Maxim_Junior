@@ -176,8 +176,7 @@ namespace tp2_partie1
                 // ===========================================================================
                 if ((this.Type == CarteType.Weapon) && ((value < 1) || (value > 8)))
                 {
-                    throw new ArgumentOutOfRangeException(null,
-                        "La durabilité doit être entre 1 et 8, inclusivement. et le type doit être arme");
+                    throw new ArgumentOutOfRangeException("La durabilité doit être entre 1 et 8, inclusivement. et le type doit être arme");
                 }
                 // Validation de la durabilité doit être -1 et le type doit être serviteur et sort.
                 // ================================================================================
@@ -324,15 +323,13 @@ namespace tp2_partie1
                 // ==========================================================================================
                 if ((this.Type == CarteType.Minion)  && ((value < 0) || (value > 15)))
                 {
-                    throw new ArgumentOutOfRangeException(null,
-                        "La vie doit être entre 0 et 15, inclusivement. et le type doit être un serviteur");
+                    throw new ArgumentOutOfRangeException("La vie doit être entre 0 et 15, inclusivement. et le type doit être un serviteur");
                 }
                 // Validation de la vie, doit être -1 et le type doit être sort et arme
                 // ======================================================
                 if ((this.Type == CarteType.Spell)||((this.Type == CarteType.Weapon) && (this.Vie == -1)))
                 {
-                    throw new ArgumentOutOfRangeException(null,
-                        "La vie doit être -1. et le type doit être sort ou arme");
+                    throw new ArgumentOutOfRangeException("La vie doit être -1. et le type doit être sort ou arme");
                 }
                 // La vie prévue est valide; on la conserve dans l'attribut. 
                 this._vie = value;
@@ -359,8 +356,8 @@ namespace tp2_partie1
             this.Attaque = attaque;
             this.Durabilite = durabilite;
             this.Race = raceServiteur;
-            this.LstMeca = new List<CarteMecanique>();
             this.Vie = vie;
+            this.LstMeca = new List<CarteMecanique>();
         }
 
        #endregion
