@@ -170,7 +170,7 @@ namespace tp2_partie1
             }
             catch (Exception e)
             {  
-               MessageBox.Show("erreur" {0});
+
             }
           
             return quantitéCarte;
