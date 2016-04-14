@@ -71,7 +71,7 @@ namespace tp2_partie1
 
 
             // Récupération de tous les éléments "Cartes".
-            XmlNodeList listeElemHeros = xmlDoc.SelectNodes("/cards/card[type=='HERO']");
+            XmlNodeList listeElemHeros = xmlDoc.SelectNodes("/cards/card[type='HERO']");
 
             // Création du tableau de cartes; la taille est déterminée par le nombre d'éléments "Heros".
             Heros[] tabHeros = new Heros[listeElemHeros.Count];
@@ -140,7 +140,7 @@ namespace tp2_partie1
                     {
                         rarete = (CarteRarete) Enum.Parse(typeof (CarteRarete), "");
                     }
-                if (elemHeros.GetElementsByTagName("PlayerClass")[0].InnerText.Length != 0)
+                if (elemHeros.GetElementsByTagName("PlayerClass").Count != 0)
                      {
                          string ChaineUn = elemHeros.GetElementsByTagName("PlayerClass")[0].InnerText.Remove(1);
 
@@ -150,8 +150,8 @@ namespace tp2_partie1
                      }
                     else
                     {
-                          classe = (HerosClasse) Enum.Parse(typeof (HerosClasse), "");
-                    }
+                        classe = (HerosClasse)Enum.Parse(typeof(HerosClasse), "");
+                          }
                 if (elemHeros.GetElementsByTagName("health")[0].InnerText.Length != 0)
                 {
                     vie = byte.Parse(elemHeros.GetElementsByTagName("haelth")[0].InnerText);
