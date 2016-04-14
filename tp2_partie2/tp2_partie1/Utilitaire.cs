@@ -119,11 +119,17 @@ namespace tp2_partie1
                     string ChaineUn = elemHeros.GetElementsByTagName("set")[0].InnerText.Remove(1);
 
                     string ChaineDeux = elemHeros.GetElementsByTagName("set")[0].InnerText.ToLower();
-                    string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+                    string ChaineTrois = ChaineUn + ChaineDeux.Remove(0, 1);
+                    string ChaineFinale = ChaineTrois.Replace("_", "");
 
-                    extension = (CarteExtension)Enum.Parse(typeof(CarteExtension), ChaineFinale);
+
+                    extension = (CarteExtension)
+               Enum.Parse(typeof(CarteExtension), ChaineFinale);
+
+
+
                 }
-                else
+                    else
                 {
                     extension = CarteExtension.Brm;
                 }
@@ -141,20 +147,20 @@ namespace tp2_partie1
                         rarete = (CarteRarete) Enum.Parse(typeof (CarteRarete), "");
                     }
                 if (elemHeros.GetElementsByTagName("PlayerClass").Count != 0)
-                     {
-                         string ChaineUn = elemHeros.GetElementsByTagName("PlayerClass")[0].InnerText.Remove(1);
+                {
+                    string ChaineUn = elemHeros.GetElementsByTagName("PlayerClass")[0].InnerText.Remove(1);
 
-                         string ChaineDeux = elemHeros.GetElementsByTagName("PlayerClass")[0].InnerText.ToLower();
-                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
-                         classe = (HerosClasse) Enum.Parse(typeof (HerosClasse), ChaineFinale);
-                     }
-                    else
-                    {
-                        classe = (HerosClasse)Enum.Parse(typeof(HerosClasse), "");
-                          }
+                    string ChaineDeux = elemHeros.GetElementsByTagName("PlayerClass")[0].InnerText.ToLower();
+                    string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+                    classe = (HerosClasse) Enum.Parse(typeof (HerosClasse), ChaineFinale);
+                }
+                else
+                {
+                    classe = HerosClasse.Mage;
+                }
                 if (elemHeros.GetElementsByTagName("health")[0].InnerText.Length != 0)
                 {
-                    vie = byte.Parse(elemHeros.GetElementsByTagName("haelth")[0].InnerText);
+                    vie = byte.Parse(elemHeros.GetElementsByTagName("health")[0].InnerText);
                 }
                 else
                 {
@@ -233,7 +239,7 @@ namespace tp2_partie1
             String texte;
             CarteRarete rarete;
             List<CarteMecanique> lstMeca = null;
-            HerosClasse classe = HerosClasse.Neutre;
+            HerosClasse classe;
             ServiteurRace race;
             CarteType type;
             XmlElement elemCarte = null;
@@ -366,6 +372,18 @@ namespace tp2_partie1
                     {
                         id = "";
                     }
+                    if (elemCarte.GetElementsByTagName("PlayerClass").Count != 0)
+                    {
+                        string ChaineUn = elemCarte.GetElementsByTagName("PlayerClass")[0].InnerText.Remove(1);
+
+                        string ChaineDeux = elemCarte.GetElementsByTagName("PlayerClass")[0].InnerText.ToLower();
+                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+                        classe = (HerosClasse)Enum.Parse(typeof(HerosClasse), ChaineFinale);
+                    }
+                    else
+                    {
+                        classe = HerosClasse.Mage;
+                    }
                     if (elemCarte.GetElementsByTagName("health").Count != 0)
                     { 
                         vie = (sbyte) Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
@@ -375,8 +393,7 @@ namespace tp2_partie1
                         vie = -1;
                     }
                     // Création de l'objet "Carte" dans le tableau.
-                    tabCartes[i] = new Carte(type, id, nom, extension, rarete, cout, texte, classe, attaque, 
-                    durabilite, race, vie);
+                    tabCartes[i] = new Carte(type,id,nom,extension,rarete,cout,texte,classe,attaque,vie,race,durabilite);
 
                     for (int j = 0; j < compteurMechanics; j++)
                     {

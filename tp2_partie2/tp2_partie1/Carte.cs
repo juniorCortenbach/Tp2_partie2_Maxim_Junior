@@ -207,6 +207,16 @@ namespace tp2_partie1
             get { return this._id; }
             set
             {
+                if (value == null)
+                    throw new ArgumentNullException(null, "Le nom ne doit pas être nul.");
+                // Retrait des espaces superflus (seulement si le titre n'est pas nul, autrement ça va lever l'exception NullReferenceExcpetion).
+                String idTrime = value.Trim();
+                // Le nom doit contenir au moins 3 caractères.
+                if (idTrime.Length < 3)
+                    throw new ArgumentException("Le nom doit contenir au moins 3 caractères.");
+                // Le titre est valide; on le conserve dans l'attribut.
+                this._nom = idTrime;
+
                 //Regex qui valide l'id de la carte
                 Regex idCarteRegex = new Regex("[a-zA-Z0-9]{2,6}_[0-9a-z]{1,4}");
             
@@ -216,7 +226,7 @@ namespace tp2_partie1
                     throw new ArgumentOutOfRangeException("L'id doit contenir entre 2 et 6 caractères parmi les lettres minuscules et majuscules et les chiffres de (0 à 9) suivit du caractère de soulignement, _ entre 1 et 3 chiffres de (0 à 9)");
                 }
                 // L'id prévue est valide; on la conserve dans l'attribut.
-                this._id = value;
+                this._id= idTrime;
             }
         }
 
@@ -296,8 +306,15 @@ namespace tp2_partie1
             get { return this._texte; }
             set
             {
-                string texteTrime = value.Trim();
-                this._texte = texteTrime;
+                // Validation du titre
+                // ===================
+                // Le titre ne doit pas être nul.
+                if (value == null)
+                    throw new ArgumentNullException(null, "Le text ne doit pas être nul.");
+                // Retrait des espaces superflus (seulement si le titre n'est pas nul, autrement ça va lever l'exception NullReferenceExcpetion).
+                String texteTrime = value.Trim();
+
+                    this._texte = texteTrime;
             }
         }
 
@@ -320,7 +337,7 @@ namespace tp2_partie1
             {
                 // Validation de la vie 
                 // ==========================================================================================
-                if ((this.Type == CarteType.Minion)  && ((value < 0) || (value > 15)))
+                if ((this.Type == CarteType.Minion)  && ((value < 1) || (value > 15)))
                 {
                     throw new ArgumentOutOfRangeException("La vie doit être entre 0 et 15, inclusivement. et le type doit être un serviteur");
                 }
@@ -341,8 +358,8 @@ namespace tp2_partie1
         #region CONSTRUCTEUR
 
         public Carte(CarteType type, string id, string nom, CarteExtension extension,
-            CarteRarete rarete, ushort cout, string texte, HerosClasse classe, sbyte attaque, sbyte durabilite,
-             ServiteurRace raceServiteur, sbyte vie)
+            CarteRarete rarete, ushort cout, string texte, HerosClasse classe, sbyte attaque, sbyte vie,
+             ServiteurRace raceServiteur, sbyte durabilite)
         {
             this.Type = type;
             this.Id = id;

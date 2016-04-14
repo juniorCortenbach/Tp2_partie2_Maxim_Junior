@@ -106,6 +106,13 @@ namespace tp2_partie1
             get { return this._id; }
             set
             {
+                // Validation du titre
+                // ===================
+                // Le titre ne doit pas être nul.
+                if (value == null)
+                    throw new ArgumentNullException(null, "L'id ne peut être null");
+                // Retrait des espaces superflus (seulement si le titre n'est pas nul, autrement ça va lever l'exception NullReferenceExcpetion).
+                String idTrime = value.Trim();
                 //Regex qui valide l'id de l'héros 
                 Regex idHerosRegex = new Regex("HERO_[0-9a-z]{2,3}");
                 //Valide qu'il y a HERO_ suivit de deux chiffre entre 0-9 
@@ -115,7 +122,7 @@ namespace tp2_partie1
                         "L'id doit être HERO_ suivit de 2 chiffres.");
                 }
                 // L'id prévue est valide; on la conserve dans l'attribut.
-             this._id = value;
+             this._id = idTrime;
             }
         }
 
@@ -137,7 +144,7 @@ namespace tp2_partie1
                 if (nomTrime.Length < 3)
                     throw new ArgumentException("Le nom doit contenir au moins 3 caractères.");
                 // Le nom est valide; on le conserve dans l'attribut.
-                this._nom = value;
+                this._nom = nomTrime;
             }
         }
 
