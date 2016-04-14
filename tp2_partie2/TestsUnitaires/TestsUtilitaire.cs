@@ -27,7 +27,7 @@ namespace TestsUnitaires
     {
         #region MÉTHODES
 
-        /*// ChargerHero
+      // ChargerHero
         // ===========
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace TestsUnitaires
             // Création d'un chemin trop long.
             String chemin = new string('x', 300) + ".xml";
             Utilitaire.ChargerHeros(chemin);
-        }*/
+        }
 
         // ChargerCartes
         // =============

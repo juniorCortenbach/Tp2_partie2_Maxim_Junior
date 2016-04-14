@@ -208,13 +208,12 @@ namespace tp2_partie1
             set
             {
                 //Regex qui valide l'id de la carte
-                Regex idCarteRegex = new Regex("[a-zA-Z0-9]{2,3}_[0-9]{3}");
+                Regex idCarteRegex = new Regex("[a-zA-Z0-9]{2,6}_[0-9a-z]{1,4}");
             
                 //Valide que la carte 
-                if (!idCarteRegex.IsMatch(value))
+                if (idCarteRegex.IsMatch(value)==false)
                 {
-                    throw new ArgumentOutOfRangeException(null,
-                        "L'id doit contenir entre 2 et 6 caractères parmi les lettres minuscules et majuscules et les chiffres de (0 à 9) suivit du caractère de soulignement, _ entre 1 et 3 chiffres de (0 à 9)");
+                    throw new ArgumentOutOfRangeException("L'id doit contenir entre 2 et 6 caractères parmi les lettres minuscules et majuscules et les chiffres de (0 à 9) suivit du caractère de soulignement, _ entre 1 et 3 chiffres de (0 à 9)");
                 }
                 // L'id prévue est valide; on la conserve dans l'attribut.
                 this._id = value;

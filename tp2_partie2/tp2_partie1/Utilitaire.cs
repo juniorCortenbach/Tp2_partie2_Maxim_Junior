@@ -35,7 +35,137 @@ namespace tp2_partie1
 
         public static Heros[] ChargerHeros(String cheminFichier)
         {
-            return null;
+
+            // Création d'un document XML (un objet .NET) à partir du fichier au format XML (désérialisation).
+            XmlDocument xmlDoc = null;
+            try
+            {
+                cheminFichier = "cards-collectible.xml";
+            }
+            catch (FileNotFoundException fnfe2)
+            {
+                return null;
+            }
+
+            try
+            {
+                xmlDoc
+                    = new XmlDocument();
+
+                xmlDoc.Load(cheminFichier);
+
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                return null;
+            }
+            catch (OverflowException oe)
+            {
+                Console.WriteLine("chemin trop long");
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException(null, "erreur inconnue");
+            }
+
+
+
+            // Récupération de tous les éléments "Cartes".
+            XmlNodeList listeElemHeros = xmlDoc.SelectNodes("/cards/card[type=='HERO']");
+
+            // Création du tableau de cartes; la taille est déterminée par le nombre d'éléments "Heros".
+            Heros[] tabHeros = new Heros[listeElemHeros.Count];
+
+            // Variables utilitaires pour la création d'un objet "Carte".
+            HerosClasse classe;
+            CarteExtension extension;
+            string id;
+            string nom;
+            CarteRarete rarete;
+            byte vie;
+            XmlElement elemHeros = null;
+     
+
+            for (int i = 0; i < listeElemHeros.Count; i++)
+            {
+                // Récupération du noeud "Heros" à traiter.
+                elemHeros = (XmlElement)listeElemHeros[i];
+
+              
+                // Récupération du noeud "Heros" à traiter.
+                elemHeros = (XmlElement)listeElemHeros[i];
+
+
+                if (elemHeros.GetElementsByTagName("id").Count != 0)
+                {
+                    id = elemHeros.GetElementsByTagName("id")[0].InnerText;
+                }
+                else
+                {
+                    id = "";
+                }
+
+                if (elemHeros.GetElementsByTagName("name").Count != 0)
+                {
+                    nom = elemHeros.GetElementsByTagName("name")[0].InnerText;
+                }
+                else
+                {
+                    nom = "";
+                }
+
+                if (elemHeros.GetElementsByTagName("set")[0].InnerText.Length != 0)
+                {
+                    string ChaineUn = elemHeros.GetElementsByTagName("set")[0].InnerText.Remove(1);
+
+                    string ChaineDeux = elemHeros.GetElementsByTagName("set")[0].InnerText.ToLower();
+                    string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+
+                    extension = (CarteExtension)Enum.Parse(typeof(CarteExtension), ChaineFinale);
+                }
+                else
+                {
+                    extension = CarteExtension.Brm;
+                }
+                if (elemHeros.GetElementsByTagName("rarity")[0].InnerText.Length != 0)
+                    {
+                        string ChaineUn = elemHeros.GetElementsByTagName("rarity")[0].InnerText.Remove(1);
+
+                        string ChaineDeux = elemHeros.GetElementsByTagName("rarity")[0].InnerText.ToLower();
+                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+
+                        rarete = (CarteRarete) Enum.Parse(typeof (CarteRarete), ChaineFinale);
+                    }
+                    else
+                    {
+                        rarete = (CarteRarete) Enum.Parse(typeof (CarteRarete), "");
+                    }
+                if (elemHeros.GetElementsByTagName("PlayerClass")[0].InnerText.Length != 0)
+                     {
+                         string ChaineUn = elemHeros.GetElementsByTagName("PlayerClass")[0].InnerText.Remove(1);
+
+                         string ChaineDeux = elemHeros.GetElementsByTagName("PlayerClass")[0].InnerText.ToLower();
+                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+                         classe = (HerosClasse) Enum.Parse(typeof (HerosClasse), ChaineFinale);
+                     }
+                    else
+                    {
+                          classe = (HerosClasse) Enum.Parse(typeof (HerosClasse), "");
+                    }
+                if (elemHeros.GetElementsByTagName("health")[0].InnerText.Length != 0)
+                {
+                    vie = byte.Parse(elemHeros.GetElementsByTagName("haelth")[0].InnerText);
+                }
+                else
+                {
+                    vie = 0;
+                }
+                // Création de l'objet "Heros" dans le tableau.
+                tabHeros[i] = new Heros(id,nom,extension,rarete,classe,vie);
+                
+         }
+            // On retourne le tableau de Heros créé.
+            return tabHeros;
         }
 
 
@@ -205,7 +335,7 @@ namespace tp2_partie1
                     {
                         nom = "";
                     }
-                    if (elemCarte.GetElementsByTagName("text")[0].InnerText.Length != 0)
+                    if (elemCarte.GetElementsByTagName("text").Count != 0)
                     {
                         texte = elemCarte.GetElementsByTagName("text")[0].InnerText;
                     }
@@ -252,15 +382,19 @@ namespace tp2_partie1
                     {
                         if (elemCarte.GetElementsByTagName("mechanics")[j].InnerText.Length != 0)
                         {
-                            int longeurChaine = elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Length;
+                             string chaineInitial = (elemCarte.GetElementsByTagName("mechanics")[0].InnerText).ToString();
 
-                            string chaineUn = elemCarte.GetElementsByTagName("mechanics")[0].InnerText.Remove(1);
-
-                            string chaineDeux = elemCarte.GetElementsByTagName("mechanics")[0].InnerText.ToLower();
-                            string chaineFinale = chaineUn + chaineDeux.Remove(0, 1);
+                             string ChaineFormater = "";
 
 
-                            tabCartes[i].AjouterMecanique((CarteMecanique)Enum.Parse(typeof(CarteMecanique), chaineFinale));
+                             ChaineFormater = chaineInitial.Replace("_", " ");
+                             ChaineFormater =
+                                 System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(ChaineFormater.ToLower());
+
+                             ChaineFormater = ChaineFormater.Replace(" ", "").Trim();
+
+
+                            tabCartes[i].AjouterMecanique((CarteMecanique)Enum.Parse(typeof(CarteMecanique), ChaineFormater));
                         }
                     }
 

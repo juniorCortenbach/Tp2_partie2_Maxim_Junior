@@ -56,6 +56,8 @@
     <Compile Include="TestsHearthstoneData.cs" />
     <Compile Include="TestsCarte.cs" />
     <Compile Include="TestsDeck.cs" />
+    <Compile Include="TestsHeros.cs" />
+    <Compile Include="TestsDeckEntree.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\tp2_partie1\tp2_partie2.csproj">

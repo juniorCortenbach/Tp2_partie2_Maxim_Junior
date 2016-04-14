@@ -63,9 +63,9 @@ namespace tp2_partie1
 
 
         #region CONSTANTES
-
-        const byte VieMax=0;
-        const byte VieMin=0;
+       
+       public const byte VieMin = 10;
+       public const byte VieMax=100;
 
         #endregion
 
@@ -107,9 +107,9 @@ namespace tp2_partie1
             set
             {
                 //Regex qui valide l'id de l'héros 
-                Regex idHerosRegex = new Regex("HERO_[0-9]{2}");
+                Regex idHerosRegex = new Regex("HERO_[0-9a-z]{2,3}");
                 //Valide qu'il y a HERO_ suivit de deux chiffre entre 0-9 
-                if (idHerosRegex.ToString().Trim() != this.Id.Trim().ToString())
+                if (idHerosRegex.IsMatch(value) == false)
                 {
                     throw new ArgumentOutOfRangeException(null,
                         "L'id doit être HERO_ suivit de 2 chiffres.");
@@ -190,12 +190,12 @@ namespace tp2_partie1
         /// <param name="vie"></param>
         public Heros(string id, string nom, CarteExtension extension, CarteRarete rarete, HerosClasse classe, byte vie)
         {
-            this._classe = classe;
-            this._extension = extension;
-            this._id = id;
-            this._nom = nom;
-            this._rarete = rarete;
-            this._vie = vie;
+            this.Id = id;
+            this.Nom = nom;
+            this.Extension = extension;
+            this.Rarete = rarete;
+            this.Classe = classe;
+            this.Vie = vie;
         }
 
 
