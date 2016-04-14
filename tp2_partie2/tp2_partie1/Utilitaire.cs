@@ -176,7 +176,14 @@ namespace tp2_partie1
                     }
                     if (elemCarte.GetElementsByTagName("race").Count != 0)
                     {
-                        race = (ServiteurRace) Enum.Parse(typeof (ServiteurRace), elemCarte.GetElementsByTagName("race")[0].InnerText);
+                        int longeurChaine = elemCarte.GetElementsByTagName("race")[0].InnerText.Length;
+
+                        string ChaineUn = elemCarte.GetElementsByTagName("race")[0].InnerText.Remove(1);
+
+                        string ChaineDeux = elemCarte.GetElementsByTagName("race")[0].InnerText.ToLower();
+                        string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
+
+                        race = (ServiteurRace)Enum.Parse(typeof(ServiteurRace), ChaineFinale);
                     }
                     else
                     {

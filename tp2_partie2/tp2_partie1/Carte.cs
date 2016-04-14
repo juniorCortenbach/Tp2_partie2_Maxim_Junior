@@ -327,7 +327,7 @@ namespace tp2_partie1
                 }
                 // Validation de la vie, doit être -1 et le type doit être sort et arme
                 // ======================================================
-                if ((this.Type == CarteType.Spell)||((this.Type == CarteType.Weapon) && (this.Vie == -1)))
+                if (((this.Type == CarteType.Spell)||(this.Type == CarteType.Weapon)) && (this.Vie == -1))
                 {
                     throw new ArgumentOutOfRangeException("La vie doit être -1. et le type doit être sort ou arme");
                 }
