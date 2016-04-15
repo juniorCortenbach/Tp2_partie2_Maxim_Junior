@@ -267,7 +267,7 @@ namespace tp2_partie1
                     string ChaineFinale = ChaineUn + ChaineDeux.Remove(0, 1);
 
                     type = (CarteType)
-                        Enum.Parse(typeof(CarteType), ChaineFinale);
+               Enum.Parse(typeof(CarteType), ChaineFinale);
 
 
                 }
@@ -416,13 +416,12 @@ namespace tp2_partie1
                         {
                             string chaineInitial = (elemCarte.GetElementsByTagName("mechanics")[0].InnerText).ToString();
 
-                            string ChaineFormater = "";
-
+                            string ChaineFormater = chaineInitial.Substring(0, 1) + chaineInitial.Substring(1).ToLower();
 
                             ChaineFormater = chaineInitial.Replace("_", " ");
                             ChaineFormater =
                                 System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(
-                                    ChaineFormater.ToLower());
+                                    ChaineFormater);
 
                             ChaineFormater = ChaineFormater.Replace(" ", "").Trim();
 
