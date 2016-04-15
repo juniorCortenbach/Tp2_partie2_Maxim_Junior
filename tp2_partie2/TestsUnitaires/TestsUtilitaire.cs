@@ -288,7 +288,7 @@ namespace TestsUnitaires
             String chemin = new string('x', 300) + ".xml";
             Utilitaire.ChargerCartes(chemin);
         }
-        /*
+       
         // EnregisterDeck
         // ==============
 
@@ -459,7 +459,7 @@ namespace TestsUnitaires
 
             // ReSharper disable once UnusedVariable
             Deck deckCharge = Utilitaire.ChargerDeck(nomFichierDeck, new HearthstoneData());
-        }*/
+        }
 
         #endregion
     }

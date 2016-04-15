@@ -197,10 +197,17 @@ namespace tp2_partie1
                 throw new ArgumentException(null, "Le nom du fichier est invalide.");
             if (cheminFichier.Length > 100)
                 throw new ArgumentException("Impossible d'ouvrir le fichier XML.");
+
+            if (cheminFichier == null)
+            {
+                throw new XmlException();
+            }
             if (cheminFichier.Contains('_'))
             {
                 throw new ArgumentException("Le fichier n'est pas un fichier XML valide.");
             }
+
+            
             // Création d'un document XML (un objet .NET) à partir du fichier au format XML (désérialisation).
             XmlDocument xmlDoc = new XmlDocument();
 
@@ -375,46 +382,36 @@ namespace tp2_partie1
                 else
                 {
                     id = "";
-                    //}
-                    //if (elemCarte.GetElementsByTagName("mechanics").Count != 0)
-                    //{
-                    //    string chaineUn = elemCarte.GetElementsByTagName("mechanics")[0].InnerText;
+                }
+                if (elemCarte.GetElementsByTagName("playerClass").Count != 0)
+                {
+                    string chaineUn = elemCarte.GetElementsByTagName("playerClass")[0].InnerText.Remove(1);
 
-                    //    string chaineDeux = chaineUn.ToLower();
-                    //    string chaineFinale = chaineUn.Substring(0, 1).ToUpper() + chaineDeux.Substring(1);
-
-                    //    lstMeca.Add( <CarteMecanique> chaineFinale);
-                    //    ;
-                    //}
-                    if (elemCarte.GetElementsByTagName("playerClass").Count != 0)
-                    {
-                        string chaineUn = elemCarte.GetElementsByTagName("playerClass")[0].InnerText.Remove(1);
-
-                        string chaineDeux = elemCarte.GetElementsByTagName("playerClass")[0].InnerText.ToLower();
-                        string chaineFinale = chaineUn + chaineDeux.Remove(0, 1);
-                        classe = (HerosClasse)Enum.Parse(typeof(HerosClasse), chaineFinale);
-                    }
-                    else
-                    {
-                        classe = HerosClasse.Neutre;
-                    }
-                    if (elemCarte.GetElementsByTagName("health").Count != 0)
-                    {
-                        vie = (sbyte)Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
-                    }
-                    else
-                    {
-                        vie = -1;
-                    }
+                    string chaineDeux = elemCarte.GetElementsByTagName("playerClass")[0].InnerText.ToLower();
+                    string chaineFinale = chaineUn + chaineDeux.Remove(0, 1);
+                    classe = (HerosClasse)Enum.Parse(typeof(HerosClasse), chaineFinale);
+                }
+                else
+                {
+                    classe = HerosClasse.Neutre;
+                }
+                if (elemCarte.GetElementsByTagName("health").Count != 0)
+                {
+                    vie = (sbyte)Convert.ToByte(elemCarte.GetElementsByTagName("health")[0].InnerText);
+                }
+                else
+                {
+                    vie = -1;
+                }
                     // Création de l'objet "Carte" dans le tableau.
                     tabCartes[i] = new Carte(type, id, nom, extension, rarete, cout, texte, classe, attaque, vie, race,
                         durabilite);
 
-                    for (int j = 0; j < compteurMechanics; j++)
+                    for (int j = 0; j < elemCarte.GetElementsByTagName("mechanics").Count; j++)
                     {
                         if (elemCarte.GetElementsByTagName("mechanics")[j].InnerText.Length != 0)
                         {
-                            string chaineInitial = (elemCarte.GetElementsByTagName("mechanics")[0].InnerText).ToString();
+                            string chaineInitial = (elemCarte.GetElementsByTagName("mechanics")[j].InnerText).ToString();
 
                             string ChaineFormater = chaineInitial.Substring(0, 1) + chaineInitial.Substring(1).ToLower();
 
@@ -430,7 +427,7 @@ namespace tp2_partie1
                         }
                     }
 
-                }
+                
             }
             // On retourne le tableau de cartes créé.
             return tabCartes;
