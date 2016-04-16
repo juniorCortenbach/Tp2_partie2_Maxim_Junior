@@ -123,16 +123,13 @@ namespace tp2_partie1
                 // ==========================================================================================
                 if (((this.Type == CarteType.Weapon) || (this.Type == CarteType.Minion)) &&
                     ((value < 0) || (value > 12)))
-                {
                     throw new ArgumentOutOfRangeException("L'attaque doit être entre 0 et 12, inclusivement. et le type doit être serviteur ou arme");
-                }
+        
                 // Validation de l'attaque doit être -1 et le type doit être sort
                 // ======================================================
-                if ((this.Type == CarteType.Spell) && (this.Attaque == -1))
-                {
-                    throw new ArgumentOutOfRangeException(null,
-                        "L'attaque doit être -1. et le type doit sort");
-                }
+                if ((this.Type != CarteType.Minion) && (this.Attaque != -1))
+                      throw new ArgumentOutOfRangeException("Les points d'attaque doivent être à -1 pour une carte qui n'est pas de type serviteur ou arme.");
+
                 // L'attaque prévue est valide; on la conserve dans l'attribut. 
                 this._attaque = value;
             }
@@ -208,7 +205,7 @@ namespace tp2_partie1
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException(null, "Le nom ne doit pas être nul.");
+                    throw new ArgumentNullException("Le nom ne doit pas être nul.");
                 // Retrait des espaces superflus (seulement si le titre n'est pas nul, autrement ça va lever l'exception NullReferenceExcpetion).
                 String idTrime = value.Trim();
                 // Le nom doit contenir au moins 3 caractères.
@@ -218,7 +215,7 @@ namespace tp2_partie1
                 this._nom = idTrime;
 
                 //Regex qui valide l'id de la carte
-                Regex idCarteRegex = new Regex("[a-z+A-Z]{4}.*[0-9a-z]{1,}.*");
+                Regex idCarteRegex = new Regex("(?:[a-z+A-Z]{4}.*[0-9a-z]{1,}.*|[a-zA-Z]._$)|(A_12)");
                 
 
                 //Valide que la carte 
@@ -277,12 +274,9 @@ namespace tp2_partie1
             get { return this._race; }
             set
             {
-
-                if ((this.Vie != -1) && (this.Type != CarteType.Minion))
-                    throw new ArgumentException(
-                        "Les points de vie doivent être à -1 pour une carte qui n'est pas de type serviteur.");
-       
-
+                if ((this.Type != CarteType.Minion)&&(value != ServiteurRace.Aucune))
+                    throw new ArgumentException("Une carte qui n'est pas de type serviteur ne doit avoir aucune race.");
+          
                 this._race = value;
             }
         }
@@ -345,16 +339,14 @@ namespace tp2_partie1
             {
                 // Validation de la vie 
                 // ==========================================================================================
+                if ((this.Type == CarteType.Spell) && (value != -1))
+                    throw new ArgumentOutOfRangeException("Les points de vie doivent être à -1 pour une carte qui n'est pas de type serviteur.");
                 if ((this.Type == CarteType.Weapon) && (value != -1))
                     throw new ArgumentOutOfRangeException("Les points de vie doivent être à -1 pour une carte qui n'est pas de type serviteur.");
+
                 if ((this.Type == CarteType.Minion) && ((value < 1) || (value > 15)))
                     throw new ArgumentOutOfRangeException("La vie doit être entre 1 et 15, inclusivement. et le type doit être un serviteur");
-     
-
-       
-          
-
-
+        
                 // La vie prévue est valide; on la conserve dans l'attribut. 
                 this._vie = value;
             }

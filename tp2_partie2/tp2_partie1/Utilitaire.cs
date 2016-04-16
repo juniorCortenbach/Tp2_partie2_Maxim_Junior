@@ -221,25 +221,27 @@ namespace tp2_partie1
             // Création d'un document XML (un objet .NET) à partir du fichier au format XML (désérialisation).
             XmlDocument xmlDoc = new XmlDocument();
 
-            StreamReader fluxLecture = null;
 
             try
             {
                 xmlDoc = new XmlDocument();
                 xmlDoc.Load(cheminFichier);
             }
-            catch (FileNotFoundException fnfe)
+            catch (ArgumentException)
             {
-                return null;
+                throw new ArgumentException("Impossible d'ouvrir le fichier XML.");
             }
-            catch (OverflowException oe)
-            {
-                Console.WriteLine("chemin trop long");
-            }
+
             catch (Exception e)
             {
                 throw new ArgumentException(null, "erreur inconnue");
             }
+
+
+
+
+
+
 
             if (xmlDoc == null)
                 throw new ArgumentNullException(null, "Le nom du fichier ne doit pas être nul.");

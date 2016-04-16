@@ -79,13 +79,8 @@ namespace tp2_partie1
             get { return this._classe; }
             set
             {
-                //La class ne doit pas être neutre.
-
-                //if(this.Classe == HerosClasse.Neutre)
-                //    throw new ArgumentException("Un héro ne peut pas avoir la classe neutre");
-
-
-                // La class est valide; on le conserve dans l'attribut.
+             if(value == HerosClasse.Neutre)
+                 throw new ArgumentException("Un héro ne peut pas avoir la classe neutre");
                 this._classe = value;
             }
         }
@@ -111,7 +106,7 @@ namespace tp2_partie1
                 // ===================
                 // L'ID ne doit pas être nul.
                 if (value == null)
-                    throw new ArgumentNullException(null, "L'id ne peut être null");
+                    throw new ArgumentNullException("L'id ne peut être null");
                 //Regex qui valide l'id de l'héros 
                 Regex idHerosRegexTest1 = new Regex("HERO_[0-9]{2}[A-Z]");
                 if (idHerosRegexTest1.IsMatch(value))
@@ -151,7 +146,7 @@ namespace tp2_partie1
                 // ===================
                 // Le nom ne doit pas est être null
                 if (value == null)
-                    throw new ArgumentNullException(null, "Le nom ne doit pas être nul.");
+                    throw new ArgumentNullException("Le nom ne doit pas être nul.");
                 String nomTrime = value.Trim();
                 // Le nom doit contenir au moins 3 caractères.
                 if (nomTrime.Length < 3)
@@ -186,8 +181,7 @@ namespace tp2_partie1
                 // Validation de la vie qui doit être entre 10 et 100
                 // ==================================================
                 if ((value < 10) || (value > 100))
-                    throw new ArgumentOutOfRangeException(null,
-                        "La vie du héros doit être entre 10 et 100, inclusivement.");
+                    throw new ArgumentOutOfRangeException("La vie du héros doit être entre 10 et 100, inclusivement.");
                 // La vie est valide; on la conserve dans l'attribut.
                 this._vie = value;
             }
@@ -218,13 +212,6 @@ namespace tp2_partie1
             this.Vie = vie;
         }
 
-
-        /*
-        //PEUT SUPRIMMER?????????????
-        //public Heros(string classe, string garroshHellscream, CarteExtension core, CarteRarete free, HerosClasse warrior, int regexId)
-        //{
-        //    throw new NotImplementedException();
-        //} */
 
         #endregion
 
