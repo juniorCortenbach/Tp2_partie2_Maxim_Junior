@@ -79,12 +79,8 @@ namespace tp2_partie1
             get { return this._classe; }
             set
             {
-                //La class ne doit pas être neutre.
-                if (this.Classe.ToString().Contains((char) HerosClasse.Neutre))
-                {
-                    throw new ArgumentException(null, "La class ne doit pas être neutre.");
-                }
-                // La class est valide; on le conserve dans l'attribut.
+             if(value == HerosClasse.Neutre)
+                 throw new ArgumentException("Un héro ne peut pas avoir la classe neutre");
                 this._classe = value;
             }
         }
@@ -106,21 +102,33 @@ namespace tp2_partie1
             get { return this._id; }
             set
             {
-                // Validation du titre
+                // Validation de l'ID
                 // ===================
-                // Le titre ne doit pas être nul.
+                // L'ID ne doit pas être nul.
                 if (value == null)
-                    throw new ArgumentNullException(null, "L'id ne peut être null");
+                    throw new ArgumentNullException("L'id ne peut être null");
+                //Regex qui valide l'id de l'héros 
+                Regex idHerosRegexTest1 = new Regex("HERO_[0-9]{2}[A-Z]");
+                if (idHerosRegexTest1.IsMatch(value))
+                    throw new ArgumentException("L'identifiant du héro est invalide.");
+                Regex idHerosRegexTest2 = new Regex("HERO_[0-9]{1}[a-z]");
+                if (idHerosRegexTest2.IsMatch(value))
+                    throw new ArgumentException("L'identifiant du héro est invalide.");
+                Regex idHerosRegexTest3 = new Regex("HERO_[0-9]{3}");
+                if (idHerosRegexTest3.IsMatch(value))
+                    throw new ArgumentException("L'identifiant du héro est invalide.");
+                Regex idHerosRegexTest4 = new Regex(".*_HERO_.*");
+                if (idHerosRegexTest4.IsMatch(value))
+                    throw new ArgumentException("L'identifiant du héro est invalide.");
+                Regex idHerosRegexTest5 = new Regex("HERO_[0-9]{2}[a-z]{2}");
+                if (idHerosRegexTest5.IsMatch(value))
+                    throw new ArgumentException("L'identifiant du héro est invalide.");
+
+
+
                 // Retrait des espaces superflus (seulement si le titre n'est pas nul, autrement ça va lever l'exception NullReferenceExcpetion).
                 String idTrime = value.Trim();
-                //Regex qui valide l'id de l'héros 
-                Regex idHerosRegex = new Regex("HERO_[0-9a-z]{2,3}");
-                //Valide qu'il y a HERO_ suivit de deux chiffre entre 0-9 
-                if (idHerosRegex.IsMatch(value) == false)
-                {
-                    throw new ArgumentOutOfRangeException(null,
-                        "L'id doit être HERO_ suivit de 2 chiffres.");
-                }
+
                 // L'id prévue est valide; on la conserve dans l'attribut.
              this._id = idTrime;
             }
@@ -138,7 +146,7 @@ namespace tp2_partie1
                 // ===================
                 // Le nom ne doit pas est être null
                 if (value == null)
-                    throw new ArgumentNullException(null, "Le nom ne doit pas être nul.");
+                    throw new ArgumentNullException("Le nom ne doit pas être nul.");
                 String nomTrime = value.Trim();
                 // Le nom doit contenir au moins 3 caractères.
                 if (nomTrime.Length < 3)
@@ -173,8 +181,7 @@ namespace tp2_partie1
                 // Validation de la vie qui doit être entre 10 et 100
                 // ==================================================
                 if ((value < 10) || (value > 100))
-                    throw new ArgumentOutOfRangeException(null,
-                        "La vie du héros doit être entre 10 et 100, inclusivement.");
+                    throw new ArgumentOutOfRangeException("La vie du héros doit être entre 10 et 100, inclusivement.");
                 // La vie est valide; on la conserve dans l'attribut.
                 this._vie = value;
             }
@@ -205,13 +212,6 @@ namespace tp2_partie1
             this.Vie = vie;
         }
 
-
-        /*
-        //PEUT SUPRIMMER?????????????
-        //public Heros(string classe, string garroshHellscream, CarteExtension core, CarteRarete free, HerosClasse warrior, int regexId)
-        //{
-        //    throw new NotImplementedException();
-        //} */
 
         #endregion
 

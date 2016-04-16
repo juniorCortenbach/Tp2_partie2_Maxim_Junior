@@ -61,7 +61,7 @@ namespace tp2_partie1
                 // ===================
                 // Le héro ne doit pas être nul.
                 if (value == null)
-                    throw new ArgumentNullException(null, "Le héro pour le deck ne doit pas être nul.");
+                    throw new ArgumentNullException("Le héro pour le deck ne doit pas être nul.");
             }
         }
 
@@ -104,7 +104,12 @@ namespace tp2_partie1
         public byte NbTotalCartes
         {
             get { return this._nbTotalCartes; }
-            set { this._nbTotalCartes = value; }
+            set
+            {
+                if(this._nbTotalCartes<1)
+                    throw new ArgumentOutOfRangeException("Le nombre de copies d'une carte doit être d'au moins 1.");
+                this._nbTotalCartes = value;
+            }
         }
 
         #endregion
@@ -186,10 +191,11 @@ namespace tp2_partie1
 
         public byte ObtenirQtCarte(Carte carteLue)
         {
+            if (this.LstCartesAvecQt == null)
+                throw new ArgumentNullException("La liste de carte ne doit pas être nulle.");
             if (carteLue == null)
                 throw new ArgumentNullException("La carte ne doit pas être nulle.");
-            if(this.LstCartesAvecQt == null)
-                throw new ArgumentNullException("La liste de carte ne doit pas être nulle.");
+
 
             byte quantiteCarte = 0;
 

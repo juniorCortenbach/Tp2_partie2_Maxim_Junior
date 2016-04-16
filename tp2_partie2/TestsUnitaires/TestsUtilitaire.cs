@@ -288,178 +288,178 @@ namespace TestsUnitaires
             String chemin = new string('x', 300) + ".xml";
             Utilitaire.ChargerCartes(chemin);
         }
-       
-        // EnregisterDeck
-        // ==============
+        /*   
+            // EnregisterDeck
+            // ==============
 
-        /// <summary>
-        /// Tests unitaires pour la méthode "EnregisterDeck".
-        /// </summary>
-        [TestMethod]
-        public void TestEnregisterDeck1()
-        {
-            Heros heroWarrior = new Heros("HERO_01", "Garrosh Hellscream", CarteExtension.Core, CarteRarete.Free,
-                HerosClasse.Warrior, 30);
-            Deck deckWarrior = new Deck("Warriors forever", heroWarrior);
+            /// <summary>
+            /// Tests unitaires pour la méthode "EnregisterDeck".
+            /// </summary>
+            [TestMethod]
+            public void TestEnregisterDeck1()
+            {
+                Heros heroWarrior = new Heros("HERO_01", "Garrosh Hellscream", CarteExtension.Core, CarteRarete.Free,
+                    HerosClasse.Warrior, 30);
+                Deck deckWarrior = new Deck("Warriors forever", heroWarrior);
 
-            Utilitaire.EnregisterDeck("warriors_forever.xml", deckWarrior);
+                Utilitaire.EnregisterDeck("warriors_forever.xml", deckWarrior);
 
-            // ***NOTE*** : Pour vérifier le bon fonctionnement de l'enregistrement, consultez
-            // le fichier "warriors_forever.xml" qui a été créé dans le dossier /bin/Debug/Decks"
-            // du dossier du projet pour les tests.
-            // De plus, exécutez le test de chargement qui lui est associé, soit "TestChargerDeck1".
-        }
+                // ***NOTE*** : Pour vérifier le bon fonctionnement de l'enregistrement, consultez
+                // le fichier "warriors_forever.xml" qui a été créé dans le dossier /bin/Debug/Decks"
+                // du dossier du projet pour les tests.
+                // De plus, exécutez le test de chargement qui lui est associé, soit "TestChargerDeck1".
+            }
         
-        /// <summary>
-        /// Tests unitaires pour la méthode "EnregisterDeck".
-        /// </summary>
-        [TestMethod]
-        public void TestEnregisterDeck2()
-        {
-            Heros heroWarrior = new Heros("HERO_01", "Garrosh Hellscream", CarteExtension.Core, CarteRarete.Free,
-                HerosClasse.Warrior, 30);
-            Deck deckWarrior = new Deck("Warriors forever v2", heroWarrior);
+            /// <summary>
+            /// Tests unitaires pour la méthode "EnregisterDeck".
+            /// </summary>
+            [TestMethod]
+            public void TestEnregisterDeck2()
+            {
+                Heros heroWarrior = new Heros("HERO_01", "Garrosh Hellscream", CarteExtension.Core, CarteRarete.Free,
+                    HerosClasse.Warrior, 30);
+                Deck deckWarrior = new Deck("Warriors forever v2", heroWarrior);
 
-            Carte carteNonLegendaire1 = new Carte(CarteType.Minion, "GVG_103", "Micro Machine",
-                CarteExtension.Gvg, CarteRarete.Common, 2, "At the start of each turn, gain +1 Attack.",
-                HerosClasse.Neutre, 1, 2, ServiteurRace.Mechanical, -1);
+                Carte carteNonLegendaire1 = new Carte(CarteType.Minion, "GVG_103", "Micro Machine",
+                    CarteExtension.Gvg, CarteRarete.Common, 2, "At the start of each turn, gain +1 Attack.",
+                    HerosClasse.Neutre, 1, 2, ServiteurRace.Mechanical, -1);
 
-            Carte carteNonLegendaire2 = new Carte(CarteType.Weapon, "GVG_054", "Ogre Warmaul",
-                CarteExtension.Gvg, CarteRarete.Common, 3,
-                "50% chance to attack the wrong enemy.",
-                HerosClasse.Warrior, 4, -1, ServiteurRace.Aucune, 2);
+                Carte carteNonLegendaire2 = new Carte(CarteType.Weapon, "GVG_054", "Ogre Warmaul",
+                    CarteExtension.Gvg, CarteRarete.Common, 3,
+                    "50% chance to attack the wrong enemy.",
+                    HerosClasse.Warrior, 4, -1, ServiteurRace.Aucune, 2);
 
-            Carte carteLegendaire1 = new Carte(CarteType.Minion, "LOE_077", "Brann Bronzebeard",
-                CarteExtension.Loe, CarteRarete.Legendary, 3, "Your Battlecries trigger twice.",
-                HerosClasse.Neutre, 2, 4, ServiteurRace.Aucune, -1);
+                Carte carteLegendaire1 = new Carte(CarteType.Minion, "LOE_077", "Brann Bronzebeard",
+                    CarteExtension.Loe, CarteRarete.Legendary, 3, "Your Battlecries trigger twice.",
+                    HerosClasse.Neutre, 2, 4, ServiteurRace.Aucune, -1);
 
-            Carte carteLegendaire2 = new Carte(CarteType.Minion, "GVG_056", "Iron Juggernaut",
-                CarteExtension.Gvg, CarteRarete.Legendary, 6,
-                "Battlecry: Shuffle a Mine into your opponent's deck. When drawn, it explodes for 10 damage.",
-                HerosClasse.Warrior, 6, 5, ServiteurRace.Mechanical, -1);
+                Carte carteLegendaire2 = new Carte(CarteType.Minion, "GVG_056", "Iron Juggernaut",
+                    CarteExtension.Gvg, CarteRarete.Legendary, 6,
+                    "Battlecry: Shuffle a Mine into your opponent's deck. When drawn, it explodes for 10 damage.",
+                    HerosClasse.Warrior, 6, 5, ServiteurRace.Mechanical, -1);
 
-            // Ajout de cartes dans le deck.
-            deckWarrior.AjouterCartes(carteNonLegendaire1, 1);
-            deckWarrior.AjouterCartes(carteNonLegendaire2, 2);
-            deckWarrior.AjouterCartes(carteLegendaire1, 1);
-            deckWarrior.AjouterCartes(carteLegendaire2, 1);
+                // Ajout de cartes dans le deck.
+                deckWarrior.AjouterCartes(carteNonLegendaire1, 1);
+                deckWarrior.AjouterCartes(carteNonLegendaire2, 2);
+                deckWarrior.AjouterCartes(carteLegendaire1, 1);
+                deckWarrior.AjouterCartes(carteLegendaire2, 1);
 
-            Utilitaire.EnregisterDeck("warriors_forever_v2.xml", deckWarrior);
+                Utilitaire.EnregisterDeck("warriors_forever_v2.xml", deckWarrior);
 
-            // ***NOTE*** : Pour vérifier le bon fonctionnement de l'enregistrement, consultez
-            // le fichier "warriors_forever_v2.xml" qui a été créé dans le dossier /bin/Debug/Decks"
-            // du dossier du projet pour les tests.
-            // De plus, exécutez le test de chargement qui lui est associé, soit "TestChargerDeck2".
-        }
+                // ***NOTE*** : Pour vérifier le bon fonctionnement de l'enregistrement, consultez
+                // le fichier "warriors_forever_v2.xml" qui a été créé dans le dossier /bin/Debug/Decks"
+                // du dossier du projet pour les tests.
+                // De plus, exécutez le test de chargement qui lui est associé, soit "TestChargerDeck2".
+            }
 
-        // ChargerDeck
-        // ===========
+            // ChargerDeck
+            // ===========
 
-        /// <summary>
-        /// Tests unitaires pour la méthode "ChargerDeck".
-        /// </summary>
-        [TestMethod]
-        public void TestChargerDeck1()
-        {
-            // ***NOTE*** : Pour exécuter ce test, vous devez préalablement exécuter avec succès
-            // le test d'enregistrement du deck qui lui est associé, soit "TestEnregisterDeck1".
-            TestEnregisterDeck1();
+            /// <summary>
+            /// Tests unitaires pour la méthode "ChargerDeck".
+            /// </summary>
+            [TestMethod]
+            public void TestChargerDeck1()
+            {
+                // ***NOTE*** : Pour exécuter ce test, vous devez préalablement exécuter avec succès
+                // le test d'enregistrement du deck qui lui est associé, soit "TestEnregisterDeck1".
+                TestEnregisterDeck1();
 
-            HearthstoneData hData = new HearthstoneData();
+                HearthstoneData hData = new HearthstoneData();
 
-            Deck deckCharge = Utilitaire.ChargerDeck("warriors_forever.xml", hData);
+                Deck deckCharge = Utilitaire.ChargerDeck("warriors_forever.xml", hData);
 
-            Assert.AreEqual("Warriors forever", deckCharge.Nom);
-            Assert.AreSame(hData.RechercherHeroParId("HERO_01"), deckCharge.Heros);
-            Assert.AreEqual(0, deckCharge.NbTotalCartes);
-            Assert.AreEqual(0, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("LOE_061")));
-        }
+                Assert.AreEqual("Warriors forever", deckCharge.Nom);
+                Assert.AreSame(hData.RechercherHeroParId("HERO_01"), deckCharge.Heros);
+                Assert.AreEqual(0, deckCharge.NbTotalCartes);
+                Assert.AreEqual(0, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("LOE_061")));
+            }
 
-        /// <summary>
-        /// Tests unitaires pour la méthode "ChargerDeck".
-        /// </summary>
-        [TestMethod]
-        public void TestChargerDeck2()
-        {
-            // ***NOTE*** : Pour exécuter ce test, vous devez préalablement exécuter avec succès
-            // le test d'enregistrement du deck qui lui est associé, soit "TestEnregisterDeck2".
-            TestEnregisterDeck2();
+            /// <summary>
+            /// Tests unitaires pour la méthode "ChargerDeck".
+            /// </summary>
+            [TestMethod]
+            public void TestChargerDeck2()
+            {
+                // ***NOTE*** : Pour exécuter ce test, vous devez préalablement exécuter avec succès
+                // le test d'enregistrement du deck qui lui est associé, soit "TestEnregisterDeck2".
+                TestEnregisterDeck2();
 
-            HearthstoneData hData = new HearthstoneData();
+                HearthstoneData hData = new HearthstoneData();
 
-            Deck deckCharge = Utilitaire.ChargerDeck("warriors_forever_v2.xml", hData);
+                Deck deckCharge = Utilitaire.ChargerDeck("warriors_forever_v2.xml", hData);
 
-            Assert.AreEqual("Warriors forever v2", deckCharge.Nom);
-            Assert.AreSame(hData.RechercherHeroParId("HERO_01"), deckCharge.Heros);
-            Assert.AreEqual(5, deckCharge.NbTotalCartes);
-            Assert.AreEqual(4, deckCharge.LstCartesAvecQt.Count);
+                Assert.AreEqual("Warriors forever v2", deckCharge.Nom);
+                Assert.AreSame(hData.RechercherHeroParId("HERO_01"), deckCharge.Heros);
+                Assert.AreEqual(5, deckCharge.NbTotalCartes);
+                Assert.AreEqual(4, deckCharge.LstCartesAvecQt.Count);
 
-            Assert.AreEqual(1, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("GVG_103")));
-            Assert.AreEqual(2, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("GVG_054")));
-            Assert.AreEqual(1, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("LOE_077")));
-            Assert.AreEqual(1, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("GVG_056")));
-            Assert.AreEqual(0, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("LOE_061")));
-        }
+                Assert.AreEqual(1, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("GVG_103")));
+                Assert.AreEqual(2, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("GVG_054")));
+                Assert.AreEqual(1, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("LOE_077")));
+                Assert.AreEqual(1, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("GVG_056")));
+                Assert.AreEqual(0, deckCharge.ObtenirQtCarte(hData.RechercherCarteParId("LOE_061")));
+            }
 
-        /// <summary>
-        /// Tests unitaires pour la méthode "ChargerDeck".
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException),
-            "Les données de Hearthstone ne doivent pas être à nul.")]
-        public void TestChargerDeckExceptionHearthstoneDataNul()
-        {
-            // ***NOTE*** : Pour exécuter ce test, vous devez préalablement exécuter avec succès
-            // le test d'enregistrement du deck qui lui est associé, soit "TestEnregisterDeck1".
+            /// <summary>
+            /// Tests unitaires pour la méthode "ChargerDeck".
+            /// </summary>
+            [TestMethod]
+            [ExpectedException(typeof(ArgumentNullException),
+                "Les données de Hearthstone ne doivent pas être à nul.")]
+            public void TestChargerDeckExceptionHearthstoneDataNul()
+            {
+                // ***NOTE*** : Pour exécuter ce test, vous devez préalablement exécuter avec succès
+                // le test d'enregistrement du deck qui lui est associé, soit "TestEnregisterDeck1".
 
-            // ReSharper disable once UnusedVariable
-            Deck deckCharge = Utilitaire.ChargerDeck("warriors_forever.xml", null);
-        }
+                // ReSharper disable once UnusedVariable
+                Deck deckCharge = Utilitaire.ChargerDeck("warriors_forever.xml", null);
+            }
 
-        /// <summary>
-        /// Tests unitaires pour la méthode "ChargerDeck".
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(Exception),
-            "Le deck fait référence à un héro qui n'existe pas (identifiant invalide).")]
-        public void TestChargerDeckExceptionIdHeroInvalide()
-        {
-            Heros heroImaginaire = new Heros("HERO_99", "Hyper Strong Prof", CarteExtension.Reward,
-                CarteRarete.Legendary, HerosClasse.Paladin, 100);
-            Deck deck = new Deck("Mon héro imaginaire", heroImaginaire);
+            /// <summary>
+            /// Tests unitaires pour la méthode "ChargerDeck".
+            /// </summary>
+            [TestMethod]
+            [ExpectedException(typeof(Exception),
+                "Le deck fait référence à un héro qui n'existe pas (identifiant invalide).")]
+            public void TestChargerDeckExceptionIdHeroInvalide()
+            {
+                Heros heroImaginaire = new Heros("HERO_99", "Hyper Strong Prof", CarteExtension.Reward,
+                    CarteRarete.Legendary, HerosClasse.Paladin, 100);
+                Deck deck = new Deck("Mon héro imaginaire", heroImaginaire);
 
-            String nomFichierDeck = "id_hero_invalide.xml";
+                String nomFichierDeck = "id_hero_invalide.xml";
 
-            Utilitaire.EnregisterDeck(nomFichierDeck, deck);
+                Utilitaire.EnregisterDeck(nomFichierDeck, deck);
 
-            // ReSharper disable once UnusedVariable
-            Deck deckCharge = Utilitaire.ChargerDeck(nomFichierDeck, new HearthstoneData());
-        }
+                // ReSharper disable once UnusedVariable
+                Deck deckCharge = Utilitaire.ChargerDeck(nomFichierDeck, new HearthstoneData());
+            }
 
-        /// <summary>
-        /// Tests unitaires pour la méthode "ChargerDeck".
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(Exception),
-            "Le deck fait référence à une carte qui n'existe pas (identifiant invalide).")]
-        public void TestChargerDeckExceptionIdCarteInvalide()
-        {
-            Heros heroMage = new Heros("HERO_08", "Jaina Proudmoore", CarteExtension.Core, CarteRarete.Free,
-                HerosClasse.Mage, 30);
-            Deck deck = new Deck("Mon deck avec ma carte imaginaire", heroMage);
-            Carte carteImaginaire = new Carte(CarteType.Minion, "EXP_999", "The Ultimate Destroyer",
-                CarteExtension.Reward, CarteRarete.Legendary, 10, "Destroy all other minions", HerosClasse.Mage,
-                10, 10, ServiteurRace.Totem, -1);
+            /// <summary>
+            /// Tests unitaires pour la méthode "ChargerDeck".
+            /// </summary>
+            [TestMethod]
+            [ExpectedException(typeof(Exception),
+                "Le deck fait référence à une carte qui n'existe pas (identifiant invalide).")]
+            public void TestChargerDeckExceptionIdCarteInvalide()
+            {
+                Heros heroMage = new Heros("HERO_08", "Jaina Proudmoore", CarteExtension.Core, CarteRarete.Free,
+                    HerosClasse.Mage, 30);
+                Deck deck = new Deck("Mon deck avec ma carte imaginaire", heroMage);
+                Carte carteImaginaire = new Carte(CarteType.Minion, "EXP_999", "The Ultimate Destroyer",
+                    CarteExtension.Reward, CarteRarete.Legendary, 10, "Destroy all other minions", HerosClasse.Mage,
+                    10, 10, ServiteurRace.Totem, -1);
 
-            deck.AjouterCartes(carteImaginaire, 1);
+                deck.AjouterCartes(carteImaginaire, 1);
 
-            String nomFichierDeck = "id_carte_invalide.xml";
+                String nomFichierDeck = "id_carte_invalide.xml";
 
-            Utilitaire.EnregisterDeck(nomFichierDeck, deck);
+                Utilitaire.EnregisterDeck(nomFichierDeck, deck);
 
-            // ReSharper disable once UnusedVariable
-            Deck deckCharge = Utilitaire.ChargerDeck(nomFichierDeck, new HearthstoneData());
-        }
+                // ReSharper disable once UnusedVariable
+                Deck deckCharge = Utilitaire.ChargerDeck(nomFichierDeck, new HearthstoneData());
+            } */
 
         #endregion
     }
