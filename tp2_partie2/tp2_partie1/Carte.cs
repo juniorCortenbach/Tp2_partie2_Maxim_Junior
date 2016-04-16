@@ -8,6 +8,7 @@
 #region USING
 
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -175,16 +176,15 @@ namespace tp2_partie1
                 // Validation de la durabilité entre 1 et 8 inclusivement pour les carte arme.
                 // ===========================================================================
                 if ((this.Type == CarteType.Weapon) && ((value < 1) || (value > 8)))
-                {
                     throw new ArgumentOutOfRangeException("La durabilité doit être entre 1 et 8, inclusivement. et le type doit être arme");
-                }
-                // Validation de la durabilité doit être -1 et le type doit être serviteur et sort.
-                // ================================================================================
-                if ((this.Type == CarteType.Spell) && (this.Durabilite == -1))
-                {
-                    throw new ArgumentOutOfRangeException(null,
-                        "La durabilité doit être -1. et le type doit sort");
-                }
+                if ((this.Type == CarteType.Minion) && (value != -1))
+                    throw new ArgumentOutOfRangeException("La durabilité doit être entre 1 et 8, inclusivement. et le type doit être arme");
+                if ((this.Type == CarteType.Spell) && (value != -1))
+                    throw new ArgumentOutOfRangeException("La durabilité doit être entre 1 et 8, inclusivement. et le type doit être arme");
+
+
+
+
                 // La durabilité prévue est valide; on la conserve dans l'attribut. 
                 this._durabilite = value;
             }
@@ -218,15 +218,18 @@ namespace tp2_partie1
                 this._nom = idTrime;
 
                 //Regex qui valide l'id de la carte
-                Regex idCarteRegex = new Regex("[a-zA-Z0-9]{2,6}_[0-9a-z]{1,4}");
-            
+                Regex idCarteRegex = new Regex("[a-z+A-Z]{4}.*[0-9a-z]{1,}.*");
+                
+
                 //Valide que la carte 
-                if (idCarteRegex.IsMatch(value)==false)
+                if (idCarteRegex.IsMatch(value))
                 {
-                    throw new ArgumentOutOfRangeException("L'id doit contenir entre 2 et 6 caractères parmi les lettres minuscules et majuscules et les chiffres de (0 à 9) suivit du caractère de soulignement, _ entre 1 et 3 chiffres de (0 à 9)");
+                    throw new ArgumentException("L'id doit contenir entre 2 et 6 caractères parmi les lettres minuscules et majuscules et les chiffres de (0 à 9) suivit du caractère de soulignement, _ entre 1 et 3 chiffres de (0 à 9)");
                 }
+
+
                 // L'id prévue est valide; on la conserve dans l'attribut.
-                this._id= idTrime;
+                this._id = idTrime;
             }
         }
 
@@ -255,7 +258,7 @@ namespace tp2_partie1
                 // ===================
                 // Le nom ne doit pas être nul.
                 if (value == null)
-                    throw new ArgumentNullException(null, "Le nom ne doit pas être nul.");
+                    throw new ArgumentNullException("Le nom ne doit pas être nul.");
                 // Retrait des espaces superflus (seulement si le titre n'est pas nul, autrement ça va lever l'exception NullReferenceExcpetion).
                 String nomTrime = value.Trim();
                 // Le nom doit contenir au moins 3 caractères.
@@ -274,7 +277,12 @@ namespace tp2_partie1
             get { return this._race; }
             set
             {
-                //A faire
+
+                if ((this.Vie != -1) && (this.Type != CarteType.Minion))
+                    throw new ArgumentException(
+                        "Les points de vie doivent être à -1 pour une carte qui n'est pas de type serviteur.");
+       
+
                 this._race = value;
             }
         }
@@ -306,15 +314,15 @@ namespace tp2_partie1
             get { return this._texte; }
             set
             {
-                // Validation du titre
+                // Validation du texte
                 // ===================
                 // Le titre ne doit pas être nul.
                 if (value == null)
-                    throw new ArgumentNullException(null, "Le text ne doit pas être nul.");
+                    throw new ArgumentNullException("Le text ne doit pas être nul.");
                 // Retrait des espaces superflus (seulement si le titre n'est pas nul, autrement ça va lever l'exception NullReferenceExcpetion).
                 String texteTrime = value.Trim();
 
-                    this._texte = texteTrime;
+                this._texte = texteTrime;
             }
         }
 
@@ -337,16 +345,16 @@ namespace tp2_partie1
             {
                 // Validation de la vie 
                 // ==========================================================================================
-                if ((this.Type == CarteType.Minion)  && ((value < 1) || (value > 15)))
-                {
-                    throw new ArgumentOutOfRangeException("La vie doit être entre 0 et 15, inclusivement. et le type doit être un serviteur");
-                }
-                // Validation de la vie, doit être -1 et le type doit être sort et arme
-                // ======================================================
-                if (((this.Type == CarteType.Spell)||(this.Type == CarteType.Weapon)) && (this.Vie == -1))
-                {
-                    throw new ArgumentOutOfRangeException("La vie doit être -1. et le type doit être sort ou arme");
-                }
+                if ((this.Type == CarteType.Weapon) && (value != -1))
+                    throw new ArgumentOutOfRangeException("Les points de vie doivent être à -1 pour une carte qui n'est pas de type serviteur.");
+                if ((this.Type == CarteType.Minion) && ((value < 1) || (value > 15)))
+                    throw new ArgumentOutOfRangeException("La vie doit être entre 1 et 15, inclusivement. et le type doit être un serviteur");
+     
+
+       
+          
+
+
                 // La vie prévue est valide; on la conserve dans l'attribut. 
                 this._vie = value;
             }
@@ -376,18 +384,33 @@ namespace tp2_partie1
             this.LstMeca = new List<CarteMecanique>();
         }
 
-       #endregion
+        #endregion
 
         #region MÉTHODES
 
-    
+
         /// <summary>
         /// Permet de comparer deux cartes.
         /// </summary>
         /// <returns></returns>
         public int CompareTo(Carte autreCarte)
         {
-            return 0;
+            // Le premier critère de tri est l'id des cartes.
+            // Note : "CompareTo" est déjà définie pour des nombres.
+            int resComp = this.Id.CompareTo(autreCarte.Id);
+            // Est-ce que les identifiants sont différents ?
+            if (resComp != 0)
+                // Id différents.
+                // On retourne le résultat de la comparaison.
+                // Note : Si on veut un tri en ordre décroissant d'id, il faut multiplier par -1.
+                return resComp;
+            else
+            {
+                // Les deux carte ont le même Identifiant.
+                // Le deuxième critère de tri est le nom (insensible à la case et aux accents).
+                return String.Compare(this.Nom, autreCarte.Nom, CultureInfo.CurrentCulture,
+                    CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace);
+            }
         }
 
         /// <summary>
@@ -396,6 +419,12 @@ namespace tp2_partie1
         /// <returns></returns>
         public void AjouterMecanique(CarteMecanique mecanique)
         {
+            //Vérifie si la liste contiens déjà une mécaniques.
+            if (this.LstMeca.Contains(mecanique))
+            {
+                throw new InvalidOperationException("Impossible d'ajouter une mécanique déjà présente.");
+            }
+            //Ajoute mécaniques à la liste s'il est manquant. 
             this.LstMeca.Add(mecanique);
         }
 

@@ -35,6 +35,9 @@ namespace tp2_partie1
 
         #region MÉTHODES
 
+
+        #region CHARGERHEROS
+
         public static Heros[] ChargerHeros(String cheminFichier)
         {
             if (cheminFichier == null)
@@ -77,6 +80,10 @@ namespace tp2_partie1
             catch (PathTooLongException oe)
             {
                 Console.WriteLine("chemin trop long");
+            }
+            catch (XmlException)
+            {
+                Console.WriteLine("pa du xml");
             }
 
             // Récupération de tous les éléments "Cartes".
@@ -182,6 +189,11 @@ namespace tp2_partie1
             // On retourne le tableau de Heros créé.
             return tabHeros;
         }
+
+#endregion 
+
+        #region CHARGERCARTES
+
         /// <summary>
         /// Charge les carte du fichier .xml
         /// </summary>
@@ -189,23 +201,21 @@ namespace tp2_partie1
         /// <returns></returns>
         public static Carte[] ChargerCartes(String cheminFichier)
         {
-            if (cheminFichier != null && cheminFichier.Trim().Length == 0)
-                throw new ArgumentException("Le nom du fichier est invalide.");
             if (cheminFichier == null)
-                throw new ArgumentNullException(null, "Le nom du fichier ne doit pas être nul.");
+                throw new ArgumentNullException("Le chemin pour accéder au fichier est invalide.");
             if (cheminFichier.Length <= 1)
                 throw new ArgumentException(null, "Le nom du fichier est invalide.");
             if (cheminFichier.Length > 100)
                 throw new ArgumentException("Impossible d'ouvrir le fichier XML.");
-
             if (cheminFichier == null)
             {
                 throw new XmlException();
             }
             if (cheminFichier.Contains('_'))
             {
-                throw new ArgumentException("Le fichier n'est pas un fichier XML valide.");
+                throw new XmlException("Le fichier n'est pas un fichier XML valide.");
             }
+
 
             
             // Création d'un document XML (un objet .NET) à partir du fichier au format XML (désérialisation).
@@ -413,17 +423,15 @@ namespace tp2_partie1
                         {
                             string chaineInitial = (elemCarte.GetElementsByTagName("mechanics")[j].InnerText).ToString();
 
-                            string ChaineFormater = chaineInitial.Substring(0, 1) + chaineInitial.Substring(1).ToLower();
+                            string chaineFormater = "";
+                                  chaineFormater = chaineInitial.Replace("_", " ");
+                chaineFormater =
+                    System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(chaineFormater.ToLower());
 
-                            ChaineFormater = chaineInitial.Replace("_", " ");
-                            ChaineFormater =
-                                System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(
-                                    ChaineFormater);
-
-                            ChaineFormater = ChaineFormater.Replace(" ", "").Trim();
+                        chaineFormater = chaineFormater.Replace(" ", "").Trim();
 
                             tabCartes[i].AjouterMecanique(
-                                (CarteMecanique)Enum.Parse(typeof(CarteMecanique), ChaineFormater));
+                                (CarteMecanique)Enum.Parse(typeof(CarteMecanique), chaineFormater));
                         }
                     }
 
@@ -432,12 +440,20 @@ namespace tp2_partie1
             // On retourne le tableau de cartes créé.
             return tabCartes;
         }
+
+
+#endregion
+
+        #region ENREGISTRERDECK
+        
+ 
+
         /// <summary>
         /// Permet d'enregistrer les données dans un fichier au format XML à partir d'un tableau d'objets de type "Carte" (sérialisation).
         /// </summary>
         /// <param name="cheminFichier">Chemin d'accès au fichier dans lequel les données seront sérialisées</param>
         /// <param name="tabCartes">tableau d’objets de type "arrte" à sérialiser dans le fichier. </param>
-        private static void EnregistrerDonneesDeck(String cheminFichier, Carte[] tabCartes)
+        private static void EnregisterDeck(String cheminFichier, Carte[] tabCartes)
         {
 
             if (cheminFichier.Length >= 300)
@@ -546,6 +562,30 @@ namespace tp2_partie1
             //Enregistrement du document XML dans un fichier par sérialisation.
             xmlDoc.Save(cheminFichier);
         }
+
+        #endregion
+
+        #region CHARGERDECK
+
+        private static void ChargerDeck(string cheminFichier, HearthstoneData hData)
+        {
+            
+        }
+
+        #endregion
+
+        #region ENREGISTRERDECK
+        
+    
+
+        private static void EnregisterDeck(String cheminFichier, HearthstoneData hData)
+        {
+
+
+        }
+        #endregion
+
+
         #endregion
 
     }

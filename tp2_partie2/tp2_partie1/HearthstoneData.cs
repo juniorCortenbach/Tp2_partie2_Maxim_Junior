@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -80,20 +81,6 @@ namespace tp2_partie1
 
         #region MÉTHODES
 
-        /// <summary>
-        /// Prend en paramètre tous les critères de recherche (vous référez à la section « Critères pour la recherche de cartes » plus haut
-        /// pour l’ordre des paramètres et leur signification). Retourne une liste générique de « Carte » correspondant aux critères de
-        /// recherche et triée premièrement selon le coût (en ordre croissant) et, par la suite, selon le nom (en ordre croissant et
-        /// insensible à la casse et aux accents).
-        /// </summary>
-        /// <param name="?"></param>
-        public Carte RechercherCartes(CarteType type, String nomPartiel, List<CarteExtension> extensions, CarteRarete rarete,
-            sbyte coutMin,sbyte coutMax, string textePartiel,HerosClasse classe, List<CarteMecanique> mecaniques, 
-            sbyte attaqueMin, sbyte attaqueMax, sbyte vieMin, sbyte vieMax,ServiteurRace race, sbyte durabiliteMin,
-            sbyte durabiliteMax)
-        {
-            return null;
-        }
 
         /// <summary>
         /// Prend en paramètre l’identifiant d’une carte et retourne la carte correspondante si l’identifiant est valide; retourne « null » si
@@ -102,32 +89,37 @@ namespace tp2_partie1
         /// <returns></returns>
         public Carte RechercherCarteParId(string carteRecherchee)
         {
-            string idTrouver;
+            if (this.LesCartes == null)
+                throw new ArgumentException("L'Id du heros ne doit pas être une chaîne vide.");
+            if (this.LesCartes.Equals(""))
+                throw new ArgumentException("L'Id du heros ne doit pas être une chaîne vide.");
+            if(carteRecherchee == null)
+                throw new ArgumentNullException("L'Id du heros ne doit pas être une chaîne vide.");
 
-            try
-            {
-                idTrouver = carteRecherchee.Split('_').Last();
-            }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine("Le fichier n'existe pas.");
-                Console.WriteLine("Message système : {0}", fnfe.Message);
-            }
-        
+            //string idTrouver;
+
+            //try
+            //{
+            //    idTrouver = carteRecherchee.Split('_').Last();
+            //}
+            //catch (FileNotFoundException fnfe)
+            //{
+            //    Console.WriteLine("Le fichier n'existe pas.");
+            //    Console.WriteLine("Message système : {0}", fnfe.Message);
+            //}
 
 
             for (int i = 0; i < this.LesCartes.Length; i++)
             {
-                //if (idTrouver.ToString() == this.LesCartes[i].Id.ToString())
-                //{
-                //    return this.LesCartes[i];
-                //}
-                //else
-                //{
-                //    return null;
-                //}
+                if (this._lesCartes[i].Id.Trim() == carteRecherchee.Trim())
+                {
+                    return this.LesCartes[i];
+                }
             }
+
+
             return null;
+     
 
 
         }
@@ -138,6 +130,35 @@ namespace tp2_partie1
         /// </summary>
         /// <returns></returns>
         public Heros RechercherHeroParId(string heroRechercher)
+        {
+            if (this.LesHeros == null)
+                throw new ArgumentNullException("la valeur du heros rechercher est null");
+            if (this.LesHeros.Equals(""))
+                throw new ArgumentException("L'Id du heros ne doit pas être une chaîne vide.");
+      
+
+            for (int i = 0; i < this.LesHeros.Length; i++)
+            {
+                if (this._lesHeros[i].Id.Trim() == heroRechercher.Trim())
+                {
+                    return this.LesHeros[i];
+                }
+            }
+            return null;
+
+          
+        }
+        /// <summary>
+        /// Prend en paramètre tous les critères de recherche (vous référez à la section « Critères pour la recherche de cartes » plus haut
+        /// pour l’ordre des paramètres et leur signification). Retourne une liste générique de « Carte » correspondant aux critères de
+        /// recherche et triée premièrement selon le coût (en ordre croissant) et, par la suite, selon le nom (en ordre croissant et
+        /// insensible à la casse et aux accents).
+        /// </summary>
+        /// <param name="?"></param>
+        public List <Carte> RechercherCartes(CarteType type, String nomPartiel, List<CarteExtension> extensions, CarteRarete rarete,
+            sbyte coutMin, sbyte coutMax, string textePartiel, HerosClasse classe, List<CarteMecanique> mecaniques,
+            sbyte attaqueMin, sbyte attaqueMax, sbyte vieMin, sbyte vieMax, ServiteurRace race, sbyte durabiliteMin,
+            sbyte durabiliteMax)
         {
             return null;
         }
